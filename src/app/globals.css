@@ -1,49 +1,142 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === Cores Material 3 (Baseadas no DESIGN.md) === */
+  --color-surface: #fef8f2;
+  --color-surface-dim: #ded9d3;
+  --color-surface-bright: #fef8f2;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f8f3ec;
+  --color-surface-container: #f2ede7;
+  --color-surface-container-high: #ede7e1;
+  --color-surface-container-highest: #e7e2dc;
+  --color-on-surface: #1d1b18;
+  --color-on-surface-variant: #5b403e;
+  --color-inverse-surface: #32302c;
+  --color-inverse-on-surface: #f5f0ea;
+  --color-outline: #8f6f6d;
+  --color-outline-variant: #e4bebb;
+  --color-surface-tint: #b91a25;
+  --color-primary: #78000f;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #a30018;
+  --color-on-primary-container: #ffaca6;
+  --color-inverse-primary: #ffb3ae;
+  --color-secondary: #665d57;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #eaddd6;
+  --color-on-secondary-container: #6a615b;
+  --color-tertiary: #393836;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #504f4c;
+  --color-on-tertiary-container: #c3c1bd;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-background: #fef8f2;
+  --color-on-background: #1d1b18;
+
+  /* === Tipografia === */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+
+  /* === Espaçamento === */
+  --spacing-unit: 4px;
+  --sidebar-width: 228px;
+  --gutter: 24px;
+  --margin-page: 48px;
+  --card-padding: 24px;
+  --section-gap: 64px;
+
+  /* === Border Radius === */
+  --rounded-sm: 0.25rem;
+  --rounded: 0.5rem;
+  --rounded-md: 0.75rem;
+  --rounded-lg: 1rem;
+  --rounded-xl: 1.5rem;
+  --rounded-full: 9999px;
+
+  /* === Sombras === */
+  --shadow-warm: 0 10px 20px rgba(26, 20, 16, 0.05);
+  --border-premium: 1px solid #ddd8d2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
+/* === Reset & Base Styles === */
+*, *::before, *::after {
   box-sizing: border-box;
-  padding: 0;
+}
+
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
   margin: 0;
 }
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.6;
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-body);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-on-background);
+}
+
+h1 { font-size: 48px; letter-spacing: -0.01em; }
+h2 { font-size: 32px; line-height: 1.2; }
+h3 { font-size: 24px; line-height: 1.2; }
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* === Utilitários === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.text-primary { color: var(--color-primary); }
+.text-crimson { color: var(--color-primary-container); }
+.bg-white { background-color: #ffffff; }
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-4 { gap: 16px; }
+
+.premium-card {
+  background-color: #ffffff;
+  border: var(--border-premium);
+  border-radius: var(--rounded);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-warm);
+}
+
+.ma-space {
+  margin-top: var(--section-gap);
+  margin-bottom: var(--section-gap);
 }

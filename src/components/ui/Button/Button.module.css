@@ -1,0 +1,88 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rounded);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  transition: var(--transition-normal, 250ms ease);
+  cursor: pointer;
+  position: relative;
+  border: 1px solid transparent;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Variantes */
+.primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.primary:hover:not(:disabled) {
+  background-color: var(--color-primary-container);
+}
+
+.secondary {
+  background-color: transparent;
+  border-color: var(--color-on-background);
+  color: var(--color-on-background);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: var(--color-surface-container-low);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--color-on-background);
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: var(--color-surface-container-low);
+}
+
+.danger {
+  background-color: var(--color-error);
+  color: var(--color-on-error);
+}
+
+.danger:hover:not(:disabled) {
+  background-color: var(--color-error-container);
+  color: var(--color-on-error-container);
+}
+
+/* Tamanhos */
+.sm { padding: 8px 16px; height: 32px; }
+.md { padding: 12px 24px; height: 44px; }
+.lg { padding: 16px 32px; height: 56px; }
+
+/* Estados */
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading {
+  color: transparent !important;
+}
+
+.spinner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.contentHidden {
+  visibility: hidden;
+}
