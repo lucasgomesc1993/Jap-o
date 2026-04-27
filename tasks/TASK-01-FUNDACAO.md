@@ -7,30 +7,30 @@
 ## TASK 1.1 — Setup do Projeto
 
 ### 1.1.1 Inicializar Next.js 15 + TypeScript
-- [ ] Criar projeto com `npx create-next-app@latest` (App Router, TypeScript, ESLint)
-- [ ] Configurar `tsconfig.json` com `strict: true` e path aliases (`@/`)
-- [ ] Adicionar `.nvmrc` com versão Node LTS
+- [x] Criar projeto com `npx create-next-app@latest` (App Router, TypeScript, ESLint)
+- [x] Configurar `tsconfig.json` com `strict: true` e path aliases (`@/`)
+- [x] Adicionar `.nvmrc` com versão Node LTS
 - **Teste:** Verificar build limpo sem erros (`npm run build`)
 
 ### 1.1.2 Configurar ESLint + Prettier
-- [ ] Instalar `prettier`, `eslint-config-prettier`
-- [ ] Criar `.prettierrc` (singleQuote, semi, trailingComma)
-- [ ] Criar `.eslintrc.json` estendendo Next.js + Prettier
-- [ ] Adicionar scripts `lint` e `format` no `package.json`
+- [x] Instalar `prettier`, `eslint-config-prettier`
+- [x] Criar `.prettierrc` (singleQuote, semi, trailingComma)
+- [x] Criar `.eslintrc.json` estendendo Next.js + Prettier
+- [x] Adicionar scripts `lint` e `format` no `package.json`
 - **Teste:** Rodar `npm run lint` sem warnings
 
 ### 1.1.3 Configurar ferramentas de teste
-- [ ] Instalar `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`
-- [ ] Instalar `msw` (Mock Service Worker) para mocks de API
-- [ ] Instalar `@playwright/test` para E2E
-- [ ] Criar `vitest.config.ts` com coverage provider `v8`
-- [ ] Configurar scripts: `test`, `test:watch`, `test:coverage`, `test:e2e`
-- [ ] Configurar threshold de coverage em 100%
+- [x] Instalar `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`
+- [x] Instalar `msw` (Mock Service Worker) para mocks de API
+- [x] Instalar `@playwright/test` para E2E
+- [x] Criar `vitest.config.ts` com coverage provider `v8`
+- [x] Configurar scripts: `test`, `test:watch`, `test:coverage`, `test:e2e`
+- [x] Configurar threshold de coverage em 100%
 - **Teste:** Rodar `npm run test` com teste placeholder passando
 
 ### 1.1.4 Configurar CI básico
-- [ ] Criar `.github/workflows/ci.yml` (lint + type-check + testes + coverage)
-- [ ] Garantir que PR só merga com coverage >= 100%
+- [x] Criar `.github/workflows/ci.yml` (lint + type-check + testes + coverage)
+- [x] Garantir que PR só merga com coverage >= 100%
 - **Teste:** Pipeline executa sem falhas
 
 ---
@@ -44,20 +44,20 @@
 - [ ] Configurar confirmação de email obrigatória
 
 ### 1.2.2 Configurar clients Supabase
-- [ ] Instalar `@supabase/supabase-js`, `@supabase/ssr`
-- [ ] Criar `src/lib/supabase/server.ts` (server client)
-- [ ] Criar `src/lib/supabase/browser.ts` (browser client)
-- [ ] Criar `src/lib/supabase/middleware.ts` (middleware client)
-- [ ] Adicionar variáveis ao `.env.local` e `.env.example`
+- [x] Instalar `@supabase/supabase-js`, `@supabase/ssr`
+- [x] Criar `src/lib/supabase/server.ts` (server client)
+- [x] Criar `src/lib/supabase/browser.ts` (browser client)
+- [x] Criar `src/lib/supabase/middleware.ts` (middleware client)
+- [x] Adicionar variáveis ao `.env.local` e `.env.example`
 - **Testes unitários:**
-  - [ ] `server.ts` cria client com cookies corretos
-  - [ ] `browser.ts` cria client singleton
-  - [ ] Variáveis de ambiente são validadas (Zod)
+  - [x] `server.ts` cria client com cookies corretos
+  - [x] `browser.ts` cria client singleton
+  - [x] Variáveis de ambiente são validadas (Zod)
 
 ### 1.2.3 Configurar Supabase Storage
-- [ ] Criar buckets: `product-photos`, `warehouse-photos`, `ticket-attachments`, `receipts`
-- [ ] Configurar políticas RLS por bucket
-- [ ] Configurar limites: 5MB, formatos JPG/PNG/WebP
+- [x] Criar buckets: `product-photos`, `warehouse-photos`, `ticket-attachments`, `receipts`
+- [x] Configurar políticas RLS por bucket
+- [x] Configurar limites: 5MB, formatos JPG/PNG/WebP
 - **Testes:**
   - [ ] Upload com tipo inválido é rejeitado
   - [ ] Upload acima de 5MB é rejeitado
@@ -67,22 +67,22 @@
 ## TASK 1.3 — Prisma + Schema Inicial
 
 ### 1.3.1 Configurar Prisma
-- [ ] Instalar `prisma`, `@prisma/client`
-- [ ] Inicializar com `npx prisma init`
-- [ ] Criar `src/lib/prisma/client.ts` (singleton pattern)
+- [x] Instalar `prisma`, `@prisma/client`
+- [x] Inicializar com `npx prisma init`
+- [x] Criar `src/lib/prisma/client.ts` (singleton pattern)
 - **Teste:** Client conecta e executa query simples
 
 ### 1.3.2 Schema: User
-- [ ] Campos: `id` (UUID), `email`, `fullName`, `cpf` (criptografado), `phone`, `role` (CUSTOMER/ADMIN), `emailConfirmed`, `blocked`, timestamps
-- [ ] Índices: `email` (unique), `cpf` (unique)
+- [x] Campos: `id` (UUID), `email`, `fullName`, `cpf` (criptografado), `phone`, `role` (CUSTOMER/ADMIN), `emailConfirmed`, `blocked`, timestamps
+- [x] Índices: `email` (unique), `cpf` (unique)
 - **Testes:**
   - [ ] Criar usuário com dados válidos
   - [ ] Rejeitar CPF/email duplicado
   - [ ] Enum role aceita apenas CUSTOMER e ADMIN
 
 ### 1.3.3 Schema: Address
-- [ ] Campos: `id`, `userId` (FK), `label`, `cep`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `isDefault`, `createdAt`
-- [ ] Relação: User 1:N Address
+- [x] Campos: `id`, `userId` (FK), `label`, `cep`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `isDefault`, `createdAt`
+- [x] Relação: User 1:N Address
 - **Testes:**
   - [ ] Criar endereço vinculado a user
   - [ ] Cascade delete quando user é removido
@@ -97,19 +97,19 @@
 ## TASK 1.4 — Design System CSS
 
 ### 1.4.1 Tokens CSS (variáveis globais)
-- [ ] Criar `src/app/globals.css` com custom properties do DESIGN.md
-- [ ] Cores: todas as variáveis Material 3 (primary, surface, error, etc.)
-- [ ] Tipografia: importar Google Fonts (Cormorant Garamond + Jost)
-- [ ] Espaçamento, border radius, sombras, transições
+- [x] Criar `src/app/globals.css` com custom properties do DESIGN.md
+- [x] Cores: todas as variáveis Material 3 (primary, surface, error, etc.)
+- [x] Tipografia: importar Google Fonts (Cormorant Garamond + Jost)
+- [x] Espaçamento, border radius, sombras, transições
 - **Teste:** Snapshot test do CSS
 
 ### 1.4.2 Reset + Base styles
-- [ ] CSS reset (box-sizing, margin, font smoothing)
-- [ ] Estilos base para body, headings, links
+- [x] CSS reset (box-sizing, margin, font smoothing)
+- [x] Estilos base para body, headings, links
 - **Teste:** Renderizar página base sem erros
 
 ### 1.4.3 Utilitários CSS
-- [ ] Classes para layout, texto, espaçamento, visibilidade
+- [x] Classes para layout, texto, espaçamento, visibilidade
 - **Teste:** Cada classe aplica propriedade CSS esperada
 
 ---
@@ -117,26 +117,26 @@
 ## TASK 1.5 — Componentes UI Base
 
 ### 1.5.1 Button
-- [ ] Variantes: `primary`, `secondary`, `ghost`, `danger`
-- [ ] Tamanhos: `sm`, `md`, `lg` | Estados: `disabled`, `loading`
+- [x] Variantes: `primary`, `secondary`, `ghost`, `danger`
+- [x] Tamanhos: `sm`, `md`, `lg` | Estados: `disabled`, `loading`
 - **Testes:** renderização, variantes, loading spinner, disabled, acessibilidade
 
 ### 1.5.2 Input
-- [ ] Label, placeholder, helperText, errorMessage, ícone opcional
-- [ ] Borda crimson no focus
+- [x] Label, placeholder, helperText, errorMessage, ícone opcional
+- [x] Borda crimson no focus
 - **Testes:** renderização, erro, onChange, acessibilidade (aria-invalid)
 
 ### 1.5.3 Modal
-- [ ] Props: `isOpen`, `onClose`, `title`, `size`
-- [ ] Fecha com ESC e clique no overlay, focus trap
+- [x] Props: `isOpen`, `onClose`, `title`, `size`
+- [x] Fecha com ESC e clique no overlay, focus trap
 - **Testes:** renderização condicional, ESC, focus trap, aria-modal
 
 ### 1.5.4 Card
-- [ ] Borda 1px, radius 10px, sombra level 1, hover opcional
+- [x] Borda 1px, radius 10px, sombra level 1, hover opcional
 - **Testes:** renderização, hover class
 
 ### 1.5.5 Badge
-- [ ] Variantes: `info`, `success`, `warning`, `error`, `neutral`
+- [x] Variantes: `info`, `success`, `warning`, `error`, `neutral`
 - **Testes:** renderização, cor da variante
 
 ### 1.5.6 Sidebar
@@ -277,4 +277,4 @@
 Schemas com testes unitários completos (válido + cada tipo de inválido + mensagens pt-BR):
 - [ ] `cpf.schema.ts` | `cep.schema.ts` | `email.schema.ts`
 - [ ] `password.schema.ts` | `phone.schema.ts` | `address.schema.ts`
-- [ ] `user-register.schema.ts` | `login.schema.ts` | `env.schema.ts`
+- [ ] `user-register.schema.ts` | `login.schema.ts` | [x] `env.schema.ts`
