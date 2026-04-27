@@ -1,0 +1,249 @@
+.hero {
+  padding: 80px 0 96px;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.content {
+  animation: fadeInUp 0.8s ease;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-container);
+  background-color: rgba(163, 0, 24, 0.08);
+  padding: 6px 14px;
+  border-radius: var(--rounded-full);
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-on-background);
+  margin-bottom: 24px;
+}
+
+.accent {
+  color: var(--color-primary-container);
+}
+
+.subtitle {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-on-surface-variant);
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 36px;
+  background-color: var(--color-primary-container);
+  color: #ffffff;
+  border-radius: var(--rounded);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all 300ms ease;
+  box-shadow: 0 4px 16px rgba(163, 0, 24, 0.2);
+}
+
+.ctaPrimary:hover {
+  background-color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(163, 0, 24, 0.3);
+  transform: translateY(-2px);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 36px;
+  background-color: transparent;
+  border: 1px solid var(--color-on-background);
+  color: var(--color-on-background);
+  border-radius: var(--rounded);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+
+.ctaSecondary:hover {
+  background-color: var(--color-surface-container-low);
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statNumber {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  color: var(--color-on-background);
+  font-weight: 500;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background-color: #ddd8d2;
+}
+
+/* Visual Card */
+.visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 1s ease 0.2s both;
+}
+
+.visualCard {
+  perspective: 800px;
+}
+
+.cardMockup {
+  width: 320px;
+  background-color: #ffffff;
+  border: var(--border-premium);
+  border-radius: var(--rounded-md);
+  box-shadow: 0 20px 60px rgba(26, 20, 16, 0.1);
+  overflow: hidden;
+  transition: transform 600ms ease;
+}
+
+.cardMockup:hover {
+  transform: rotateY(-4deg) rotateX(2deg);
+}
+
+.mockupStripe {
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-container), var(--color-primary));
+}
+
+.mockupContent {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.mockupIcon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.mockupTitle {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--color-on-background);
+}
+
+.mockupStatus {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e7e34;
+  background-color: #e6f4ea;
+  padding: 4px 12px;
+  border-radius: var(--rounded-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mockupProgress {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-surface-container-high);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progressBar {
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary-container), #d4443e);
+  border-radius: 3px;
+  animation: progressPulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .visual {
+    order: -1;
+  }
+
+  .stats {
+    flex-wrap: wrap;
+  }
+}

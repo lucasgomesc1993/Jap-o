@@ -140,52 +140,52 @@
 - **Testes:** renderização, cor da variante
 
 ### 1.5.6 Sidebar
-- [ ] Largura 228px, barra crimson topo, item ativo com barra vertical
-- **Testes:** itens, item ativo, acessibilidade (nav, aria-current)
+- [x] Largura 228px, barra crimson topo, item ativo com barra vertical
+- [x] **Testes:** itens, item ativo, acessibilidade (nav, aria-current)
 
 ### 1.5.7 Skeleton / Loading
-- [ ] `SkeletonText`, `SkeletonCard`, `SkeletonTable` com shimmer
-- **Testes:** dimensões, aria-busy
+- [x] `SkeletonText`, `SkeletonCard`, `SkeletonTable` com shimmer
+- [x] **Testes:** dimensões, aria-busy
 
 ### 1.5.8 Toast / Notification
-- [ ] Tipos: `success`, `error`, `warning`, `info` | Auto-dismiss | Zustand store
-- **Testes:** mensagem, auto-dismiss, empilhamento
+- [x] Tipos: `success`, `error`, `warning`, `info` | Auto-dismiss | Zustand store
+- [x] **Testes:** mensagem, auto-dismiss, empilhamento
 
 ---
 
 ## TASK 1.6 — Landing Page
 
 ### 1.6.1 Hero Section
-- [ ] Headline, subheadline, CTA "Começar agora", imagem, animação fade-in
-- **Testes:** renderização, CTA href correto
+- [x] Headline, subheadline, CTA "Começar agora", imagem, animação fade-in
+- [x] **Testes:** renderização, CTA href correto
 
 ### 1.6.2 Seção "Como Funciona"
-- [ ] 4 steps visuais com ícones
-- **Testes:** renderiza 4 steps com título e descrição
+- [x] 4 steps visuais com ícones
+- [x] **Testes:** renderiza 4 steps com título e descrição
 
 ### 1.6.3 Plataformas Aceitas
-- [ ] Grid de logos (dados do banco, configurável)
-- **Testes:** renderiza lista, fallback vazio
+- [x] Grid de logos (dados do banco, configurável)
+- [x] **Testes:** renderiza lista, fallback vazio
 
 ### 1.6.4 FAQ (Accordion)
-- [ ] Animação expandir/colapsar
-- **Testes:** toggle, aria-expanded
+- [x] Animação expandir/colapsar
+- [x] **Testes:** toggle, aria-expanded
 
 ### 1.6.5 Footer
-- [ ] Links: Termos, Privacidade, Contato
-- **Teste:** renderiza todos os links
+- [x] Links: Termos, Privacidade, Contato
+- [x] **Teste:** renderiza todos os links
 
 ---
 
 ## TASK 1.7 — Calculadora de Frete (Landing)
 
-- [ ] Inputs: peso (g), dimensões (C×L×A), método de frete
-- [ ] Cálculo estimado por método (SAL, EMS, DHL, FedEx)
-- [ ] Sem login necessário
+- [x] Inputs: peso (g), dimensões (C×L×A), método de frete
+- [x] Cálculo estimado por método (SAL, EMS, DHL, FedEx)
+- [x] Sem login necessário
 - **Testes:**
-  - [ ] Cálculo correto para cada método
-  - [ ] Validação de inputs (> 0)
-  - [ ] Exibe todos os métodos com valores
+  - [x] Cálculo correto para cada método
+  - [x] Validação de inputs (> 0)
+  - [x] Exibe todos os métodos com valores
 
 ---
 
@@ -275,6 +275,6 @@
 ## Validators Zod — Sprint 1
 
 Schemas com testes unitários completos (válido + cada tipo de inválido + mensagens pt-BR):
-- [ ] `cpf.schema.ts` | `cep.schema.ts` | `email.schema.ts`
-- [ ] `password.schema.ts` | `phone.schema.ts` | `address.schema.ts`
-- [ ] `user-register.schema.ts` | `login.schema.ts` | [x] `env.schema.ts`
+- [x] `cpf.schema.ts` | `cep.schema.ts` | `email.schema.ts`
+- [x] `password.schema.ts` | `phone.schema.ts` | `address.schema.ts`
+- [x] `user-register.schema.ts` | `login.schema.ts` | [x] `env.schema.ts`

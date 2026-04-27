@@ -1,0 +1,97 @@
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Shimmer base mixin */
+.skeletonLine,
+.skeletonCardImage,
+.skeletonCell {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-container-high) 0%,
+    var(--color-surface-container-lowest) 50%,
+    var(--color-surface-container-high) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+  border-radius: var(--rounded-sm);
+}
+
+/* SkeletonText */
+.skeletonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeletonLine {
+  height: 14px;
+}
+
+/* SkeletonCard */
+.skeletonCard {
+  background-color: #ffffff;
+  border: var(--border-premium);
+  border-radius: var(--rounded);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeletonCardImage {
+  height: 55%;
+  border-radius: 0;
+}
+
+.skeletonCardBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* SkeletonTable */
+.skeletonTable {
+  width: 100%;
+  border: var(--border-premium);
+  border-radius: var(--rounded);
+  overflow: hidden;
+}
+
+.skeletonTableHeader {
+  display: flex;
+  gap: 1px;
+  padding: 12px 16px;
+  background-color: var(--color-surface-container-low);
+  border-bottom: var(--border-premium);
+}
+
+.skeletonTableRow {
+  display: flex;
+  gap: 1px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f2ede7;
+}
+
+.skeletonTableRow:last-child {
+  border-bottom: none;
+}
+
+.skeletonCell {
+  flex: 1;
+  height: 14px;
+  margin: 0 4px;
+}

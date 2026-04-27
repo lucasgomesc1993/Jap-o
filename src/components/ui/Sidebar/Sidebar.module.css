@@ -1,0 +1,79 @@
+.sidebar {
+  width: var(--sidebar-width, 228px);
+  min-height: 100vh;
+  background-color: #ffffff;
+  border-right: var(--border-premium);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.crimsonStripe {
+  height: 3px;
+  background-color: var(--color-primary-container);
+  flex-shrink: 0;
+}
+
+.logo {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid #f2ede7;
+}
+
+.nav {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-on-surface-variant);
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.navItem:hover {
+  background-color: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+}
+
+.navItem.active {
+  color: var(--color-on-surface);
+  font-weight: 600;
+  background-color: var(--color-surface-container-low);
+}
+
+.activeBar {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 24px;
+  background-color: var(--color-primary-container);
+  border-radius: 0 3px 3px 0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
