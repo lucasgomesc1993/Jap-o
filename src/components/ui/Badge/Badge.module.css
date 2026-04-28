@@ -37,6 +37,11 @@
   color: #ffffff;
 }
 
+.info {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
 /* Tamanhos */
 .sm {
   padding: 2px 8px;

@@ -69,3 +69,15 @@ const ToastItem: React.FC<ToastItemProps> = ({ id, type, title, message, duratio
     </div>
   );
 };
+
+export function useToast() {
+  const addToast = useToastStore((state) => state.addToast);
+  const removeToast = useToastStore((state) => state.removeToast);
+  const clearAll = useToastStore((state) => state.clearAll);
+
+  return {
+    addToast,
+    removeToast,
+    clearAll,
+  };
+}

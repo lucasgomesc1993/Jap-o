@@ -1,12 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Badge } from '@/components/ui/Badge';
-import { Modal } from '@/components/ui/Modal';
-import { useToast } from '@/components/ui/Toast';
+import { Card, Button, Input, Badge, Modal, useToast } from '@/components/ui';
 import { Wallet as WalletIcon, Plus, ArrowUpRight, ArrowDownLeft, Copy, Check, Clock } from 'lucide-react';
 import styles from './WalletDashboard.module.css';
 
@@ -172,7 +167,7 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
             />
             <Button 
               onClick={handleAddCredits} 
-              isLoading={isLoading} 
+              loading={isLoading} 
               fullWidth
             >
               Gerar Pix

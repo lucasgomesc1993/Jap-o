@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Sidebar } from '@/components/ui/Sidebar/Sidebar';
-import { Package, Warehouse, Send, Wallet, LifeBuoy, LogOut, Menu, User } from 'lucide-react';
+import { Package, Warehouse, Send, Wallet, LifeBuoy, LogOut, Menu, User, ShoppingCart } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui';
 import { logoutAction } from '@/app/auth/actions';
@@ -10,9 +10,10 @@ import styles from './layout.module.css';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', href: '/dashboard', icon: <Package size={20} /> },
+  { id: 'pedidos', label: 'Meus Pedidos', href: '/dashboard/orders', icon: <ShoppingCart size={20} /> },
   { id: 'armazem', label: 'Meu Armazém', href: '/dashboard/armazem', icon: <Warehouse size={20} /> },
   { id: 'envios', label: 'Meus Envios', href: '/dashboard/envios', icon: <Send size={20} /> },
-  { id: 'carteira', label: 'Minha Carteira', href: '/dashboard/carteira', icon: <Wallet size={20} /> },
+  { id: 'carteira', label: 'Minha Carteira', href: '/dashboard/wallet', icon: <Wallet size={20} /> },
   { id: 'suporte', label: 'Suporte', href: '/dashboard/suporte', icon: <LifeBuoy size={20} /> },
 ];
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Card.module.css';
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   title?: string;
   subtitle?: string;
@@ -15,9 +15,10 @@ export const Card: React.FC<CardProps> = ({
   subtitle,
   footer,
   className = '',
+  ...props
 }) => {
   return (
-    <div className={`${styles.card} ${className}`}>
+    <div className={`${styles.card} ${className}`} {...props}>
       {(title || subtitle) && (
         <div className={styles.header}>
           {title && <h3 className={styles.title}>{title}</h3>}
@@ -29,3 +30,4 @@ export const Card: React.FC<CardProps> = ({
     </div>
   );
 };
+

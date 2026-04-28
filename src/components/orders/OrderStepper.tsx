@@ -3,11 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, Loader2, ArrowRight, ArrowLeft, Check, JapaneseYen, ShoppingBag, CreditCard, Wallet as WalletIcon } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import { useToast } from '@/components/ui/Toast';
+import { Button, Input, Card, Badge, useToast } from '@/components/ui';
 import { type OrderCreateInput } from '@/lib/validators/order-create.schema';
 import { createOrder } from '@/lib/actions/orders';
 import styles from './OrderStepper.module.css';
@@ -158,7 +154,7 @@ export function OrderStepper({ initialExchangeRate }: OrderStepperProps) {
               />
               <Button 
                 onClick={handleFetchProduct} 
-                isLoading={isLoading}
+                loading={isLoading}
                 disabled={!url || isLoading}
                 className={styles.mainButton}
               >
@@ -299,7 +295,7 @@ export function OrderStepper({ initialExchangeRate }: OrderStepperProps) {
               <Button variant="ghost" onClick={() => setStep(3)}>
                 <ArrowLeft size={16} /> Voltar
               </Button>
-              <Button onClick={handleCreateOrder} isLoading={isLoading}>
+              <Button onClick={handleCreateOrder} loading={isLoading}>
                 Finalizar Pedido <Check size={16} />
               </Button>
             </div>

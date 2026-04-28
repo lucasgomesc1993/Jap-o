@@ -1,11 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
-import { Modal } from '@/components/ui/Modal';
-import { useToast } from '@/components/ui/Toast';
+import { Card, Badge, Button, Modal, useToast } from '@/components/ui';
 import { ShoppingBag, Calendar, ExternalLink, XCircle, ArrowRight, Package } from 'lucide-react';
 import { cancelOrder } from '@/lib/actions/orders';
 import styles from './OrderList.module.css';
@@ -202,7 +198,7 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
                   variant="ghost" 
                   className={styles.cancelBtn}
                   onClick={() => handleCancelOrder(selectedOrder.id)}
-                  isLoading={isLoading}
+                  loading={isLoading}
                 >
                   <XCircle size={16} /> Cancelar Pedido
                 </Button>

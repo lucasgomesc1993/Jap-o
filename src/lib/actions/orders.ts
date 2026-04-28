@@ -47,6 +47,10 @@ export async function createOrder(input: OrderCreateInput) {
     },
   });
 
+  revalidatePath('/dashboard/orders');
+  return order;
+}
+
 export async function cancelOrder(orderId: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
