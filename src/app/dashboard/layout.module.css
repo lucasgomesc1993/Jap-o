@@ -22,9 +22,8 @@
 
 .topbar {
   height: 64px;
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-outline);
   position: sticky;
   top: 0;
   z-index: 40;
@@ -48,8 +47,9 @@
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.04em;
   color: var(--color-on-surface);
 }
 
@@ -83,8 +83,8 @@
 .avatar {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  background-color: var(--color-surface-variant);
+  border-radius: 0;
+  background-color: var(--color-surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,17 +94,17 @@
 
 .logoutBtn {
   background: none;
-  border: none;
+  border: 1px solid transparent;
   color: var(--color-on-surface-variant);
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: 6px;
-  transition: all 0.2s;
+  transition: all 0ms;
 }
 
 .logoutBtn:hover {
-  background-color: #fff1f2;
-  color: var(--color-primary);
+  background-color: var(--color-inverse-surface);
+  color: var(--color-inverse-on-surface);
+  border-color: var(--color-inverse-surface);
 }
 
 .content {

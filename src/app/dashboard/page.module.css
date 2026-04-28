@@ -1,89 +1,124 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 120px;
+  padding: 48px 0;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 16px;
 }
 
 .title {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--color-on-surface);
 }
 
 .subtitle {
   color: var(--color-on-surface-variant);
-  font-size: 1rem;
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background-color: var(--color-outline); /* Forms the 1px grid borders */
+  border: 1px solid var(--color-outline);
 }
 
 .statCard {
   display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.5rem;
-  border: 1px solid var(--color-surface-variant);
-  background: white;
-  transition: transform 0.2s;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px;
+  background-color: var(--color-surface);
+  min-height: 220px;
+  border-radius: 0;
+  border: none; /* Borders handled by grid gap */
+  transition: all 0ms;
+  cursor: default;
 }
 
 .statCard:hover {
-  transform: translateY(-4px);
+  background-color: var(--color-inverse-surface);
+  color: var(--color-inverse-on-surface);
 }
 
-.statIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.statCard:hover .statLabel,
+.statCard:hover .statValue,
+.statCard:hover .statIcon {
+  color: var(--color-inverse-on-surface);
 }
 
-.statInfo {
+.statHeader {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .statLabel {
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   color: var(--color-on-surface-variant);
-  font-weight: 500;
+  display: flex;
+  gap: 8px;
+}
+
+.statIndex {
+  color: var(--color-primary);
+}
+
+.statIcon {
+  color: var(--color-on-surface-variant);
+  transition: all 0ms;
 }
 
 .statValue {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 4vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
   color: var(--color-on-surface);
+  margin-top: 40px;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 32px;
 }
 
 .sectionTitle {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--color-on-surface);
+  line-height: 1;
 }
 
 .emptyCard {
-  padding: 4rem 2rem;
+  padding: 60px 32px;
   text-align: center;
-  border: 2px dashed var(--color-surface-variant);
+  border: 1px solid var(--color-outline);
   background: transparent;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .emptyState {
@@ -91,7 +126,7 @@
 }
 
 .emptyHint {
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
+  font-size: 14px;
+  margin-top: 8px;
   opacity: 0.8;
 }

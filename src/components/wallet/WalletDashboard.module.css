@@ -1,29 +1,37 @@
 .container {
-  padding: var(--margin_page) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 48px 0;
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 60px;
 }
 
 .title {
-  font-family: var(--font-cormorant);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.04em;
-  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  color: var(--color-on-surface);
 }
 
 .subtitle {
-  color: var(--on-surface-variant);
+  color: var(--color-on-surface-variant);
   font-size: 16px;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 32px;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
   align-items: start;
 }
 
@@ -33,54 +41,100 @@
   }
 }
 
+/* BALANCE CARD: Industrial / ATM screen vibe */
 .balanceCard {
-  padding: 40px;
-  background: var(--on-surface);
-  color: white;
+  background: var(--color-on-surface);
+  color: var(--color-surface);
+  border-radius: 0;
   border: none;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  border-radius: 0;
+  justify-content: space-between;
+  min-height: 320px;
+  padding: 40px;
+  position: relative;
+}
+
+/* Technical stripe on top */
+.balanceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--color-primary);
 }
 
 .label {
-  font-family: var(--font-inter);
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--on-surface-variant);
+  letter-spacing: 0.15em;
+  color: var(--color-surface-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.labelIndex {
+  color: var(--color-primary);
 }
 
 .amount {
-  font-family: var(--font-cormorant);
-  font-size: 3.5rem;
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 6vw, 4.5rem);
   font-weight: 500;
   line-height: 1;
-  margin-top: 8px;
+  margin: 24px 0 48px 0;
+  color: var(--color-surface);
 }
 
 .addButton {
-  background: var(--primary) !important;
-  border-radius: 0;
-  height: 48px;
+  background: var(--color-primary) !important;
+  color: var(--color-surface) !important;
+  border-radius: 0 !important;
+  height: 56px !important;
+  font-family: var(--font-body) !important;
   font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  transition: all 0ms !important;
+  width: 100%;
 }
 
+.addButton:hover {
+  background: var(--color-surface) !important;
+  color: var(--color-primary) !important;
+}
+
+/* TRANSACTIONS CARD */
 .transactionsCard {
-  padding: 32px;
+  padding: 40px;
   border-radius: 0;
+  border: 1px solid var(--color-outline);
+  background: var(--color-surface);
+  min-height: 320px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-outline);
 }
 
 .cardHeader h3 {
-  font-family: var(--font-inter);
-  font-size: 12px;
+  font-family: var(--font-body);
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-bottom: 32px;
-  color: var(--on-surface-variant);
+  color: var(--color-on-surface-variant);
 }
 
 .transactionsList {
@@ -89,63 +143,72 @@
 }
 
 .transactionItem {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--outline);
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--color-outline-variant);
+  transition: background-color 0ms;
 }
 
 .transactionItem:last-child {
   border-bottom: none;
 }
 
+.transactionItem:hover {
+  background-color: var(--color-surface-dim);
+}
+
 .txIcon {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface-container-low);
-  margin-right: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
 }
 
-.creditIcon { color: #10b981; }
-.debitIcon { color: var(--primary); }
+.creditIcon { color: var(--color-primary); }
+.debitIcon { color: var(--color-on-surface); }
 
 .txDetails {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex: 1;
+  gap: 8px;
 }
 
 .txDesc {
   font-size: 14px;
   font-weight: 600;
-  color: var(--on-surface);
+  color: var(--color-on-surface);
+  letter-spacing: -0.01em;
 }
 
 .txDate {
   font-size: 12px;
-  color: var(--on-surface-variant);
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
 }
 
 .txAmount {
-  font-family: var(--font-inter);
-  font-size: 15px;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
-.credit { color: #10b981; }
-.debit { color: var(--on-surface); }
+.credit { color: var(--color-primary); }
+.debit { color: var(--color-on-surface); }
 
 .emptyState {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   padding: 60px 0;
-  color: var(--on-surface-variant);
+  color: var(--color-on-surface-variant);
   font-size: 14px;
 }
 
@@ -154,62 +217,72 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 8px 0;
+  padding: 16px 0;
 }
 
 .pixContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   text-align: center;
 }
 
 .qrCodeContainer {
-  padding: 16px;
+  padding: 24px;
   background: white;
-  border: 1px solid var(--outline);
+  border: 1px solid var(--color-outline);
+  border-radius: 0;
 }
 
 .qrCodeContainer img {
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
 }
 
 .pixLabel {
   font-size: 14px;
-  color: var(--on-surface-variant);
+  color: var(--color-on-surface-variant);
 }
 
 .copyGroup {
   display: flex;
   width: 100%;
   gap: 8px;
-  background: var(--surface-container-low);
-  padding: 4px;
-  border: 1px solid var(--outline);
+  background: var(--color-surface);
+  padding: 8px;
+  border: 1px solid var(--color-outline);
 }
 
 .pixCode {
   flex: 1;
   padding: 8px;
-  font-size: 11px;
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: monospace;
+  background: var(--color-surface-dim);
+  border: 1px solid var(--color-outline-variant);
 }
 
 .copyBtn {
-  padding: 0 12px !important;
-  height: 32px !important;
+  border-radius: 0 !important;
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
 }
 
 .pixFooter {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   font-size: 12px;
-  color: var(--on-surface-variant);
+  color: var(--color-on-surface-variant);
+  border-top: 1px solid var(--color-outline-variant);
+  padding-top: 24px;
+  width: 100%;
 }

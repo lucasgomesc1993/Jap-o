@@ -8,41 +8,44 @@ export const metadata = {
 
 export default function DashboardPage() {
   const stats = [
-    { label: 'Pedidos Ativos', value: '0', icon: <Package size={24} />, color: '#BC002D' },
-    { label: 'No Armazém', value: '0', icon: <Warehouse size={24} />, color: '#4B5563' },
-    { label: 'Envios Realizados', value: '0', icon: <Send size={24} />, color: '#059669' },
-    { label: 'Saldo em Carteira', value: 'R$ 0,00', icon: <Wallet size={24} />, color: '#D97706' },
+    { id: '01', label: 'Pedidos Ativos', value: '0', icon: <Package size={20} strokeWidth={1.5} /> },
+    { id: '02', label: 'No Armazém', value: '0', icon: <Warehouse size={20} strokeWidth={1.5} /> },
+    { id: '03', label: 'Envios Realizados', value: '0', icon: <Send size={20} strokeWidth={1.5} /> },
+    { id: '04', label: 'Saldo em Carteira', value: 'R$ 0,00', icon: <Wallet size={20} strokeWidth={1.5} /> },
   ];
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>Visão Geral</h1>
-        <p className={styles.subtitle}>Acompanhe suas compras e envios do Japão.</p>
+        <p className={styles.subtitle}>Acompanhe suas compras, gerencie seu armazém e consolide envios do Japão para o Brasil com precisão absoluta.</p>
       </header>
 
       <div className={styles.statsGrid}>
-        {stats.map((stat, i) => (
-          <Card key={i} className={styles.statCard}>
-            <div className={styles.statIcon} style={{ color: stat.color, backgroundColor: `${stat.color}10` }}>
-              {stat.icon}
+        {stats.map((stat) => (
+          <div key={stat.id} className={styles.statCard}>
+            <div className={styles.statHeader}>
+              <span className={styles.statLabel}>
+                <span className={styles.statIndex}>{stat.id}</span>
+                <span>// {stat.label}</span>
+              </span>
+              <div className={styles.statIcon}>
+                {stat.icon}
+              </div>
             </div>
-            <div className={styles.statInfo}>
-              <span className={styles.statLabel}>{stat.label}</span>
-              <span className={styles.statValue}>{stat.value}</span>
-            </div>
-          </Card>
+            <div className={styles.statValue}>{stat.value}</div>
+          </div>
         ))}
       </div>
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>Atividades Recentes</h2>
-        <Card className={styles.emptyCard}>
+        <div className={styles.emptyCard}>
           <div className={styles.emptyState}>
-            <p>Você ainda não possui atividades registradas.</p>
-            <p className={styles.emptyHint}>Comece adicionando um novo pedido de compra.</p>
+            <p>Nenhuma atividade registrada no sistema.</p>
+            <p className={styles.emptyHint}>Crie um pedido para iniciar o fluxo logístico.</p>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );

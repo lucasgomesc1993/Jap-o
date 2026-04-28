@@ -30,37 +30,39 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 20px;
+  padding: 14px 20px;
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   color: var(--color-on-surface-variant);
   text-decoration: none;
-  transition: all 200ms ease;
+  transition: all 0ms; /* No smooth fading, brutalist snap */
   position: relative;
   cursor: pointer;
+  border-bottom: 1px solid var(--color-outline-variant);
 }
 
 .navItem:hover {
-  background-color: var(--color-surface-dim);
-  color: var(--color-on-surface);
+  background-color: var(--color-inverse-surface);
+  color: var(--color-inverse-on-surface);
+  border-color: var(--color-inverse-surface);
 }
 
 .navItem.active {
-  color: var(--color-on-surface);
-  font-weight: 700;
-  background-color: var(--color-surface-dim);
+  color: var(--color-primary);
+  background-color: var(--color-surface);
 }
 
 .activeBar {
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
   width: 3px;
-  height: 24px;
-  background-color: var(--color-primary-container);
-  border-radius: 0 3px 3px 0;
+  background-color: var(--color-primary);
+  /* no border-radius */
 }
 
 .icon {

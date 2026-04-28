@@ -1,32 +1,30 @@
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: var(--margin_page) 0;
+  padding: 48px 0;
 }
 
 .header {
-  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.stepIndicator {
-  font-family: var(--font-inter);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--primary);
+  gap: 16px;
+  margin-bottom: 60px;
 }
 
 .title {
-  font-family: var(--font-cormorant);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--on-surface);
+  letter-spacing: -0.02em;
+  color: var(--color-on-surface);
+}
+
+.subtitle {
+  color: var(--color-on-surface-variant);
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
 .progressContainer {
@@ -50,28 +48,29 @@
 .progressItem {
   position: relative;
   z-index: 1;
-  background: var(--background);
+  background: var(--color-surface);
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid var(--outline);
-  transition: all 0.2s ease;
+  border: 1px solid var(--color-outline);
+  transition: all 0ms;
+  border-radius: 0;
 }
 
 .progressItem.active {
-  border-color: var(--primary);
-  background: var(--primary);
-  color: white;
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-surface);
 }
 
 .progressNumber {
   font-family: var(--font-inter);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 .content {
@@ -107,7 +106,12 @@
 
 .mainButton {
   height: 56px;
-  font-size: 12px !important;
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,10 +209,10 @@
 
 .totalItem span:first-child {
   font-family: var(--font-inter);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 .totalValue {
@@ -239,17 +243,21 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition: all 0ms;
   border-radius: 0;
+  border: 1px solid var(--color-outline);
+  background: var(--color-surface);
 }
 
 .paymentCard:hover {
-  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 rgba(188, 0, 45, 0.15);
+  border-color: var(--color-primary);
 }
 
 .paymentCard.selected {
-  border-color: var(--primary);
-  background: var(--surface-container-low);
+  border-color: var(--color-primary);
+  background: var(--color-surface-dim);
 }
 
 .paymentHeader {
@@ -260,10 +268,10 @@
 
 .paymentHeader h3 {
   font-family: var(--font-inter);
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   margin-bottom: 4px;
 }
 

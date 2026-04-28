@@ -96,40 +96,43 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>Carteira</h1>
-        <p className={styles.subtitle}>Gerencie seu saldo e veja seu histórico financeiro.</p>
+        <p className={styles.subtitle}>Gerencie seu capital e controle o fluxo financeiro de suas importações em tempo real.</p>
       </header>
 
       <div className={styles.grid}>
-        {/* Balance Card */}
-        <Card className={styles.balanceCard}>
+        {/* Balance Card - ATM Style */}
+        <div className={styles.balanceCard}>
           <div className={styles.balanceInfo}>
-            <span className={styles.label}>Saldo Disponível</span>
+            <span className={styles.label}>
+              <span className={styles.labelIndex}>01</span>
+              <span>// Saldo Disponível</span>
+            </span>
             <div className={styles.amount}>{formatCurrency(balance)}</div>
           </div>
           <Button onClick={() => setIsModalOpen(true)} className={styles.addButton}>
-            <Plus size={16} /> Adicionar Créditos
+            ADICIONAR CRÉDITOS
           </Button>
-        </Card>
+        </div>
 
         {/* Transactions List */}
-        <Card className={styles.transactionsCard}>
+        <div className={styles.transactionsCard}>
           <div className={styles.cardHeader}>
-            <h3>Extrato Recente</h3>
+            <h3>02 // Extrato Recente</h3>
           </div>
           <div className={styles.transactionsList}>
             {transactions.length === 0 ? (
               <div className={styles.emptyState}>
                 <Clock size={40} strokeWidth={1} />
-                <p>Nenhuma transação encontrada.</p>
+                <p>Nenhuma transação registrada no sistema.</p>
               </div>
             ) : (
               transactions.map((tx) => (
                 <div key={tx.id} className={styles.transactionItem}>
                   <div className={styles.txIcon}>
                     {tx.type === 'CREDIT' ? (
-                      <ArrowUpRight size={20} className={styles.creditIcon} />
+                      <ArrowDownLeft size={20} className={styles.creditIcon} strokeWidth={1.5} />
                     ) : (
-                      <ArrowDownLeft size={20} className={styles.debitIcon} />
+                      <ArrowUpRight size={20} className={styles.debitIcon} strokeWidth={1.5} />
                     )}
                   </div>
                   <div className={styles.txDetails}>
@@ -143,7 +146,7 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
               ))
             )}
           </div>
-        </Card>
+        </div>
       </div>
 
       {/* Add Credits Modal */}
@@ -153,13 +156,13 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
           setIsModalOpen(false);
           setPixData(null);
         }}
-        title="Adicionar Créditos"
+        title="ADICIONAR CRÉDITOS"
       >
         {!pixData ? (
           <div className={styles.modalContent}>
-            <p>Insira o valor que deseja adicionar à sua carteira (Mínimo R$ 10,00).</p>
+            <p className={styles.subtitle}>Insira o valor que deseja depositar em BRL (Mínimo R$ 10,00).</p>
             <Input
-              label="Valor (R$)"
+              label="VALOR (R$)"
               type="number"
               value={amountToAdd}
               onChange={(e) => setAmountToAdd(e.target.value)}
@@ -169,8 +172,10 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
               onClick={handleAddCredits} 
               loading={isLoading} 
               fullWidth
+              className={styles.addButton}
+              style={{ marginTop: '24px' }}
             >
-              Gerar Pix
+              GERAR PIX
             </Button>
           </div>
         ) : (
@@ -178,16 +183,16 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
             <div className={styles.qrCodeContainer}>
               <img src={`data:image/png;base64,${pixData.qrCodeBase64}`} alt="QR Code Pix" />
             </div>
-            <p className={styles.pixLabel}>Escaneie o código acima ou copie o código abaixo:</p>
+            <p className={styles.pixLabel}>Escaneie o QR Code ou copie a chave Pix Copia e Cola:</p>
             <div className={styles.copyGroup}>
               <code className={styles.pixCode}>{pixData.qrCode}</code>
               <Button variant="ghost" onClick={copyToClipboard} className={styles.copyBtn}>
-                {copied ? <Check size={16} color="green" /> : <Copy size={16} />}
+                {copied ? <Check size={16} /> : <Copy size={16} />}
               </Button>
             </div>
             <div className={styles.pixFooter}>
-              <Badge variant="warning">Aguardando Pagamento</Badge>
-              <p>O saldo será creditado automaticamente após a confirmação.</p>
+              <Badge variant="warning">AGUARDANDO PAGAMENTO</Badge>
+              <p>O saldo será creditado automaticamente em sua carteira.</p>
             </div>
           </div>
         )}
