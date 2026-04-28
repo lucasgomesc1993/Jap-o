@@ -1,31 +1,33 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: var(--color-background);
 }
 
 .sidebarWrapper {
-  width: 228px;
+  width: var(--sidebar-width, 240px);
   position: fixed;
   height: 100vh;
   z-index: 50;
+  background-color: var(--color-inverse-surface);
 }
 
 .container {
   flex: 1;
-  margin-left: 228px;
+  margin-left: var(--sidebar-width, 240px);
   display: flex;
   flex-direction: column;
 }
 
 .topbar {
   height: 64px;
-  background-color: #0f172a;
-  color: white;
+  background-color: var(--color-inverse-surface);
+  color: var(--color-inverse-on-surface);
   position: sticky;
   top: 0;
   z-index: 40;
   padding: 0 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .topbarContent {

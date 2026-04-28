@@ -2,41 +2,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* === Cores Material 3 (Baseadas no DESIGN.md) === */
-  --color-surface: #fef8f2;
-  --color-surface-dim: #ded9d3;
-  --color-surface-bright: #fef8f2;
+  /* === Cores "Tokyo Editorial" (High-end Logistics) === */
+  --color-background: #fafafa; /* Cinza muito claro, quase branco */
+  --color-surface: #ffffff;
+  --color-surface-dim: #f4f4f5; /* Zinc 100 */
+  --color-surface-bright: #ffffff;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f8f3ec;
-  --color-surface-container: #f2ede7;
-  --color-surface-container-high: #ede7e1;
-  --color-surface-container-highest: #e7e2dc;
-  --color-on-surface: #1d1b18;
-  --color-on-surface-variant: #5b403e;
-  --color-inverse-surface: #32302c;
-  --color-inverse-on-surface: #f5f0ea;
-  --color-outline: #8f6f6d;
-  --color-outline-variant: #e4bebb;
-  --color-surface-tint: #b91a25;
-  --color-primary: #78000f;
+  --color-surface-container-low: #fafafa;
+  --color-surface-container: #f4f4f5;
+  --color-surface-container-high: #e4e4e7; /* Zinc 200 */
+  --color-surface-container-highest: #d4d4d8; /* Zinc 300 */
+  
+  --color-on-background: #09090b; /* Zinc 950 - Texto super escuro */
+  --color-on-surface: #09090b;
+  --color-on-surface-variant: #71717a; /* Zinc 500 - Texto secundário */
+  
+  --color-inverse-surface: #18181b; /* Zinc 900 */
+  --color-inverse-on-surface: #fafafa;
+  
+  --color-outline: #d4d4d8;
+  --color-outline-variant: #e4e4e7;
+  
+  /* Crimson Japonês - Ponto de destaque stark (brutal) */
+  --color-primary: #bc002d;
   --color-on-primary: #ffffff;
-  --color-primary-container: #a30018;
-  --color-on-primary-container: #ffaca6;
-  --color-inverse-primary: #ffb3ae;
-  --color-secondary: #665d57;
+  --color-primary-container: #8a0021;
+  --color-on-primary-container: #ffedef;
+  
+  /* Secundários: Grafite Técnico */
+  --color-secondary: #3f3f46; /* Zinc 700 */
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #eaddd6;
-  --color-on-secondary-container: #6a615b;
-  --color-tertiary: #393836;
-  --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #504f4c;
-  --color-on-tertiary-container: #c3c1bd;
-  --color-error: #ba1a1a;
+  --color-secondary-container: #f4f4f5;
+  --color-on-secondary-container: #18181b;
+  
+  /* Erros */
+  --color-error: #ef4444; /* Red 500 */
   --color-on-error: #ffffff;
-  --color-error-container: #ffdad6;
-  --color-on-error-container: #93000a;
-  --color-background: #fef8f2;
-  --color-on-background: #1d1b18;
+  --color-error-container: #fef2f2;
+  --color-on-error-container: #991b1b;
 
   /* === Tipografia === */
   --font-heading: 'Cormorant Garamond', serif;
@@ -44,23 +47,24 @@
 
   /* === Espaçamento === */
   --spacing-unit: 4px;
-  --sidebar-width: 228px;
+  --sidebar-width: 240px;
   --gutter: 24px;
   --margin-page: 48px;
-  --card-padding: 24px;
-  --section-gap: 64px;
+  --card-padding: 32px;
+  --section-gap: 80px;
 
-  /* === Border Radius === */
-  --rounded-sm: 0.25rem;
-  --rounded: 0.5rem;
-  --rounded-md: 0.75rem;
-  --rounded-lg: 1rem;
-  --rounded-xl: 1.5rem;
+  /* === Border Radius - Mais agudos/técnicos === */
+  --rounded-sm: 2px;
+  --rounded: 4px;
+  --rounded-md: 8px;
+  --rounded-lg: 12px;
+  --rounded-xl: 16px;
   --rounded-full: 9999px;
 
-  /* === Sombras === */
-  --shadow-warm: 0 10px 20px rgba(26, 20, 16, 0.05);
-  --border-premium: 1px solid #ddd8d2;
+  /* === Sombras - Stark & Crisp === */
+  --shadow-warm: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+  --border-premium: 1px solid var(--color-outline-variant);
 }
 
 /* === Reset & Base Styles === */
@@ -74,25 +78,28 @@ body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
 
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizeLegibility;
   line-height: 1.6;
   background-color: var(--color-background);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   color: var(--color-on-background);
   font-family: var(--font-body);
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3 {
   font-family: var(--font-heading);
-  font-weight: 400;
-  line-height: 1.1;
+  font-weight: 500;
+  line-height: 1.05;
   color: var(--color-on-background);
+  letter-spacing: -0.02em;
 }
 
-h1 { font-size: 48px; letter-spacing: -0.01em; }
-h2 { font-size: 32px; line-height: 1.2; }
-h3 { font-size: 24px; line-height: 1.2; }
+h1 { font-size: 56px; }
+h2 { font-size: 36px; }
+h3 { font-size: 28px; }
 
 a {
   color: inherit;

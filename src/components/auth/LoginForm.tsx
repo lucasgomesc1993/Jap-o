@@ -61,7 +61,7 @@ export function LoginForm() {
         label="E-mail"
         type="email"
         placeholder="seu@email.com"
-        icon={<Mail size={18} />}
+        icon={<Mail size={18} strokeWidth={1.5} />}
         errorMessage={errors.email?.message}
         {...register('email')}
       />
@@ -70,7 +70,7 @@ export function LoginForm() {
           label="Senha"
           type="password"
           placeholder="••••••••"
-          icon={<Lock size={18} />}
+          icon={<Lock size={18} strokeWidth={1.5} />}
           errorMessage={errors.password?.message}
           {...register('password')}
         />

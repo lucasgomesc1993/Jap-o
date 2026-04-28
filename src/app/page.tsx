@@ -1,8 +1,10 @@
 import styles from './landing.module.css';
+import Link from 'next/link';
 import { HeroSection } from '@/components/landing/HeroSection';
-import { HowItWorks } from '@/components/landing/HowItWorks';
-import { Platforms } from '@/components/landing/Platforms';
+import { Philosophy } from '@/components/landing/Philosophy';
+import { Process } from '@/components/landing/Process';
 import { FreightCalculator } from '@/components/landing/FreightCalculator';
+import { Platforms } from '@/components/landing/Platforms';
 import { FAQ } from '@/components/landing/FAQ';
 import { Footer } from '@/components/landing/Footer';
 
@@ -11,27 +13,29 @@ export default function LandingPage() {
     <div className={styles.landing}>
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <a href="/" className={styles.logo}>
-            <span className={styles.logoMark}>N</span>
+          <Link href="/" className={styles.logo}>
+            <div className={styles.logoMark}>N</div>
             <span className={styles.logoText}>NipponBox</span>
-          </a>
-          <nav className={styles.headerNav} aria-label="Navegação principal">
-            <a href="#como-funciona">Como Funciona</a>
-            <a href="#plataformas">Plataformas</a>
-            <a href="#calculadora">Frete</a>
-            <a href="#faq">FAQ</a>
+          </Link>
+          
+          <nav className={styles.headerNav}>
+            <Link href="#como-funciona">Processo</Link>
+            <Link href="#frete">Calculadora</Link>
+            <Link href="#faq">FAQ</Link>
           </nav>
+          
           <div className={styles.headerActions}>
-            <a href="/login" className={styles.loginLink}>Entrar</a>
-            <a href="/cadastro" className={styles.ctaSmall}>Criar Conta</a>
+            <Link href="/login" className={styles.loginLink}>Login</Link>
+            <Link href="/cadastro" className={styles.ctaSmall}>Começar Agora</Link>
           </div>
         </div>
       </header>
 
       <main>
         <HeroSection />
-        <HowItWorks />
         <Platforms />
+        <Philosophy />
+        <Process />
         <FreightCalculator />
         <FAQ />
       </main>

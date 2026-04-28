@@ -1,27 +1,30 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  background-color: var(--color-surface);
+  background-color: var(--color-background);
 }
 
 .sidebarWrapper {
-  width: 228px;
+  width: var(--sidebar-width, 240px);
   position: fixed;
   height: 100vh;
   z-index: 50;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-outline-variant);
 }
 
 .container {
   flex: 1;
-  margin-left: 228px;
+  margin-left: var(--sidebar-width, 240px);
   display: flex;
   flex-direction: column;
 }
 
 .topbar {
   height: 64px;
-  background-color: white;
-  border-bottom: 1px solid var(--color-surface-variant);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-outline-variant);
   position: sticky;
   top: 0;
   z-index: 40;

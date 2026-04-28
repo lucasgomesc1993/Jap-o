@@ -1,108 +1,77 @@
 .footer {
   background-color: var(--color-inverse-surface);
   color: var(--color-inverse-on-surface);
-  padding: 64px 0 32px;
+  padding: 6rem 2rem 2rem;
+  overflow: hidden;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--gutter);
 }
 
 .top {
-  display: flex;
-  justify-content: space-between;
-  gap: 64px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 8rem;
 }
 
-.brand {
-  max-width: 320px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.logoMark {
-  width: 32px;
-  height: 32px;
-  background-color: var(--color-primary-container);
-  color: #ffffff;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.logoText {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.tagline {
-  font-size: 14px;
-  line-height: 1.7;
-  color: rgba(245, 240, 234, 0.7);
-}
-
-.links {
-  display: flex;
-  gap: 64px;
-}
-
-.linkGroup {
+.col {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.5rem;
 }
 
-.linkTitle {
+.colTitle {
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 11px;
   text-transform: uppercase;
-  color: rgba(245, 240, 234, 0.5);
-  margin-bottom: 4px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: var(--color-primary);
 }
 
-.linkGroup a {
-  font-size: 14px;
-  color: rgba(245, 240, 234, 0.8);
+.link {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #a1a1aa;
   text-decoration: none;
-  transition: color 150ms ease;
+  transition: color 0.3s ease;
+  width: fit-content;
 }
 
-.linkGroup a:hover {
-  color: #ffffff;
+.link:hover {
+  color: white;
+}
+
+.hugeLogo {
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 15vw, 15rem);
+  font-weight: 700;
+  color: white;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.hugeLogo span {
+  color: var(--color-primary);
 }
 
 .bottom {
-  padding-top: 24px;
-}
-
-.copyright {
-  font-size: 13px;
-  color: rgba(245, 240, 234, 0.5);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #71717a;
 }
 
 @media (max-width: 768px) {
-  .top {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .links {
-    gap: 40px;
-  }
+  .top { grid-template-columns: 1fr; gap: 3rem; margin-bottom: 4rem; }
+  .bottom { flex-direction: column; gap: 1rem; align-items: flex-start; }
 }

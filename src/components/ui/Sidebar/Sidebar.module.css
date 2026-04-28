@@ -1,8 +1,8 @@
 .sidebar {
-  width: var(--sidebar-width, 228px);
+  width: var(--sidebar-width, 240px);
   min-height: 100vh;
-  background-color: #ffffff;
-  border-right: var(--border-premium);
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-outline-variant);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -10,13 +10,13 @@
 
 .crimsonStripe {
   height: 3px;
-  background-color: var(--color-primary-container);
+  background-color: var(--color-primary);
   flex-shrink: 0;
 }
 
 .logo {
   padding: 24px 20px 16px;
-  border-bottom: 1px solid #f2ede7;
+  border-bottom: 1px solid var(--color-outline-variant);
 }
 
 .nav {
@@ -32,24 +32,24 @@
   gap: 12px;
   padding: 12px 20px;
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
   color: var(--color-on-surface-variant);
   text-decoration: none;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition: all 200ms ease;
   position: relative;
   cursor: pointer;
 }
 
 .navItem:hover {
-  background-color: var(--color-surface-container-low);
+  background-color: var(--color-surface-dim);
   color: var(--color-on-surface);
 }
 
 .navItem.active {
   color: var(--color-on-surface);
-  font-weight: 600;
-  background-color: var(--color-surface-container-low);
+  font-weight: 700;
+  background-color: var(--color-surface-dim);
 }
 
 .activeBar {

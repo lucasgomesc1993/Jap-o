@@ -2,12 +2,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--rounded);
+  border-radius: 0; /* Estilo brutalista reto */
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  transition: var(--transition-normal, 250ms ease);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   position: relative;
   border: 1px solid transparent;
@@ -18,40 +19,51 @@
 /* Variantes */
 .primary {
   background-color: var(--color-primary);
-  color: var(--color-on-primary);
+  color: white;
+  border: 1px solid var(--color-primary);
 }
 
 .primary:hover:not(:disabled) {
-  background-color: var(--color-primary-container);
+  background-color: white;
+  color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(188, 0, 45, 0.15);
+  transform: translateY(-2px);
 }
 
 .secondary {
   background-color: transparent;
-  border-color: var(--color-on-background);
+  border-color: var(--color-outline-variant);
   color: var(--color-on-background);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(--color-surface-container-low);
+  border-color: var(--color-on-background);
+  background-color: var(--color-on-background);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .ghost {
   background-color: transparent;
-  color: var(--color-on-background);
+  color: var(--color-on-surface-variant);
 }
 
 .ghost:hover:not(:disabled) {
-  background-color: var(--color-surface-container-low);
+  background-color: var(--color-surface-dim);
+  color: var(--color-on-surface);
 }
 
 .danger {
   background-color: var(--color-error);
   color: var(--color-on-error);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
 }
 
 .danger:hover:not(:disabled) {
   background-color: var(--color-error-container);
   color: var(--color-on-error-container);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.3);
 }
 
 /* Tamanhos */

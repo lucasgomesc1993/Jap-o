@@ -101,21 +101,17 @@ export function RegisterForm() {
     <div className={styles.container}>
       <div className={styles.stepper}>
         <div className={`${styles.stepIndicator} ${step >= 1 ? styles.activeStep : ''}`}>
-          <div className={styles.stepCircle}>{step > 1 ? <Check size={18} /> : 1}</div>
+          <div className={styles.stepCircle}>01</div>
           <span className={styles.stepLabel}>Conta</span>
         </div>
         
-        <div className={`${styles.stepLine} ${step >= 2 ? styles.activeStepLine : ''}`} />
-        
         <div className={`${styles.stepIndicator} ${step >= 2 ? styles.activeStep : ''}`}>
-          <div className={styles.stepCircle}>{step > 2 ? <Check size={18} /> : 2}</div>
+          <div className={styles.stepCircle}>02</div>
           <span className={styles.stepLabel}>Pessoal</span>
         </div>
         
-        <div className={`${styles.stepLine} ${step >= 3 ? styles.activeStepLine : ''}`} />
-        
         <div className={`${styles.stepIndicator} ${step >= 3 ? styles.activeStep : ''}`}>
-          <div className={styles.stepCircle}>3</div>
+          <div className={styles.stepCircle}>03</div>
           <span className={styles.stepLabel}>Endereço</span>
         </div>
       </div>
@@ -132,7 +128,7 @@ export function RegisterForm() {
               <Input
                 label="Nome Completo"
                 placeholder="Ex: João Silva"
-                icon={<User size={18} />}
+                icon={<User size={18} strokeWidth={1.5} />}
                 errorMessage={errors.fullName?.message}
                 {...register('fullName')}
               />
@@ -140,7 +136,7 @@ export function RegisterForm() {
                 label="E-mail"
                 type="email"
                 placeholder="joao@exemplo.com"
-                icon={<Mail size={18} />}
+                icon={<Mail size={18} strokeWidth={1.5} />}
                 errorMessage={errors.email?.message}
                 {...register('email')}
               />
@@ -148,7 +144,7 @@ export function RegisterForm() {
                 label="Senha"
                 type="password"
                 placeholder="••••••••"
-                icon={<Lock size={18} />}
+                icon={<Lock size={18} strokeWidth={1.5} />}
                 errorMessage={errors.password?.message}
                 {...register('password')}
               />
@@ -156,7 +152,7 @@ export function RegisterForm() {
                 label="Confirmar Senha"
                 type="password"
                 placeholder="••••••••"
-                icon={<Lock size={18} />}
+                icon={<Lock size={18} strokeWidth={1.5} />}
                 errorMessage={errors.confirmPassword?.message}
                 {...register('confirmPassword')}
               />
@@ -179,7 +175,7 @@ export function RegisterForm() {
               <Input
                 label="CPF"
                 placeholder="000.000.000-00"
-                icon={<CreditCard size={18} />}
+                icon={<CreditCard size={18} strokeWidth={1.5} />}
                 errorMessage={errors.cpf?.message}
                 {...register('cpf', {
                   onChange: (e) => (e.target.value = formatCPF(e.target.value)),
@@ -188,7 +184,7 @@ export function RegisterForm() {
               <Input
                 label="Telefone"
                 placeholder="(00) 00000-0000"
-                icon={<Phone size={18} />}
+                icon={<Phone size={18} strokeWidth={1.5} />}
                 errorMessage={errors.phone?.message}
                 {...register('phone', {
                   onChange: (e) => (e.target.value = formatPhone(e.target.value)),
@@ -216,7 +212,7 @@ export function RegisterForm() {
               <Input
                 label="CEP"
                 placeholder="00000-000"
-                icon={<MapPin size={18} />}
+                icon={<MapPin size={18} strokeWidth={1.5} />}
                 errorMessage={errors.address?.cep?.message}
                 {...register('address.cep', {
                   onChange: handleCEPChange,
@@ -225,14 +221,14 @@ export function RegisterForm() {
               <Input
                 label="Rua"
                 placeholder="Nome da rua"
-                icon={<MapIcon size={18} />}
+                icon={<MapIcon size={18} strokeWidth={1.5} />}
                 errorMessage={errors.address?.street?.message}
                 {...register('address.street')}
               />
               <Input
                 label="Número"
                 placeholder="123"
-                icon={<Hash size={18} />}
+                icon={<Hash size={18} strokeWidth={1.5} />}
                 errorMessage={errors.address?.number?.message}
                 {...register('address.number')}
               />
@@ -245,14 +241,14 @@ export function RegisterForm() {
               <Input
                 label="Bairro"
                 placeholder="Nome do bairro"
-                icon={<Building size={18} />}
+                icon={<Building size={18} strokeWidth={1.5} />}
                 errorMessage={errors.address?.neighborhood?.message}
                 {...register('address.neighborhood')}
               />
               <Input
                 label="Cidade"
                 placeholder="Sua cidade"
-                icon={<Globe size={18} />}
+                icon={<Globe size={18} strokeWidth={1.5} />}
                 errorMessage={errors.address?.city?.message}
                 {...register('address.city')}
               />

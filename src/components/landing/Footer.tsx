@@ -1,43 +1,31 @@
+import Link from 'next/link';
 import styles from './Footer.module.css';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.top}>
-          <div className={styles.brand}>
-            <div className={styles.logo}>
-              <span className={styles.logoMark}>N</span>
-              <span className={styles.logoText}>NipponBox</span>
-            </div>
-            <p className={styles.tagline}>
-              Seus produtos japoneses favoritos, entregues no Brasil.
-            </p>
+          <div className={styles.col}>
+            <span className={styles.colTitle}>Navegação</span>
+            <Link href="/" className={styles.link}>Início</Link>
+            <Link href="#frete" className={styles.link}>Cálculo de Frete</Link>
+            <Link href="/cadastro" className={styles.link}>Criar Conta</Link>
+            <Link href="/login" className={styles.link}>Acesso ao Painel</Link>
           </div>
-
-          <div className={styles.links}>
-            <div className={styles.linkGroup}>
-              <h4 className={styles.linkTitle}>Serviço</h4>
-              <a href="#como-funciona">Como funciona</a>
-              <a href="#plataformas">Plataformas</a>
-              <a href="#calculadora">Calculadora de frete</a>
-              <a href="#faq">FAQ</a>
-            </div>
-            <div className={styles.linkGroup}>
-              <h4 className={styles.linkTitle}>Legal</h4>
-              <a href="/termos">Termos de Uso</a>
-              <a href="/privacidade">Política de Privacidade</a>
-              <a href="/contato">Contato</a>
-            </div>
+          <div className={styles.col}>
+            <span className={styles.colTitle}>Legal</span>
+            <Link href="/termos" className={styles.link}>Termos de Serviço</Link>
+            <Link href="/privacidade" className={styles.link}>Política de Privacidade</Link>
+            <Link href="/artigos-proibidos" className={styles.link}>Itens Proibidos (Alfândega)</Link>
           </div>
         </div>
 
+        <span className={styles.hugeLogo}>Nippon<span>Box</span></span>
+
         <div className={styles.bottom}>
-          <p className={styles.copyright}>
-            © {currentYear} NipponBox. Todos os direitos reservados.
-          </p>
+          <span>&copy; {new Date().getFullYear()} NipponBox Logistics.</span>
+          <span>Tokyo, JP → São Paulo, BR</span>
         </div>
       </div>
     </footer>
