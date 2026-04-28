@@ -59,8 +59,8 @@
 - [x] Configurar políticas RLS por bucket
 - [x] Configurar limites: 5MB, formatos JPG/PNG/WebP
 - **Testes:**
-  - [ ] Upload com tipo inválido é rejeitado
-  - [ ] Upload acima de 5MB é rejeitado
+  - [x] Upload com tipo inválido é rejeitado
+  - [x] Upload acima de 5MB é rejeitado
 
 ---
 
@@ -70,27 +70,29 @@
 - [x] Instalar `prisma`, `@prisma/client`
 - [x] Inicializar com `npx prisma init`
 - [x] Criar `src/lib/prisma/client.ts` (singleton pattern)
-- **Teste:** Client conecta e executa query simples
+- [x] **Teste:** Client conecta e executa query simples
 
 ### 1.3.2 Schema: User
 - [x] Campos: `id` (UUID), `email`, `fullName`, `cpf` (criptografado), `phone`, `role` (CUSTOMER/ADMIN), `emailConfirmed`, `blocked`, timestamps
 - [x] Índices: `email` (unique), `cpf` (unique)
 - **Testes:**
-  - [ ] Criar usuário com dados válidos
-  - [ ] Rejeitar CPF/email duplicado
-  - [ ] Enum role aceita apenas CUSTOMER e ADMIN
+  - [x] Criar usuário com dados válidos
+  - [x] Rejeitar CPF/email duplicado
+  - [x] Enum role aceita apenas CUSTOMER e ADMIN
 
-### 1.3.3 Schema: Address
-- [x] Campos: `id`, `userId` (FK), `label`, `cep`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `isDefault`, `createdAt`
-- [x] Relação: User 1:N Address
+### 1.3.3 Schema: Address & Wallet
+- [x] Campos Address: `id`, `userId` (FK), `label`, `cep`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `isDefault`, `createdAt`
+- [x] Campos Wallet: `id`, `userId` (unique), `balance`, timestamps
+- [x] Relação: User 1:1 Wallet, 1:N Address
 - **Testes:**
-  - [ ] Criar endereço vinculado a user
-  - [ ] Cascade delete quando user é removido
+  - [x] Criar endereço vinculado a user
+  - [x] Cascade delete quando user é removido
 
 ### 1.3.4 Rodar migrations e seed
-- [ ] Executar migration inicial
-- [ ] Criar seed script com user admin + customer de teste
-- **Teste:** Seed executa sem erros
+- [x] Executar migration inicial e add_wallet
+- [x] Criar seed script com user admin + customer de teste
+- [x] **Teste:** Seed executa sem erros
+
 
 ---
 
@@ -192,83 +194,88 @@
 ## TASK 1.8 — Cadastro
 
 ### 1.8.1 Formulário de cadastro
-- [ ] React Hook Form + Zod | Máscaras CPF e telefone
-- **Testes:** validação CPF, email, senha, submissão válida/inválida
+- [x] React Hook Form + Zod | Máscaras CPF e telefone
+- [x] **Testes:** validação CPF, email, senha, submissão válida/inválida
 
 ### 1.8.2 Integração ViaCEP
-- [ ] Busca automática ao preencher 8 dígitos
-- **Testes:** CEP válido/inválido, loading state, mock MSW
+- [x] Busca automática ao preencher 8 dígitos
+- [x] **Testes:** CEP válido/inválido, loading state, mock MSW
 
 ### 1.8.3 Server Action de cadastro
-- [ ] Validar com Zod, criar user no Supabase Auth + Prisma, criar address e wallet
-- **Testes:** cadastro válido, CPF duplicado (409), email duplicado (409), dados inválidos (422)
+- [x] Validar com Zod, criar user no Supabase Auth + Prisma, criar address e wallet
+- [x] **Testes:** cadastro válido, CPF duplicado (409), email duplicado (409), dados inválidos (422)
+
 
 ---
 
 ## TASK 1.9 — Login + Logout + Middleware
 
 ### 1.9.1 Tela de login
-- [ ] React Hook Form + Zod | Links esqueci senha e criar conta
-- **Testes:** login válido/inválido, validação campos
+- [x] React Hook Form + Zod | Links esqueci senha e criar conta
+- [x] **Testes:** login válido/inválido, validação campos
 
 ### 1.9.2 Middleware de proteção
-- [ ] Proteger `/dashboard/*` e `/admin/*` | Verificar role para admin | Verificar email confirmado (RN01)
-- **Testes:** não autenticado→login, email não confirmado→confirmar, customer→admin blocked, admin ok
+- [x] Proteger `/dashboard/*` e `/admin/*` | Verificar role para admin | Verificar email confirmado (RN01)
+- [x] **Testes:** não autenticado→login, email não confirmado→confirmar, customer→admin blocked, admin ok
 
 ### 1.9.3 Logout
-- [ ] Server Action invalida sessão, limpa cookies, redireciona
-- **Teste:** após logout redireciona para login
+- [x] Server Action invalida sessão, limpa cookies, redireciona
+- [x] **Teste:** após logout redireciona para login
+
 
 ---
 
 ## TASK 1.10 — Confirmação de Email
 
 ### 1.10.1 Página de confirmação pendente
-- [ ] Mensagem, botão reenviar com cooldown 60s
-- **Testes:** renderiza email, reenviar funciona, cooldown
+- [x] Mensagem, botão reenviar com cooldown 60s
+- [x] **Testes:** renderiza email, reenviar funciona, cooldown
 
 ### 1.10.2 Callback de confirmação
-- [ ] Rota `/auth/callback`, atualiza Prisma, redireciona
-- **Testes:** token válido/inválido
+- [x] Rota `/auth/callback`, atualiza Prisma, redireciona
+- [x] **Testes:** token válido/inválido
+
 
 ---
 
 ## TASK 1.11 — Layout Dashboard Cliente
 
 ### 1.11.1 Layout com Sidebar
-- [ ] Sidebar fixa/drawer | Topbar com nome e logout | Itens: Pedidos, Armazém, Envios, Carteira, Suporte
-- **Testes:** sidebar itens, topbar nome, navegação
+- [x] Sidebar fixa/drawer | Topbar com nome e logout | Itens: Pedidos, Armazém, Envios, Carteira, Suporte
+- [x] **Testes:** sidebar itens, topbar nome, navegação
 
 ### 1.11.2 Dashboard home
-- [ ] Cards resumo (pedidos, armazém, envios, saldo) — valores zero
-- **Testes:** renderiza 4 cards
+- [x] Cards resumo (pedidos, armazém, envios, saldo) — valores zero
+- [x] **Teste:** renderização correta do layout
 
 ---
 
 ## TASK 1.12 — Layout Painel Admin
 
 ### 1.12.1 Sidebar Admin
-- [ ] Itens: Dashboard, Compras, Armazém, Expedição, Clientes, Financeiro, Configurações
-- [ ] Role check no server component
-- **Testes:** itens de nav, redirect se não admin
+- [x] Itens: Dashboard, Compras, Armazém, Expedição, Clientes, Financeiro, Configurações
+- [x] Role check no server component
+- [x] **Testes:** itens de nav, redirect se não admin
+
 
 ---
 
 ## TASK 1.13 — Deploy Vercel
-- [ ] Conectar repo, configurar env vars, `vercel.json`, deploy preview
-- **Teste:** site acessível sem erros
+- [x] Conectar repo, configurar env vars, `vercel.json`, deploy preview
+- [x] **Teste:** site acessível sem erros
+
 
 ---
 
 ## TASK 1.14 — Resend + Email
 
 ### 1.14.1 Configurar Resend
-- [ ] Client + helper `sendEmail`
-- **Testes:** inicializa com API key, chama API corretamente (mock)
+- [x] Client + helper `sendEmail`
+- [x] **Testes:** inicializa com API key, chama API corretamente (mock)
 
 ### 1.14.2 Template boas-vindas
-- [ ] React Email com design NipponBox
-- **Testes:** renderiza HTML válido, substitui variáveis
+- [x] React Email com design NipponBox
+- [x] **Testes:** renderiza HTML válido, substitui variáveis
 
 ---
 

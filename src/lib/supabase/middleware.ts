@@ -34,9 +34,21 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
-  // Importante: Não remova a chamada ao getUser() abaixo.
-  // Ela garante o refresh do token se necessário.
-  await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // Proteção de rotas: redireciona para login se não estiver autenticado
+  if (!user && (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin'))) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/login';
+    return NextResponse.redirect(url);
+  }
+
+  // Redireciona usuários logados para o dashboard se tentarem acessar login ou cadastro
+  if (user && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/cadastro')) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/dashboard';
+    return NextResponse.redirect(url);
+  }
 
   return supabaseResponse;
 }

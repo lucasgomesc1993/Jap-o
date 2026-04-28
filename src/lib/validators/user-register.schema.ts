@@ -16,8 +16,9 @@ export const userRegisterSchema = z.object({
   confirmPassword: z.string({ required_error: 'Confirmação de senha é obrigatória' }),
   cpf: cpfSchema,
   phone: phoneSchema,
-  address: addressSchema,
+  address: addressSchema.optional(),
 }).refine((data) => data.password === data.confirmPassword, {
+
   message: 'Senhas não conferem',
   path: ['confirmPassword'],
 });

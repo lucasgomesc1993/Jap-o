@@ -62,10 +62,24 @@
   flex-shrink: 0;
 }
 
-.message {
+.content {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  line-height: 1.4;
+  gap: 2px;
 }
+
+.title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.message {
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
 
 .close {
   display: flex;

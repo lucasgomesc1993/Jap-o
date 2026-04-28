@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.passwordField {
+  position: relative;
+}
+
+.forgot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  padding: 1rem;
+}

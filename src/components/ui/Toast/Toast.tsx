@@ -21,8 +21,10 @@ export const ToastContainer: React.FC = () => {
           key={t.id}
           id={t.id}
           type={t.type}
+          title={t.title}
           message={t.message}
           duration={t.duration}
+
           onDismiss={removeToast}
         />
       ))}
@@ -33,12 +35,15 @@ export const ToastContainer: React.FC = () => {
 interface ToastItemProps {
   id: string;
   type: ToastType;
+  title?: string;
   message: string;
   duration?: number;
+
   onDismiss: (id: string) => void;
 }
 
-const ToastItem: React.FC<ToastItemProps> = ({ id, type, message, duration = 4000, onDismiss }) => {
+const ToastItem: React.FC<ToastItemProps> = ({ id, type, title, message, duration = 4000, onDismiss }) => {
+
   useEffect(() => {
     if (duration > 0) {
       const timer = setTimeout(() => onDismiss(id), duration);
@@ -49,7 +54,11 @@ const ToastItem: React.FC<ToastItemProps> = ({ id, type, message, duration = 400
   return (
     <div className={`${styles.toast} ${styles[type]}`} role="alert">
       <span className={styles.icon}>{icons[type]}</span>
-      <span className={styles.message}>{message}</span>
+      <div className={styles.content}>
+        {title && <span className={styles.title}>{title}</span>}
+        <span className={styles.message}>{message}</span>
+      </div>
+
       <button
         className={styles.close}
         onClick={() => onDismiss(id)}
