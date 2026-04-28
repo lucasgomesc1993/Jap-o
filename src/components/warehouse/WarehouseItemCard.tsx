@@ -11,9 +11,16 @@ import styles from './WarehouseItemCard.module.css';
 interface WarehouseItemCardProps {
   item: WarehouseItem;
   onViewDetails: (item: WarehouseItem) => void;
+  isSelected?: boolean;
+  onToggleSelect?: (id: string) => void;
 }
 
-export const WarehouseItemCard: React.FC<WarehouseItemCardProps> = ({ item, onViewDetails }) => {
+export const WarehouseItemCard: React.FC<WarehouseItemCardProps> = ({ 
+  item, 
+  onViewDetails,
+  isSelected = false,
+  onToggleSelect
+}) => {
   const photos = Array.isArray(item.photos) ? (item.photos as string[]) : [];
   const mainPhoto = photos[0];
 
@@ -39,10 +46,27 @@ export const WarehouseItemCard: React.FC<WarehouseItemCardProps> = ({ item, onVi
   };
 
   const status = statusMap[item.status];
+  const isAvailable = item.status === WarehouseItemStatus.AVAILABLE;
 
   return (
-    <div className={styles.card} data-testid={`warehouse-item-${item.id}`}>
+    <div 
+      className={`${styles.card} ${isSelected ? styles.cardSelected : ''} ${!isAvailable ? styles.cardDisabled : ''}`} 
+      data-testid={`warehouse-item-${item.id}`}
+      onClick={() => isAvailable && onToggleSelect?.(item.id)}
+    >
       <div className={styles.imageContainer}>
+        {isAvailable && (
+          <div className={styles.checkboxContainer} onClick={(e) => e.stopPropagation()}>
+            <input 
+              type="checkbox" 
+              className={styles.checkbox} 
+              checked={isSelected}
+              onChange={() => onToggleSelect?.(item.id)}
+              data-testid={`item-checkbox-${item.id}`}
+            />
+          </div>
+        )}
+        
         {mainPhoto ? (
           <Image
             src={mainPhoto}
@@ -114,7 +138,10 @@ export const WarehouseItemCard: React.FC<WarehouseItemCardProps> = ({ item, onVi
           variant="secondary" 
           size="sm" 
           className={styles.actionButton}
-          onClick={() => onViewDetails(item)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onViewDetails(item);
+          }}
         >
           Ver Detalhes
         </Button>

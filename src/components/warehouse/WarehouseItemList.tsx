@@ -9,9 +9,16 @@ import styles from './WarehouseItemList.module.css';
 interface WarehouseItemListProps {
   items: WarehouseItem[];
   onViewDetails: (item: WarehouseItem) => void;
+  selectedItemIds?: string[];
+  onToggleSelect?: (id: string) => void;
 }
 
-export const WarehouseItemList: React.FC<WarehouseItemListProps> = ({ items, onViewDetails }) => {
+export const WarehouseItemList: React.FC<WarehouseItemListProps> = ({ 
+  items, 
+  onViewDetails,
+  selectedItemIds = [],
+  onToggleSelect
+}) => {
   if (items.length === 0) {
     return (
       <div className={styles.emptyState} data-testid="warehouse-empty-state">
@@ -32,6 +39,8 @@ export const WarehouseItemList: React.FC<WarehouseItemListProps> = ({ items, onV
             key={item.id} 
             item={item} 
             onViewDetails={onViewDetails} 
+            isSelected={selectedItemIds.includes(item.id)}
+            onToggleSelect={onToggleSelect}
           />
         ))}
       </div>

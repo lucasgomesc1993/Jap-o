@@ -5,12 +5,23 @@
   border: 1px solid var(--outline);
   padding: var(--card_padding);
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cardSelected {
+  border: 2px solid var(--primary);
+  box-shadow: 4px 4px 0 var(--primary-light);
+}
+
+.cardDisabled {
+  opacity: 0.7;
+  cursor: default;
 }
 
 .imageContainer {
@@ -40,6 +51,22 @@
   position: absolute;
   top: 12px;
   right: 12px;
+}
+
+.checkboxContainer {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 4px;
 }
 
 .content {

@@ -60,38 +60,38 @@
 ## TASK 3.3 — Serviços Extras
 
 ### 3.3.1 Botões de serviço por item
-- [ ] Botões: Foto Extra (R$5), Quality Check (R$10), Remoção Embalagem (R$5), Proteção Extra (R$8)
-- [ ] Preços vindos das configurações do admin
-- [ ] Confirmar com modal: "Será debitado R$ X da sua carteira"
+- [x] Botões: Foto Extra (R$5), Quality Check (R$10), Remoção Embalagem (R$5), Proteção Extra (R$8)
+- [x] Preços vindos das configurações do admin
+- [x] Confirmar com modal: "Será debitado R$ X da sua carteira"
 - **Testes:**
-  - [ ] Renderiza botões com preços corretos
-  - [ ] Modal de confirmação exibe valor
-  - [ ] Botão desabilitado se saldo insuficiente
+  - [x] Renderiza botões com preços corretos
+  - [x] Modal de confirmação exibe valor
+  - [x] Botão desabilitado se saldo insuficiente
 
 ### 3.3.2 Server Action: solicitar serviço extra
-- [ ] Validar saldo suficiente (RN03)
-- [ ] Criar ExtraService com status REQUESTED
-- [ ] Debitar carteira + criar transação
-- [ ] Notificar admin (notificação interna)
+- [x] Validar saldo suficiente (RN03)
+- [x] Criar ExtraService com status REQUESTED
+- [x] Debitar carteira + criar transação
+- [x] Notificar admin (notificação interna)
 - **Testes:**
-  - [ ] Serviço criado e carteira debitada
-  - [ ] Saldo insuficiente retorna erro
-  - [ ] Transação criada com tipo EXTRA_SERVICE
-  - [ ] Serviço duplicado (mesmo tipo no mesmo item) retorna erro
+  - [x] Serviço criado e carteira debitada
+  - [x] Saldo insuficiente retorna erro
+  - [x] Transação criada com tipo EXTRA_SERVICE
+  - [x] Serviço duplicado (mesmo tipo no mesmo item) retorna erro
 
 ---
 
 ## TASK 3.4 — Seleção de Itens para Envio
 
 ### 3.4.1 Interface de seleção
-- [ ] Checkboxes em cada item com status AVAILABLE
-- [ ] Resumo flutuante: X itens selecionados, peso total, botão "Criar Envio"
-- [ ] Desabilitar itens que já estão em outro envio
+- [x] Checkboxes em cada item com status AVAILABLE
+- [x] Resumo flutuante: X itens selecionados, peso total, botão "Criar Envio"
+- [x] Desabilitar itens que já estão em outro envio
 - **Testes:**
-  - [ ] Checkbox seleciona/deseleciona item
-  - [ ] Resumo atualiza ao selecionar
-  - [ ] Botão "Criar Envio" habilitado apenas com >= 1 item
-  - [ ] Itens SELECTED_FOR_SHIPMENT não são selecionáveis
+  - [x] Checkbox seleciona/deseleciona item
+  - [x] Resumo atualiza ao selecionar
+  - [x] Botão "Criar Envio" habilitado apenas com >= 1 item
+  - [x] Itens SELECTED_FOR_SHIPMENT não são selecionáveis
 
 ---
 
@@ -212,7 +212,7 @@
 ## Validators Zod — Sprint 3
 
 - [ ] `warehouse-item.schema.ts` — peso > 0, dimensões > 0
-- [ ] `extra-service.schema.ts` — tipo válido, warehouseItemId
+- [x] `extra-service.schema.ts` — tipo válido, warehouseItemId
 - [ ] `shipment-create.schema.ts` — items[], method, address, declaration
 - [ ] `customs-declaration.schema.ts` — tipo, valor, aceite
 - [ ] `shipping-method.schema.ts` — SAL/EMS/DHL/FEDEX
