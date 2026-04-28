@@ -36,15 +36,39 @@ export async function updateSession(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser();
 
-  // Proteção de rotas: redireciona para login se não estiver autenticado
+  // 1. Proteção básica: redireciona para login se não estiver autenticado
   if (!user && (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin'))) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
     return NextResponse.redirect(url);
   }
 
-  // Redireciona usuários logados para o dashboard se tentarem acessar login ou cadastro
-  if (user && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/cadastro')) {
+  // 2. RN01: Bloquear acesso se o e-mail não estiver confirmado
+  const isEmailConfirmed = user?.email_confirmed_at || user?.app_metadata?.email_confirmed;
+  if (user && !isEmailConfirmed && 
+      (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/admin')) &&
+      request.nextUrl.pathname !== '/confirmar-email') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/confirmar-email';
+    return NextResponse.redirect(url);
+  }
+
+  // 3. Bloquear /confirmar-email se já estiver confirmado
+  if (user && isEmailConfirmed && request.nextUrl.pathname === '/confirmar-email') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/dashboard';
+    return NextResponse.redirect(url);
+  }
+
+  // 4. Proteção de rota Admin (RBAC básico via app_metadata)
+  if (user && request.nextUrl.pathname.startsWith('/admin') && user.app_metadata?.role !== 'ADMIN') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/dashboard';
+    return NextResponse.redirect(url);
+  }
+
+  // 5. Redireciona usuários logados e confirmados para o dashboard se tentarem acessar login ou cadastro
+  if (user && isEmailConfirmed && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/cadastro')) {
     const url = request.nextUrl.clone();
     url.pathname = '/dashboard';
     return NextResponse.redirect(url);

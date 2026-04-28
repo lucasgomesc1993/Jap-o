@@ -162,6 +162,25 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
               <span className={styles.orderId}>ID: {selectedOrder.id.split('-')[0].toUpperCase()}</span>
             </div>
 
+            <div className={styles.timeline}>
+              <div className={`${styles.step} ${['AWAITING_PURCHASE', 'PURCHASED', 'IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
+                <div className={styles.dot} />
+                <span>Solicitado</span>
+              </div>
+              <div className={`${styles.step} ${['PURCHASED', 'IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
+                <div className={styles.dot} />
+                <span>Comprado</span>
+              </div>
+              <div className={`${styles.step} ${['IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
+                <div className={styles.dot} />
+                <span>Enviado</span>
+              </div>
+              <div className={`${styles.step} ${['IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
+                <div className={styles.dot} />
+                <span>Armazém</span>
+              </div>
+            </div>
+
             <div className={styles.productDetails}>
               {selectedOrder.productImage && (
                 <img src={selectedOrder.productImage} alt={selectedOrder.productName} className={styles.modalImg} />

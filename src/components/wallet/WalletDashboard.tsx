@@ -25,6 +25,8 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
   const [isLoading, setIsLoading] = useState(false);
   const [pixData, setPixData] = useState<{ qrCode: string, qrCodeBase64: string } | null>(null);
   const [copied, setCopied] = useState(false);
+  const [filterType, setFilterType] = useState<string>('ALL');
+  const [visibleCount, setVisibleCount] = useState(10);
   
   const { addToast } = useToast();
 
@@ -92,6 +94,14 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
     });
   };
 
+  const filteredTransactions = transactions.filter(tx => {
+    if (filterType === 'ALL') return true;
+    return tx.type === filterType;
+  });
+
+  const visibleTransactions = filteredTransactions.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredTransactions.length;
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -118,32 +128,59 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
         <div className={styles.transactionsCard}>
           <div className={styles.cardHeader}>
             <h3>02 // Extrato Recente</h3>
+            <div className={styles.filters}>
+              <button 
+                className={`${styles.filterBtn} ${filterType === 'ALL' ? styles.active : ''}`}
+                onClick={() => setFilterType('ALL')}
+              >TODOS</button>
+              <button 
+                className={`${styles.filterBtn} ${filterType === 'CREDIT' ? styles.active : ''}`}
+                onClick={() => setFilterType('CREDIT')}
+              >CRÉDITO</button>
+              <button 
+                className={`${styles.filterBtn} ${filterType === 'DEBIT' ? styles.active : ''}`}
+                onClick={() => setFilterType('DEBIT')}
+              >DÉBITO</button>
+            </div>
           </div>
           <div className={styles.transactionsList}>
-            {transactions.length === 0 ? (
+            {visibleTransactions.length === 0 ? (
               <div className={styles.emptyState}>
                 <Clock size={40} strokeWidth={1} />
-                <p>Nenhuma transação registrada no sistema.</p>
+                <p>Nenhuma transação encontrada com estes filtros.</p>
               </div>
             ) : (
-              transactions.map((tx) => (
-                <div key={tx.id} className={styles.transactionItem}>
-                  <div className={styles.txIcon}>
-                    {tx.type === 'CREDIT' ? (
-                      <ArrowDownLeft size={20} className={styles.creditIcon} strokeWidth={1.5} />
-                    ) : (
-                      <ArrowUpRight size={20} className={styles.debitIcon} strokeWidth={1.5} />
-                    )}
+              <>
+                {visibleTransactions.map((tx) => (
+                  <div key={tx.id} className={styles.transactionItem}>
+                    <div className={styles.txIcon}>
+                      {tx.type === 'CREDIT' ? (
+                        <ArrowDownLeft size={20} className={styles.creditIcon} strokeWidth={1.5} />
+                      ) : (
+                        <ArrowUpRight size={20} className={styles.debitIcon} strokeWidth={1.5} />
+                      )}
+                    </div>
+                    <div className={styles.txDetails}>
+                      <span className={styles.txDesc}>{tx.description}</span>
+                      <span className={styles.txDate}>{formatDate(tx.createdAt)}</span>
+                    </div>
+                    <div className={`${styles.txAmount} ${tx.type === 'CREDIT' ? styles.credit : styles.debit}`}>
+                      {tx.type === 'CREDIT' ? '+' : '-'} {formatCurrency(Math.abs(tx.amount))}
+                    </div>
                   </div>
-                  <div className={styles.txDetails}>
-                    <span className={styles.txDesc}>{tx.description}</span>
-                    <span className={styles.txDate}>{formatDate(tx.createdAt)}</span>
+                ))}
+                
+                {hasMore && (
+                  <div className={styles.pagination}>
+                    <button 
+                      className={styles.loadMoreBtn}
+                      onClick={() => setVisibleCount(prev => prev + 10)}
+                    >
+                      CARREGAR MAIS TRANSAÇÕES
+                    </button>
                   </div>
-                  <div className={`${styles.txAmount} ${tx.type === 'CREDIT' ? styles.credit : styles.debit}`}>
-                    {tx.type === 'CREDIT' ? '+' : '-'} {formatCurrency(Math.abs(tx.amount))}
-                  </div>
-                </div>
-              ))
+                )}
+              </>
             )}
           </div>
         </div>

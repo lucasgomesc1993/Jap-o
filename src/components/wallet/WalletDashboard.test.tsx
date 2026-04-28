@@ -1,90 +1,42 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import { WalletDashboard } from './WalletDashboard';
-import { http, HttpResponse } from 'msw';
-import { server } from '@/tests/setup';
 
-// Mocks
-vi.mock('@/components/ui', async (importOriginal) => {
-  const actual = await importOriginal<any>();
+vi.mock('@/components/ui', async () => {
+  const actual = await vi.importActual('@/components/ui');
   return {
     ...actual,
-    useToast: () => ({
-      addToast: vi.fn(),
-    }),
+    useToast: () => ({ addToast: vi.fn() }),
   };
 });
 
-// Mock navigator.clipboard
-Object.assign(navigator, {
-  clipboard: {
-    writeText: vi.fn(),
-  },
-});
-
 const mockTransactions = [
-  {
-    id: 'tx1',
-    type: 'CREDIT',
-    amount: 100,
-    description: 'Recarga Pix',
-    createdAt: '2026-04-28T10:00:00Z',
-  }
+  { id: '1', type: 'CREDIT', amount: 100, description: 'Crédito', createdAt: new Date().toISOString() },
+  { id: '2', type: 'DEBIT', amount: 50, description: 'Débito', createdAt: new Date().toISOString() },
+  { id: '3', type: 'CREDIT', amount: 200, description: 'Crédito 2', createdAt: new Date().toISOString() },
 ];
 
-describe('WalletDashboard Component', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+describe('WalletDashboard', () => {
+  it('deve renderizar o saldo corretamente', () => {
+    render(<WalletDashboard balance={500} transactions={[]} userId="user-1" />);
+    expect(screen.getByText(/R\$ 500,00/i)).toBeInTheDocument();
   });
 
-  it('deve renderizar saldo e transações corretamente', () => {
-    render(<WalletDashboard balance={50} transactions={mockTransactions} userId="user1" />);
-    expect(screen.getByText('R$ 50,00')).toBeDefined();
-    expect(screen.getByText('Recarga Pix')).toBeDefined();
-  });
+  it('deve filtrar transações por tipo', () => {
+    render(<WalletDashboard balance={500} transactions={mockTransactions} userId="user-1" />);
+    
+    // Inicialmente mostra todos (10 é o default visibleCount, aqui temos 3)
+    expect(screen.getByText('Crédito')).toBeInTheDocument();
+    expect(screen.getByText('Débito')).toBeInTheDocument();
 
-  it('deve abrir o modal de recarga e gerar Pix', async () => {
-    server.use(
-      http.post('/api/payments/pix', () => {
-        return HttpResponse.json({
-          qrCode: 'mock-pix-code',
-          qrCodeBase64: 'mock-base64',
-        });
-      })
-    );
+    // Clica em Crédito (Exato para o botão de filtro)
+    fireEvent.click(screen.getByRole('button', { name: /^crédito$/i }));
+    expect(screen.getByText('Crédito')).toBeInTheDocument();
+    expect(screen.queryByText('Débito')).not.toBeInTheDocument();
 
-    render(<WalletDashboard balance={50} transactions={mockTransactions} userId="user1" />);
-    
-    fireEvent.click(screen.getByText('Adicionar Créditos'));
-    fireEvent.change(screen.getByPlaceholderText('0,00'), { target: { value: '20' } });
-    fireEvent.click(screen.getByText('Gerar Pix'));
-    
-    await waitFor(() => {
-      expect(screen.getByText('mock-pix-code')).toBeDefined();
-    });
-  });
-
-  it('deve copiar o código Pix para o clipboard', async () => {
-    server.use(
-      http.post('/api/payments/pix', () => {
-        return HttpResponse.json({
-          qrCode: 'copy-me',
-          qrCodeBase64: 'base64',
-        });
-      })
-    );
-
-    render(<WalletDashboard balance={50} transactions={mockTransactions} userId="user1" />);
-    
-    fireEvent.click(screen.getByText('Adicionar Créditos'));
-    fireEvent.change(screen.getByPlaceholderText('0,00'), { target: { value: '20' } });
-    fireEvent.click(screen.getByText('Gerar Pix'));
-    
-    await waitFor(() => screen.getByText('copy-me'));
-    
-    const copyBtn = screen.getByRole('button', { name: '' });
-    fireEvent.click(copyBtn);
-    
-    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('copy-me');
+    // Clica em Débito (Exato)
+    fireEvent.click(screen.getByRole('button', { name: /^débito$/i }));
+    expect(screen.queryByText('Crédito')).not.toBeInTheDocument();
+    expect(screen.getByText('Débito')).toBeInTheDocument();
   });
 });

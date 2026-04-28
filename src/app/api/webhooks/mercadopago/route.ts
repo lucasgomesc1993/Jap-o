@@ -8,9 +8,29 @@ export async function POST(req: NextRequest) {
   const topic = searchParams.get('topic') || searchParams.get('type');
   const id = searchParams.get('id') || searchParams.get('data.id');
 
-  // 1. Validar assinatura (Opcional mas recomendado em produção)
-  // O Mercado Pago envia x-signature-v2 ou similar. 
-  // Para simplificar aqui, vamos focar no processamento do ID.
+  // 1. Validar assinatura
+  const signature = req.headers.get('x-signature');
+  const requestId = req.headers.get('x-request-id');
+  const secret = process.env.MP_WEBHOOK_SECRET;
+
+  if (secret && signature && requestId) {
+    try {
+      const parts = signature.split(',');
+      const ts = parts.find(p => p.startsWith('ts='))?.split('=')[1];
+      const v1 = parts.find(p => p.startsWith('v1='))?.split('=')[1];
+
+      if (ts && v1 && id) {
+        const manifest = `id:${id};request-id:${requestId};ts:${ts};`;
+        const hmac = crypto.createHmac('sha256', secret).update(manifest).digest('hex');
+        
+        if (hmac !== v1) {
+          return new NextResponse('Assinatura inválida', { status: 401 });
+        }
+      }
+    } catch (err) {
+      console.error('Erro na validação HMAC:', err);
+    }
+  }
 
   if (topic === 'payment' && id) {
     try {

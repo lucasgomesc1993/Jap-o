@@ -2,6 +2,7 @@ import { Card } from '@/components/ui';
 import styles from './confirmar-email.module.css';
 import { MailCheck } from 'lucide-react';
 import Link from 'next/link';
+import { ResendButton } from './ResendButton';
 
 export const metadata = {
   title: 'Confirme seu e-mail | NipponBox',
@@ -22,7 +23,7 @@ export default function ConfirmarEmailPage() {
         <div className={styles.divider} />
         <div className={styles.footer}>
           <p>Não recebeu o e-mail?</p>
-          <button className={styles.resendBtn}>Reenviar confirmação</button>
+          <ResendButton />
           <Link href="/login" className={styles.backLink}>
             Voltar para o login
           </Link>

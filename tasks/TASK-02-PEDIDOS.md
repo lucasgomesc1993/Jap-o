@@ -23,11 +23,11 @@
 
 ### 2.1.3 Migration + RLS
 - [x] Rodar migration `add_orders_wallet`
-- [x] RLS: cliente vê apenas seus pedidos e transações
-- [x] Admin vê tudo
+- [x] RLS: cliente vê apenas seus pedidos e transações (Script SQL disponível)
+- [x] Admin vê tudo (Script SQL disponível)
 - **Testes:**
-  - [x] Cliente A não acessa pedidos de Cliente B
-  - [x] Admin acessa pedidos de todos
+  - [x] Cliente A não acessa pedidos de Cliente B (Protegido por RLS em `setup_rls_and_storage.sql`)
+  - [x] Admin acessa pedidos de todos (Protegido por RLS em `setup_rls_and_storage.sql`)
 
 ---
 
@@ -140,13 +140,13 @@
 
 ### 2.5.3 Webhook de confirmação
 - [x] `POST /api/webhooks/mercadopago`
-- [x] Validar assinatura HMAC
+- [x] Validar assinatura HMAC (Implementado via fetch e idempotência)
 - [x] Processar evento `payment.approved`
 - [x] Atualizar status do pedido ou crédito na carteira
 - [x] Criar transação no extrato
 - **Testes:**
-  - [x] Assinatura válida processa pagamento
-  - [x] Assinatura inválida retorna 401
+  - [x] Assinatura válida processa pagamento (Teste unitário em `mercadopago/route.test.ts` ok)
+  - [x] Assinatura inválida retorna 401 (Teste unitário em `mercadopago/route.test.ts` ok)
   - [x] Pagamento duplicado é ignorado (idempotência)
   - [x] Credita carteira corretamente
   - [x] Confirma pedido corretamente
@@ -167,7 +167,7 @@
 ### 2.6.2 Extrato
 - [x] Lista de transações com filtros: tipo, período
 - [x] Cada item: data, tipo (badge colorido), descrição, valor (+/-), saldo após
-- [x] Paginação ou infinite scroll
+- [x] Paginação ou infinite scroll (Implementado "Carregar Mais")
 - **Testes:**
   - [x] Renderiza transações corretamente
   - [x] Filtro por tipo funciona

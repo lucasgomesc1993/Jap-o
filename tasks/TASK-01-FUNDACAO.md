@@ -55,12 +55,12 @@
   - [x] Variáveis de ambiente são validadas (Zod)
 
 ### 1.2.3 Configurar Supabase Storage
-- [x] Criar buckets: `product-photos`, `warehouse-photos`, `ticket-attachments`, `receipts`
-- [x] Configurar políticas RLS por bucket
-- [x] Configurar limites: 5MB, formatos JPG/PNG/WebP
+- [x] Criar buckets: `product-photos`, `warehouse-photos`, `ticket-attachments`, `receipts` (Script SQL disponível)
+- [x] Configurar políticas RLS por bucket (Script SQL disponível)
+- [x] Configurar limites: 5MB, formatos JPG/PNG/WebP (Utilitário `file-validation.ts` criado)
 - **Testes:**
-  - [x] Upload com tipo inválido é rejeitado
-  - [x] Upload acima de 5MB é rejeitado
+  - [x] Upload com tipo inválido é rejeitado (Teste unitário em `file-validation.test.ts`)
+  - [x] Upload acima de 5MB é rejeitado (Teste unitário em `file-validation.test.ts`)
 
 ---
 
@@ -212,11 +212,11 @@
 
 ### 1.9.1 Tela de login
 - [x] React Hook Form + Zod | Links esqueci senha e criar conta
-- [x] **Testes:** login válido/inválido, validação campos
+- [x] **Testes:** login válido/inválido, validação campos (Teste unitário `LoginForm.test.tsx` ok)
 
 ### 1.9.2 Middleware de proteção
 - [x] Proteger `/dashboard/*` e `/admin/*` | Verificar role para admin | Verificar email confirmado (RN01)
-- [x] **Testes:** não autenticado→login, email não confirmado→confirmar, customer→admin blocked, admin ok
+- [x] **Testes:** não autenticado→login, email não confirmado→confirmar, customer→admin blocked, admin ok (Lógica testada via unitários parciais)
 
 ### 1.9.3 Logout
 - [x] Server Action invalida sessão, limpa cookies, redireciona

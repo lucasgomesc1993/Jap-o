@@ -126,15 +126,62 @@
   margin-bottom: 40px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--color-outline);
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.cardHeader h3 {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+.filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filterBtn {
+  background: none;
+  border: 1px solid var(--color-outline);
   color: var(--color-on-surface-variant);
+  padding: 6px 12px;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 150ms ease;
+  border-radius: 0;
+}
+
+.filterBtn:hover {
+  background: var(--color-surface-dim);
+}
+
+.filterBtn.active {
+  background: var(--color-on-surface);
+  color: var(--color-surface);
+  border-color: var(--color-on-surface);
+}
+
+.pagination {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.loadMoreBtn {
+  background: none;
+  border: 1px solid var(--color-outline);
+  color: var(--color-on-surface);
+  padding: 16px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  width: 100%;
+  transition: all 150ms ease;
+}
+
+.loadMoreBtn:hover {
+  background: var(--color-on-surface);
+  color: var(--color-surface);
 }
 
 .transactionsList {
