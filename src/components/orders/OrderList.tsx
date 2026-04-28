@@ -82,7 +82,7 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.titleGroup}>
-          <h1 className={styles.title}>Meus Pedidos</h1>
+          <h1 className={styles.title}>Pedidos</h1>
           <p className={styles.subtitle}>Acompanhe o status das suas compras no Japão.</p>
         </div>
         <div className={styles.filters}>

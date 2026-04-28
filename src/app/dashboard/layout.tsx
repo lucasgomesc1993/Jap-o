@@ -1,62 +1,95 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Sidebar } from '@/components/ui/Sidebar/Sidebar';
-import { Package, Warehouse, Send, Wallet, LifeBuoy, LogOut, Menu, User, ShoppingCart } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Button } from '@/components/ui';
 import { logoutAction } from '@/app/auth/actions';
 import styles from './layout.module.css';
+import Link from 'next/link';
 
 const navItems = [
-  { id: 'dashboard', label: 'Dashboard', href: '/dashboard', icon: <Package size={20} /> },
-  { id: 'pedidos', label: 'Meus Pedidos', href: '/dashboard/orders', icon: <ShoppingCart size={20} /> },
-  { id: 'armazem', label: 'Meu Armazém', href: '/dashboard/armazem', icon: <Warehouse size={20} /> },
-  { id: 'envios', label: 'Meus Envios', href: '/dashboard/envios', icon: <Send size={20} /> },
-  { id: 'carteira', label: 'Minha Carteira', href: '/dashboard/wallet', icon: <Wallet size={20} /> },
-  { id: 'suporte', label: 'Suporte', href: '/dashboard/suporte', icon: <LifeBuoy size={20} /> },
+  { id: 'dashboard', label: 'Dashboard', href: '/dashboard' },
+  { id: 'pedidos', label: 'Pedidos', href: '/dashboard/orders' },
+  { id: 'armazem', label: 'Armazém', href: '/dashboard/armazem' },
+  { id: 'envios', label: 'Envios', href: '/dashboard/envios' },
+  { id: 'carteira', label: 'Carteira', href: '/dashboard/wallet' },
+  { id: 'suporte', label: 'Suporte', href: '/dashboard/suporte' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
-  // Encontrar o ID ativo baseado no pathname
   const activeId = navItems.find(item => pathname === item.href)?.id || 'dashboard';
+
+  const handleNavItemClick = (item: { href: string }) => {
+    router.push(item.href);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <div className={styles.layout}>
+      {/* Desktop Sidebar */}
       <aside className={styles.sidebarWrapper}>
         <Sidebar 
           items={navItems}
           activeItemId={activeId}
-          onItemClick={(item) => router.push(item.href)}
-          logo={
-            <div className={styles.logo}>
-              Nippon<span>Box</span>
-            </div>
-          }
+          onItemClick={handleNavItemClick}
         />
       </aside>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className={styles.mobileMenuOverlay}>
+          <button 
+            className={styles.closeMenuBtn}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            [ FECHAR ]
+          </button>
+          
+          <nav className={styles.mobileNav}>
+            {navItems.map((item, index) => {
+              const isActive = item.href === pathname;
+              const itemNumber = (index + 1).toString().padStart(2, '0');
+              
+              return (
+                <Link 
+                  key={item.id} 
+                  href={item.href}
+                  className={`${styles.mobileNavItem} ${isActive ? styles.mobileNavItemActive : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span style={{ fontSize: '0.4em', verticalAlign: 'middle', marginRight: '1rem', color: 'var(--color-primary)' }}>
+                    {itemNumber}
+                  </span>
+                  {item.label.toUpperCase()}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      )}
 
       <div className={styles.container}>
         <header className={styles.topbar}>
           <div className={styles.topbarContent}>
-            <button className={styles.mobileMenu}>
-              <Menu size={24} />
+            <button 
+              className={styles.mobileMenuBtn}
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              [ MENU ]
             </button>
             
             <div className={styles.userSection}>
               <div className={styles.userInfo}>
-                <span className={styles.userName}>Olá, Cliente</span>
-                <span className={styles.userRole}>Nível 1</span>
+                USER: <span>LUCAS GOMES</span>
               </div>
-              <button className={styles.avatar}>
-                <User size={20} />
-              </button>
+              
               <form action={logoutAction}>
-                <button type="submit" className={styles.logoutBtn} title="Sair">
-                  <LogOut size={20} />
+                <button type="submit" className={styles.logoutBtn}>
+                  [ SAIR ]
                 </button>
               </form>
             </div>

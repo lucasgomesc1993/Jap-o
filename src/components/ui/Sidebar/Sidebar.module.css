@@ -1,81 +1,150 @@
 .sidebar {
   width: var(--sidebar-width, 240px);
-  min-height: 100vh;
-  background-color: var(--color-surface);
-  border-right: 1px solid var(--color-outline-variant);
+  height: 100vh;
+  background-color: var(--color-on-surface); /* Black background */
+  color: var(--color-surface);
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
 }
 
-.crimsonStripe {
-  height: 3px;
+.logoSection {
+  padding: 40px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.85;
+}
+
+.brandMain {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: white;
+}
+
+.brandSub {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--color-primary);
+}
+
+.systemInfo {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.crimsonDot {
+  width: 6px;
+  height: 6px;
   background-color: var(--color-primary);
-  flex-shrink: 0;
+  display: inline-block;
 }
 
-.logo {
-  padding: 24px 20px 16px;
-  border-bottom: 1px solid var(--color-outline-variant);
+.navSection {
+  flex: 1;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionLabel {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 24px 16px;
 }
 
 .nav {
-  padding: 16px 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .navItem {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 20px;
+  padding: 18px 24px;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--color-on-surface-variant);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  transition: all 0ms; /* No smooth fading, brutalist snap */
+  transition: all 0ms;
   position: relative;
-  cursor: pointer;
-  border-bottom: 1px solid var(--color-outline-variant);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.itemIndex {
+  color: var(--color-primary);
+  font-family: monospace;
 }
 
 .navItem:hover {
-  background-color: var(--color-inverse-surface);
-  color: var(--color-inverse-on-surface);
-  border-color: var(--color-inverse-surface);
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.navItem:hover .itemIndex {
+  color: white;
 }
 
 .navItem.active {
-  color: var(--color-primary);
-  background-color: var(--color-surface);
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-.activeBar {
+.activeIndicator {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
-  width: 3px;
+  width: 4px;
   background-color: var(--color-primary);
-  /* no border-radius */
 }
 
-.icon {
+.footer {
+  padding: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.statusLine {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
-.label {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.statusLabel {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.statusValue {
+  color: #10b981;
 }
