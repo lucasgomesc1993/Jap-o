@@ -5,13 +5,13 @@ import { FAQ } from './FAQ';
 describe('FAQ', () => {
   it('renderiza todas as perguntas', () => {
     render(<FAQ />);
-    expect(screen.getByText(/quais plataformas/i)).toBeInTheDocument();
-    expect(screen.getByText(/cartão internacional/i)).toBeInTheDocument();
+    expect(screen.getByText(/por que não comprar diretamente/i)).toBeInTheDocument();
+    expect(screen.getByText(/consolidação de pacotes/i)).toBeInTheDocument();
   });
 
   it('toggle abre e fecha resposta', () => {
     render(<FAQ />);
-    const trigger = screen.getByText(/quais plataformas/i).closest('button')!;
+    const trigger = screen.getByText(/por que não comprar diretamente/i).closest('button')!;
 
     // Inicialmente fechada
     expect(trigger).toHaveAttribute('aria-expanded', 'false');

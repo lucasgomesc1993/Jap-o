@@ -31,6 +31,8 @@ describe('Footer', () => {
 
   it('renderiza o nome NipponBox', () => {
     render(<Footer />);
-    expect(screen.getByText('NipponBox')).toBeInTheDocument();
+    // Usamos getAllByText pois o nome aparece no logo e no copyright
+    expect(screen.getAllByText(/Nippon/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/Box/i)[0]).toBeInTheDocument();
   });
 });

@@ -15,9 +15,10 @@ export function Footer() {
           </div>
           <div className={styles.col}>
             <span className={styles.colTitle}>Legal</span>
-            <Link href="/termos" className={styles.link}>Termos de Serviço</Link>
+            <Link href="/termos" className={styles.link}>Termos de Uso</Link>
             <Link href="/privacidade" className={styles.link}>Política de Privacidade</Link>
-            <Link href="/artigos-proibidos" className={styles.link}>Itens Proibidos (Alfândega)</Link>
+            <Link href="/contato" className={styles.link}>Contato</Link>
+            <Link href="/artigos-proibidos" className={styles.link}>Itens Proibidos</Link>
           </div>
         </div>
 

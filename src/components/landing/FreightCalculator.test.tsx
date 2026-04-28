@@ -13,6 +13,7 @@ describe('FreightCalculator Component', () => {
 
   it('mostra erro quando inputs são <= 0', () => {
     render(<FreightCalculator />);
+    fireEvent.change(screen.getByLabelText('Peso (gramas)'), { target: { value: '0' } });
     fireEvent.click(screen.getByText('Calcular Frete'));
     expect(screen.getByText('Todos os campos devem ser maiores que zero')).toBeInTheDocument();
   });

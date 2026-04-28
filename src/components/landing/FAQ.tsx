@@ -46,6 +46,7 @@ export function FAQ() {
               <button 
                 className={styles.questionWrapper} 
                 onClick={() => toggle(index)}
+                aria-expanded={openIndex === index}
               >
                 <span className={styles.question}>{faq.question}</span>
                 <Plus size={32} strokeWidth={1} className={styles.icon} />

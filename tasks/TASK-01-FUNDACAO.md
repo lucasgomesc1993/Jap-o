@@ -38,10 +38,10 @@
 ## TASK 1.2 — Configurar Supabase
 
 ### 1.2.1 Criar projeto Supabase
-- [ ] Criar projeto no Supabase Dashboard
-- [ ] Anotar `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
-- [ ] Configurar Auth: habilitar email+senha, desabilitar outros providers
-- [ ] Configurar confirmação de email obrigatória
+- [x] Criar projeto no Supabase Dashboard
+- [x] Anotar `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+- [x] Configurar Auth: habilitar email+senha, desabilitar outros providers
+- [x] Configurar confirmação de email obrigatória
 
 ### 1.2.2 Configurar clients Supabase
 - [x] Instalar `@supabase/supabase-js`, `@supabase/ssr`

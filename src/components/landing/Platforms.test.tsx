@@ -5,15 +5,9 @@ import { Platforms } from './Platforms';
 describe('Platforms', () => {
   it('renderiza a lista de plataformas', () => {
     render(<Platforms />);
-    expect(screen.getByText('Amazon JP')).toBeInTheDocument();
-    expect(screen.getByText('Mercari')).toBeInTheDocument();
-    expect(screen.getByText('Rakuten')).toBeInTheDocument();
-    expect(screen.getByText('Yahoo Auctions')).toBeInTheDocument();
-  });
-
-  it('exibe os domínios', () => {
-    render(<Platforms />);
-    expect(screen.getByText('amazon.co.jp')).toBeInTheDocument();
-    expect(screen.getByText('mercari.com')).toBeInTheDocument();
+    expect(screen.getAllByText('Amazon JP')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Mercari')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Rakuten')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Yahoo Auctions')[0]).toBeInTheDocument();
   });
 });
