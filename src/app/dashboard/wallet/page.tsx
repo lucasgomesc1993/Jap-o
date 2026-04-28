@@ -4,6 +4,8 @@ import prisma from '@/lib/prisma/client';
 import { WalletDashboard } from '@/components/wallet/WalletDashboard';
 import { redirect } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Minha Carteira | NipponBox',
   description: 'Gerencie seu saldo e veja seu histórico financeiro no NipponBox.',

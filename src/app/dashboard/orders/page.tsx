@@ -4,6 +4,8 @@ import prisma from '@/lib/prisma/client';
 import { OrderList } from '@/components/orders/OrderList';
 import { redirect } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Meus Pedidos | NipponBox',
   description: 'Acompanhe seus pedidos de compra no Japão.',
