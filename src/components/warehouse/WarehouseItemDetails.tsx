@@ -67,11 +67,11 @@ export const WarehouseItemDetails: React.FC<WarehouseItemDetailsProps> = ({
     setIsLoading(true);
     try {
       const result = await requestExtraService({ warehouseItemId: item.id, type });
-      if (result.success) {
+      if ('error' in result) {
+        toast.error(result.error || 'Erro ao solicitar serviço');
+      } else {
         toast.success(`Serviço ${SERVICE_CONFIGS[type].label} solicitado com sucesso!`);
         setIsConfirming(null);
-      } else {
-        toast.error(result.error || 'Erro ao solicitar serviço');
       }
     } catch (error) {
       toast.error('Erro inesperado ao solicitar serviço');
@@ -230,7 +230,7 @@ export const WarehouseItemDetails: React.FC<WarehouseItemDetailsProps> = ({
               <Button 
                 variant="primary" 
                 onClick={() => handleRequestService(isConfirming)}
-                isLoading={isLoading}
+                loading={isLoading}
               >
                 Confirmar e Pagar
               </Button>

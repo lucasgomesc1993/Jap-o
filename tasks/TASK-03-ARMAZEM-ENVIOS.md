@@ -197,15 +197,15 @@
 ## TASK 3.7 — Cálculos de Frete
 
 ### 3.7.1 Engine de cálculo
-- [ ] `src/lib/utils/shipping-calculator.ts`
-- [ ] Tabela de preços por método e faixa de peso (configurável pelo admin)
-- [ ] Faixas: 0-500g, 500g-1kg, 1-2kg, 2-5kg, 5-10kg, 10-20kg, 20-30kg
-- [ ] Fórmula: `basePrice + (weight * pricePerGram)` por faixa
+- [x] `src/lib/utils/shipping-calculator.ts`
+- [x] Tabela de preços por método e faixa de peso (configurável pelo admin)
+- [x] Faixas: 0-500g, 500g-1kg, 1-2kg, 2-5kg, 5-10kg, 10-20kg, 20-30kg
+- [x] Fórmula: `basePrice + (weight * pricePerGram)` por faixa
 - **Testes:**
-  - [ ] Cálculo correto para cada método em cada faixa
-  - [ ] Peso no limite da faixa usa faixa correta
-  - [ ] Peso zero retorna erro
-  - [ ] Peso acima de 30kg retorna erro (limite)
+  - [x] Cálculo correto para cada método em cada faixa
+  - [x] Peso no limite da faixa usa faixa correta
+  - [x] Peso zero retorna erro
+  - [x] Peso acima de 30kg retorna erro (limite)
 
 ---
 

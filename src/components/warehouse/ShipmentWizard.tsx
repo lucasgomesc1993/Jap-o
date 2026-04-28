@@ -96,7 +96,7 @@ export const ShipmentWizard: React.FC<ShipmentWizardProps> = ({
     
     const result = await createShipment(data);
     
-    if (result.error) {
+    if ('error' in result && result.error) {
       setError(result.error);
       setIsSubmitting(false);
     } else {

@@ -1,0 +1,145 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.section {
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.sectionHeader h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.iconStorage {
+  color: #ea580c;
+}
+
+.iconPayment {
+  color: #0284C7;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.item:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
+  transform: translateX(4px);
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.itemName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.itemUser {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.itemMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.itemDeadline {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ea580c;
+  background: #fff7ed;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.itemPrice {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #059669;
+  background: #f0fdf4;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  background: #f8fafc;
+  border: 2px dashed #e2e8f0;
+}
+
+.emptyIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.emptyState h3 {
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.emptyState p {
+  color: #64748b;
+}
+
+/* Skeletons */
+.skeletonTitle {
+  width: 200px;
+  height: 24px;
+  margin-bottom: 1.5rem;
+}
+
+.skeletonItem {
+  width: 100%;
+  height: 60px;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

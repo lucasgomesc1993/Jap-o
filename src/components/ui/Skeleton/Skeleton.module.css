@@ -18,7 +18,8 @@
 /* Shimmer base mixin */
 .skeletonLine,
 .skeletonCardImage,
-.skeletonCell {
+.skeletonCell,
+.skeletonBase {
   background: linear-gradient(
     90deg,
     var(--color-surface-container-high) 0%,

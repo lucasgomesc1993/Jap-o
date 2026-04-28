@@ -14,7 +14,9 @@
   font-family: var(--font-heading);
   font-size: 2.25rem;
   color: #0f172a;
-  font-weight: 700;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
@@ -22,75 +24,35 @@
   font-size: 1.1rem;
 }
 
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.statCard {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.75rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.statIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.statInfo {
+.section {
   display: flex;
   flex-direction: column;
-}
-
-.statLabel {
-  font-size: 0.875rem;
-  color: #64748b;
-  font-weight: 500;
-}
-
-.statValue {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.grid2Col {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
   gap: 1.5rem;
 }
 
-.sectionCard {
-  padding: 1.5rem;
-  min-height: 300px;
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-left: 4px solid #BC002D;
+  padding-left: 1rem;
 }
 
-.cardTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
   color: #0f172a;
-  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.emptyState {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  text-align: center;
-  padding-top: 4rem;
+.sectionSubtitle {
+  font-size: 0.875rem;
+  color: #64748b;
 }
 
-@media (max-width: 1024px) {
-  .grid2Col {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.75rem;
   }
 }

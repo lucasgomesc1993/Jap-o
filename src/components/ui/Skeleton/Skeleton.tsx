@@ -84,3 +84,27 @@ export const SkeletonTable: React.FC<SkeletonTableProps> = ({
     </div>
   );
 };
+
+interface SkeletonProps extends SkeletonBaseProps {
+  width?: string;
+  height?: string;
+  borderRadius?: string;
+}
+
+export const Skeleton: React.FC<SkeletonProps> = ({
+  width = '100%',
+  height = '20px',
+  borderRadius = '4px',
+  className = '',
+}) => {
+  return (
+    <div
+      className={`${styles.skeletonBase} ${className}`}
+      style={{ width, height, borderRadius }}
+      aria-busy="true"
+      role="status"
+    >
+      <span className={styles.srOnly}>Carregando...</span>
+    </div>
+  );
+};

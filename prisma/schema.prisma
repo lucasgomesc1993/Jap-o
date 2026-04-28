@@ -27,6 +27,7 @@ model User {
   orders         Order[]
   warehouseItems WarehouseItem[]
   shipments      Shipment[]
+  tickets        Ticket[]
 
   @@map("users")
 }
@@ -253,5 +254,49 @@ model ExchangeRate {
   fetchedAt DateTime @default(now())
 
   @@map("exchange_rates")
+}
+
+model Ticket {
+  id          String         @id @default(uuid())
+  userId      String
+  orderId     String?
+  shipmentId  String?
+  type        TicketType
+  subject     String
+  status      TicketStatus   @default(OPEN)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages    TicketMessage[]
+
+  @@map("tickets")
+}
+
+model TicketMessage {
+  id         String   @id @default(uuid())
+  ticketId   String
+  authorId   String
+  authorRole Role
+  content    String   @db.Text
+  attachments Json    @default("[]")
+  createdAt  DateTime @default(now())
+
+  ticket     Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@map("ticket_messages")
+}
+
+enum TicketType {
+  ITEM_ISSUE
+  TRACKING
+  BILLING
+  OTHER
+}
+
+enum TicketStatus {
+  OPEN
+  IN_REVIEW
+  RESOLVED
 }
 

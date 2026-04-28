@@ -7,25 +7,25 @@
 ## TASK 4.1 — Dashboard Admin
 
 ### 4.1.1 KPI Cards
-- [ ] Pedidos aguardando compra (count)
-- [ ] Itens no armazém (count)
-- [ ] Envios prontos para despacho (count)
-- [ ] Chamados abertos (count)
-- [ ] Receita do mês (sum)
-- [ ] Queries otimizadas (Prisma aggregates)
+- [x] Pedidos aguardando compra (count)
+- [x] Itens no armazém (count)
+- [x] Envios prontos para despacho (count)
+- [x] Chamados abertos (count)
+- [x] Receita do mês (sum)
+- [x] Queries otimizadas (Prisma aggregates)
 - **Testes:**
-  - [ ] Renderiza 5 KPI cards
-  - [ ] Valores calculados corretamente
-  - [ ] Loading state com skeletons
+  - [x] Renderiza 5 KPI cards
+  - [x] Valores calculados corretamente
+  - [x] Loading state com skeletons
 
 ### 4.1.2 Alertas
-- [ ] Prazos de armazenamento vencendo (< 7 dias)
-- [ ] Pagamentos pendentes de confirmação
-- [ ] Lista com link para o item/pedido
+- [x] Prazos de armazenamento vencendo (< 7 dias)
+- [x] Pagamentos pendentes de confirmação
+- [x] Lista com link para o item/pedido
 - **Testes:**
-  - [ ] Alerta aparece para itens com prazo < 7 dias
-  - [ ] Link direciona corretamente
-  - [ ] Sem alertas = mensagem "Tudo em dia"
+  - [x] Alerta aparece para itens com prazo < 7 dias
+  - [x] Link direciona corretamente
+  - [x] Sem alertas = mensagem "Tudo em dia"
 
 ---
 
