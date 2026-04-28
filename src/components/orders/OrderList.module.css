@@ -1,4 +1,7 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
   padding: 48px 0;
 }
 
@@ -6,7 +9,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 60px;
 }
 
 @media (max-width: 768px) {

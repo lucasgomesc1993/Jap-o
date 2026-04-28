@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import prisma from '@/lib/prisma/client';
+import styles from './page.module.css';
 import { WarehouseClient } from '@/components/warehouse/WarehouseClient';
 import { redirect } from 'next/navigation';
 
@@ -28,10 +29,10 @@ export default async function WarehousePage() {
   });
 
   return (
-    <main className="container-page">
-      <header className="page-header">
-        <h1 className="page-title">Meu Armazém</h1>
-        <p className="page-subtitle">
+    <main className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Meu Armazém</h1>
+        <p className={styles.subtitle}>
           Aqui estão os itens que já chegaram ao nosso centro logístico no Japão.
         </p>
       </header>

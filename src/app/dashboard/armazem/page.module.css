@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  padding: 48px 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-on-surface);
+}
+
+.subtitle {
+  color: var(--color-on-surface-variant);
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.6;
+}
