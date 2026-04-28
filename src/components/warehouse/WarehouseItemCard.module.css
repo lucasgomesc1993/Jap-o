@@ -1,0 +1,144 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  padding: var(--card_padding);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--surface-dim);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholderImage {
+  color: var(--on-surface-variant);
+  opacity: 0.3;
+}
+
+.statusBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-family: var(--font-family-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--on-surface);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specLabel {
+  font-family: var(--font-family-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.specValue {
+  font-family: var(--font-family-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--on-surface);
+}
+
+.storageSection {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.storageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.storageLabel {
+  font-family: var(--font-family-ui);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--on-surface-variant);
+}
+
+.daysLeft {
+  font-family: var(--font-family-body);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.progressBarContainer {
+  width: 100%;
+  height: 4px;
+  background: var(--surface-container-high);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--on-surface);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.progressWarning {
+  background: #f59e0b;
+}
+
+.progressDanger {
+  background: var(--primary);
+}
+
+.footer {
+  margin-top: 24px;
+}
+
+.actionButton {
+  width: 100%;
+}

@@ -25,6 +25,8 @@ model User {
   addresses      Address[]
   wallet         Wallet?
   orders         Order[]
+  warehouseItems WarehouseItem[]
+  shipments      Shipment[]
 
   @@map("users")
 }
@@ -45,6 +47,7 @@ model Address {
   updatedAt    DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shipments Shipment[]
 
   @@map("addresses")
 }
@@ -85,7 +88,8 @@ model Order {
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  warehouseItem WarehouseItem?
 
   @@map("orders")
 }
@@ -96,6 +100,124 @@ enum OrderStatus {
   IN_TRANSIT_TO_WAREHOUSE
   IN_WAREHOUSE
   CANCELLED
+}
+
+model WarehouseItem {
+  id                   String              @id @default(uuid())
+  orderId              String?             @unique
+  userId               String
+  name                 String
+  photos               Json                @default("[]")
+  weightGrams          Int                 @default(0)
+  lengthCm             Int                 @default(0)
+  widthCm             Int                 @default(0)
+  heightCm             Int                 @default(0)
+  arrivedAt            DateTime            @default(now())
+  freeStorageDeadline  DateTime?
+  status               WarehouseItemStatus @default(AVAILABLE)
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order         Order?         @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  extraServices ExtraService[]
+  shipmentItems ShipmentItem[]
+
+  @@map("warehouse_items")
+}
+
+enum WarehouseItemStatus {
+  AVAILABLE
+  SELECTED_FOR_SHIPMENT
+  SHIPPED
+}
+
+model ExtraService {
+  id              String             @id @default(uuid())
+  warehouseItemId String
+  type            ExtraServiceType
+  status          ExtraServiceStatus @default(REQUESTED)
+  price           Decimal            @db.Decimal(10, 2)
+  resultNotes     String?
+  resultPhotos    Json               @default("[]")
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  warehouseItem WarehouseItem @relation(fields: [warehouseItemId], references: [id], onDelete: Cascade)
+
+  @@map("extra_services")
+}
+
+enum ExtraServiceType {
+  EXTRA_PHOTO
+  QUALITY_CHECK
+  REMOVE_PACKAGING
+  EXTRA_PROTECTION
+}
+
+enum ExtraServiceStatus {
+  REQUESTED
+  COMPLETED
+}
+
+model Shipment {
+  id                    String             @id @default(uuid())
+  userId                String
+  shippingMethod        ShippingMethod
+  totalWeightGrams      Int                @default(0)
+  shippingCostBrl       Decimal            @db.Decimal(10, 2)
+  insuranceCostBrl      Decimal            @db.Decimal(10, 2)
+  hasInsurance          Boolean            @default(false)
+  declaredValueType     DeclaredValueType  @default(REAL)
+  declaredValueBrl      Decimal            @db.Decimal(10, 2)
+  manualDeclaredValueBrl Decimal?           @db.Decimal(10, 2)
+  disclaimerAcceptedAt  DateTime?
+  disclaimerIp          String?
+  disclaimerTextVersion String?
+  addressId             String
+  trackingCode          String?
+  status                ShipmentStatus     @default(PREPARING)
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address       Address        @relation(fields: [addressId], references: [id])
+  shipmentItems ShipmentItem[]
+
+  @@map("shipments")
+}
+
+enum ShippingMethod {
+  SAL
+  EMS
+  DHL
+  FEDEX
+}
+
+enum ShipmentStatus {
+  PREPARING
+  SHIPPED
+  IN_TRANSIT
+  IN_BRAZIL
+  OUT_FOR_DELIVERY
+  DELIVERED
+}
+
+enum DeclaredValueType {
+  REAL
+  MANUAL
+}
+
+model ShipmentItem {
+  id              String @id @default(uuid())
+  shipmentId      String
+  warehouseItemId String
+
+  shipment      Shipment      @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+  warehouseItem WarehouseItem @relation(fields: [warehouseItemId], references: [id], onDelete: Cascade)
+
+  @@unique([shipmentId, warehouseItemId])
+  @@map("shipment_items")
 }
 
 model Transaction {
@@ -124,9 +246,9 @@ enum TransactionType {
 }
 
 model ExchangeRate {
-  id       String   @id @default(uuid())
-  date     DateTime @unique @db.Date
-  jpyToBrl Decimal  @db.Decimal(10, 4)
+  id        String   @id @default(uuid())
+  date      DateTime @unique @db.Date
+  jpyToBrl  Decimal  @db.Decimal(10, 4)
   fetchedAt DateTime @default(now())
 
   @@map("exchange_rates")

@@ -60,7 +60,6 @@ export function ResendButton() {
       className={styles.resendBtn} 
       onClick={handleResend}
       disabled={isLoading || cooldown > 0}
-      style={{ opacity: cooldown > 0 || isLoading ? 0.6 : 1, cursor: cooldown > 0 || isLoading ? 'not-allowed' : 'pointer' }}
     >
       {isLoading ? 'Enviando...' : cooldown > 0 ? `Reenviar em ${cooldown}s` : 'Reenviar confirmação'}
     </button>

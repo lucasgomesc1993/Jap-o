@@ -71,7 +71,14 @@ export function RegisterForm() {
   const onSubmit = async (data: UserRegisterInput) => {
     setLoading(true);
     try {
-      const result = await registerAction(data);
+      // Se o CEP estiver vazio, não enviamos o endereço para a action
+      const submissionData = { ...data };
+      if (!data.address?.cep) {
+        delete submissionData.address;
+      }
+
+      const result = await registerAction(submissionData);
+      
       if (result.success) {
         toast({
           title: 'Cadastro realizado!',
@@ -87,6 +94,7 @@ export function RegisterForm() {
         });
       }
     } catch (err) {
+      console.error('RegisterForm: Unexpected error', err);
       toast({
         title: 'Erro inesperado',
         message: 'Não foi possível completar o cadastro.',
@@ -95,6 +103,12 @@ export function RegisterForm() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const onInvalid = (errors: any) => {
+    // Mantemos o log de erros de validação para ajudar o usuário, 
+    // mas estes não contêm a senha, apenas as mensagens de erro.
+    console.log('RegisterForm: Validation Errors', errors);
   };
 
   return (
@@ -117,7 +131,7 @@ export function RegisterForm() {
       </div>
 
 
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit, onInvalid)} className={styles.form}>
         {step === 1 && (
           <div className={styles.stepContent}>
             <div className={styles.sectionHeader}>
@@ -257,7 +271,9 @@ export function RegisterForm() {
                 placeholder="SP"
                 maxLength={2}
                 errorMessage={errors.address?.state?.message}
-                {...register('address.state')}
+                {...register('address.state', {
+                  onChange: (e) => (e.target.value = e.target.value.toUpperCase()),
+                })}
               />
             </div>
             <div className={styles.actions}>

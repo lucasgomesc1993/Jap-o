@@ -7,53 +7,53 @@
 ## TASK 3.1 — Schema Prisma: Armazém + Envios
 
 ### 3.1.1 Schema: WarehouseItem
-- [ ] Campos: `id`, `orderId` (FK), `userId` (FK), `name`, `photos` (JSON array), `weightGrams`, `lengthCm`, `widthCm`, `heightCm`, `arrivedAt`, `freeStorageDeadline`, `status` (AVAILABLE, SELECTED_FOR_SHIPMENT, SHIPPED), `createdAt`
+- [x] Campos: `id`, `orderId` (FK), `userId` (FK), `name`, `photos` (JSON array), `weightGrams`, `lengthCm`, `widthCm`, `heightCm`, `arrivedAt`, `freeStorageDeadline`, `status` (AVAILABLE, SELECTED_FOR_SHIPMENT, SHIPPED), `createdAt`
 - **Testes:**
-  - [ ] Criar item com dados válidos
-  - [ ] Relação Order 1:1 WarehouseItem
-  - [ ] Enum status correto
+  - [x] Criar item com dados válidos
+  - [x] Relação Order 1:1 WarehouseItem
+  - [x] Enum status correto
 
 ### 3.1.2 Schema: ExtraService
-- [ ] Campos: `id`, `warehouseItemId` (FK), `type` (EXTRA_PHOTO, QUALITY_CHECK, REMOVE_PACKAGING, EXTRA_PROTECTION), `status` (REQUESTED, COMPLETED), `price`, `resultNotes`, `resultPhotos` (JSON), `createdAt`
+- [x] Campos: `id`, `warehouseItemId` (FK), `type` (EXTRA_PHOTO, QUALITY_CHECK, REMOVE_PACKAGING, EXTRA_PROTECTION), `status` (REQUESTED, COMPLETED), `price`, `resultNotes`, `resultPhotos` (JSON), `createdAt`
 - **Testes:**
-  - [ ] Criar serviço vinculado a item
-  - [ ] Enum type e status corretos
+  - [x] Criar serviço vinculado a item
+  - [x] Enum type e status corretos
 
 ### 3.1.3 Schema: Shipment + ShipmentItem
-- [ ] Shipment: `id`, `userId` (FK), `shippingMethod` (SAL, EMS, DHL, FEDEX), `totalWeightGrams`, `shippingCostBrl`, `insuranceCostBrl`, `hasInsurance`, `declaredValueType` (REAL, MANUAL), `declaredValueBrl`, `manualDeclaredValueBrl`, `disclaimerAcceptedAt`, `disclaimerIp`, `disclaimerTextVersion`, `addressId` (FK), `trackingCode`, `status` (PREPARING, SHIPPED, IN_TRANSIT, IN_BRAZIL, OUT_FOR_DELIVERY, DELIVERED), `createdAt`, `updatedAt`
-- [ ] ShipmentItem: `id`, `shipmentId` (FK), `warehouseItemId` (FK)
+- [x] Shipment: `id`, `userId` (FK), `shippingMethod` (SAL, EMS, DHL, FEDEX), `totalWeightGrams`, `shippingCostBrl`, `insuranceCostBrl`, `hasInsurance`, `declaredValueType` (REAL, MANUAL), `declaredValueBrl`, `manualDeclaredValueBrl`, `disclaimerAcceptedAt`, `disclaimerIp`, `disclaimerTextVersion`, `addressId` (FK), `trackingCode`, `status` (PREPARING, SHIPPED, IN_TRANSIT, IN_BRAZIL, OUT_FOR_DELIVERY, DELIVERED), `createdAt`, `updatedAt`
+- [x] ShipmentItem: `id`, `shipmentId` (FK), `warehouseItemId` (FK)
 - **Testes:**
-  - [ ] Criar envio com itens
-  - [ ] Relação Shipment N:N WarehouseItem via ShipmentItem
-  - [ ] Todos os enums corretos
+  - [x] Criar envio com itens
+  - [x] Relação Shipment N:N WarehouseItem via ShipmentItem
+  - [x] Todos os enums corretos
 
 ### 3.1.4 Migration + RLS
-- [ ] Rodar migration `add_warehouse_shipments`
-- [ ] RLS: cliente vê apenas seus itens e envios
-- **Testes:** isolamento de dados entre clientes
+- [x] Rodar migration `add_warehouse_shipments` (via db push)
+- [x] RLS: cliente vê apenas seus itens e envios
+- **Testes:** isolamento de dados entre clientes (Script SQL aplicado com Grants)
 
 ---
 
 ## TASK 3.2 — Tela do Armazém (Cliente)
 
 ### 3.2.1 Lista de itens
-- [ ] Cards com: foto principal, nome, peso, volume (C×L×A), data de chegada
-- [ ] Prazo de armazenamento gratuito com barra de progresso
-- [ ] Alerta visual (amarelo < 7 dias, vermelho = vencido)
-- [ ] Badge de status (Disponível, Selecionado, Enviado)
+- [x] Cards com: foto principal, nome, peso, volume (C×L×A), data de chegada
+- [x] Prazo de armazenamento gratuito com barra de progresso
+- [x] Alerta visual (amarelo < 7 dias, vermelho = vencido)
+- [x] Badge de status (Disponível, Selecionado, Enviado)
 - **Testes:**
-  - [ ] Renderiza itens do usuário
-  - [ ] Barra de progresso calcula % correta
-  - [ ] Alerta aparece quando prazo < 7 dias
-  - [ ] Alerta vermelho quando prazo vencido
-  - [ ] Estado vazio com mensagem
+  - [x] Renderiza itens do usuário
+  - [x] Barra de progresso calcula % correta
+  - [x] Alerta aparece quando prazo < 7 dias
+  - [x] Alerta vermelho quando prazo vencido
+  - [x] Estado vazio com mensagem
 
 ### 3.2.2 Detalhes do item
-- [ ] Modal com todas as fotos (galeria), peso, dimensões, data de chegada
-- [ ] Histórico de serviços extras solicitados
+- [x] Modal com todas as fotos (galeria), peso, dimensões, data de chegada
+- [x] Histórico de serviços extras solicitados
 - **Testes:**
-  - [ ] Galeria de fotos navega corretamente
-  - [ ] Exibe todos os dados do item
+  - [x] Galeria de fotos navega corretamente
+  - [x] Exibe todos os dados do item
 
 ---
 
