@@ -1,0 +1,215 @@
+.container {
+  padding: var(--margin_page) 0;
+}
+
+.header {
+  margin-bottom: 60px;
+}
+
+.title {
+  font-family: var(--font-cormorant);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: var(--on-surface-variant);
+  font-size: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.balanceCard {
+  padding: 40px;
+  background: var(--on-surface);
+  color: white;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: 0;
+}
+
+.label {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--on-surface-variant);
+}
+
+.amount {
+  font-family: var(--font-cormorant);
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1;
+  margin-top: 8px;
+}
+
+.addButton {
+  background: var(--primary) !important;
+  border-radius: 0;
+  height: 48px;
+  font-size: 11px !important;
+}
+
+.transactionsCard {
+  padding: 32px;
+  border-radius: 0;
+}
+
+.cardHeader h3 {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 32px;
+  color: var(--on-surface-variant);
+}
+
+.transactionsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactionItem {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--outline);
+}
+
+.transactionItem:last-child {
+  border-bottom: none;
+}
+
+.txIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-container-low);
+  margin-right: 20px;
+}
+
+.creditIcon { color: #10b981; }
+.debitIcon { color: var(--primary); }
+
+.txDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.txDesc {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.txDate {
+  font-size: 12px;
+  color: var(--on-surface-variant);
+}
+
+.txAmount {
+  font-family: var(--font-inter);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.credit { color: #10b981; }
+.debit { color: var(--on-surface); }
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 0;
+  color: var(--on-surface-variant);
+  font-size: 14px;
+}
+
+/* Modal Styles */
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.pixContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.qrCodeContainer {
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--outline);
+}
+
+.qrCodeContainer img {
+  width: 200px;
+  height: 200px;
+}
+
+.pixLabel {
+  font-size: 14px;
+  color: var(--on-surface-variant);
+}
+
+.copyGroup {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  background: var(--surface-container-low);
+  padding: 4px;
+  border: 1px solid var(--outline);
+}
+
+.pixCode {
+  flex: 1;
+  padding: 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: monospace;
+}
+
+.copyBtn {
+  padding: 0 12px !important;
+  height: 32px !important;
+}
+
+.pixFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--on-surface-variant);
+}

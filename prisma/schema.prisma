@@ -24,7 +24,7 @@ model User {
   updatedAt      DateTime  @updatedAt
   addresses      Address[]
   wallet         Wallet?
-
+  orders         Order[]
 
   @@map("users")
 }
@@ -55,14 +55,80 @@ enum Role {
 }
 
 model Wallet {
-  id        String   @id @default(uuid())
-  userId    String   @unique
-  balance   Decimal  @default(0) @db.Decimal(10, 2)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String        @id @default(uuid())
+  userId       String        @unique
+  balance      Decimal       @default(0) @db.Decimal(10, 2)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  transactions Transaction[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("wallets")
+}
+
+model Order {
+  id           String      @id @default(uuid())
+  userId       String
+  productUrl   String
+  productName  String
+  productImage String?
+  priceJpy     Decimal     @db.Decimal(10, 2)
+  priceBrl     Decimal     @db.Decimal(10, 2)
+  serviceFee   Decimal     @db.Decimal(10, 2)
+  fixedFee     Decimal     @db.Decimal(10, 2)
+  totalBrl     Decimal     @db.Decimal(10, 2)
+  quantity     Int         @default(1)
+  variation    String?
+  notes        String?
+  status       OrderStatus @default(AWAITING_PURCHASE)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+enum OrderStatus {
+  AWAITING_PURCHASE
+  PURCHASED
+  IN_TRANSIT_TO_WAREHOUSE
+  IN_WAREHOUSE
+  CANCELLED
+}
+
+model Transaction {
+  id          String          @id @default(uuid())
+  walletId    String
+  type        TransactionType
+  amount      Decimal         @db.Decimal(10, 2)
+  description String
+  referenceId String?
+  createdAt   DateTime        @default(now())
+
+  wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
+}
+
+enum TransactionType {
+  CREDIT
+  ORDER_PAYMENT
+  SHIPPING_PAYMENT
+  EXTRA_SERVICE
+  STORAGE_FEE
+  MANUAL_CREDIT
+  MANUAL_DEBIT
+  REFUND
+}
+
+model ExchangeRate {
+  id       String   @id @default(uuid())
+  date     DateTime @unique @db.Date
+  jpyToBrl Decimal  @db.Decimal(10, 4)
+  fetchedAt DateTime @default(now())
+
+  @@map("exchange_rates")
 }
 
