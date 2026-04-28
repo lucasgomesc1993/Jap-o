@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  width: 100%;
+  max-width: 400px;
+}
+
+.tableWrapper {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--border-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.clientInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.clientName {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.clientEmail {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.itemList {
+  font-size: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.itemList li {
+  margin-bottom: 0.25rem;
+}
+
+.manualFlag {
+  color: #ff4d4f;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.statusUpdateBtn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.statusUpdateBtn:hover:not(:disabled) {
+  background: var(--accent-color);
+  color: white;
+}
+
+.statusUpdateBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

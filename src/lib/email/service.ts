@@ -4,16 +4,20 @@ import React from 'react';
 interface SendEmailParams {
   to: string | string[];
   subject: string;
-  react: React.ReactElement;
+  react?: React.ReactElement;
+  html?: string;
+  text?: string;
 }
 
-export async function sendEmail({ to, subject, react }: SendEmailParams) {
+export async function sendEmail({ to, subject, react, html, text }: SendEmailParams) {
   try {
     const { data, error } = await resend.emails.send({
       from: 'NipponBox <onboarding@resend.dev>', // Usando domínio padrão do Resend para teste
       to,
       subject,
       react,
+      html,
+      text,
     });
 
     if (error) {

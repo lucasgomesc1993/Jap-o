@@ -7,14 +7,14 @@
 ## TASK 5.1 — Schema: Tickets
 
 ### 5.1.1 Schema Prisma
-- [ ] Ticket: `id`, `userId` (FK), `orderId` (FK nullable), `shipmentId` (FK nullable), `type` (ITEM_ISSUE, TRACKING, BILLING, OTHER), `subject`, `status` (OPEN, IN_REVIEW, RESOLVED), `createdAt`, `updatedAt`
-- [ ] TicketMessage: `id`, `ticketId` (FK), `authorId` (FK), `authorRole` (CUSTOMER/ADMIN), `content`, `attachments` (JSON array), `createdAt`
-- [ ] Migration + RLS (cliente vê só seus tickets)
+- [x] Ticket: `id`, `userId` (FK), `orderId` (FK nullable), `shipmentId` (FK nullable), `type` (ITEM_ISSUE, TRACKING, BILLING, OTHER), `subject`, `status` (OPEN, IN_REVIEW, RESOLVED), `createdAt`, `updatedAt`
+- [x] TicketMessage: `id`, `ticketId` (FK), `authorId` (FK), `authorRole` (CUSTOMER/ADMIN), `content`, `attachments` (JSON array), `createdAt`
+- [x] Migration + RLS (cliente vê só seus tickets)
 - **Testes:**
-  - [ ] Criar ticket com dados válidos
-  - [ ] Mensagem vinculada ao ticket
-  - [ ] Enums corretos
-  - [ ] RLS isola dados
+  - [x] Criar ticket com dados válidos
+  - [x] Mensagem vinculada ao ticket
+  - [x] Enums corretos
+  - [x] RLS isola dados
 
 ---
 

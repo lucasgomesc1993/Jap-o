@@ -28,6 +28,7 @@ model User {
   warehouseItems WarehouseItem[]
   shipments      Shipment[]
   tickets        Ticket[]
+  auditLogs      AuditLog[]
 
   @@map("users")
 }
@@ -85,9 +86,12 @@ model Order {
   quantity     Int         @default(1)
   variation    String?
   notes        String?
-  status       OrderStatus @default(AWAITING_PURCHASE)
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  status            OrderStatus @default(AWAITING_PURCHASE)
+  realPriceJpy      Decimal?    @db.Decimal(10, 2)
+  arrivalExpectedAt DateTime?
+  receiptUrl        String?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
 
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   warehouseItem WarehouseItem?
@@ -298,5 +302,21 @@ enum TicketStatus {
   OPEN
   IN_REVIEW
   RESOLVED
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  adminUserId String
+  action      String
+  entityType  String
+  entityId    String
+  details     Json     @default("{}")
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  admin User @relation(fields: [adminUserId], references: [id])
+
+  @@index([entityType, entityId])
+  @@map("audit_logs")
 }
 

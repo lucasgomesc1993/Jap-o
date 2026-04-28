@@ -1,0 +1,89 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.search {
+  width: 100%;
+  max-width: 400px;
+}
+
+.tableWrapper {
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--rounded);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 16px;
+  background: var(--color-surface-dim);
+  border-bottom: 1px solid var(--color-outline-variant);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-on-surface-variant);
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-outline-variant);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.clientInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.clientName {
+  font-weight: 500;
+  color: var(--color-on-surface);
+}
+
+.clientEmail {
+  font-size: 12px;
+  color: var(--color-on-surface-variant);
+}
+
+.productLink {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.productLink:hover {
+  color: var(--color-primary-container);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.empty {
+  padding: 48px;
+  text-align: center;
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-heading);
+  font-size: 24px;
+}
