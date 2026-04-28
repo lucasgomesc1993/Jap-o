@@ -100,18 +100,26 @@ export function RegisterForm() {
   return (
     <div className={styles.container}>
       <div className={styles.stepper}>
-        {[1, 2, 3].map((s) => (
-          <div key={s} className={`${styles.stepIndicator} ${step >= s ? styles.activeStep : ''}`}>
-            <div className={styles.stepCircle}>
-              {step > s ? <Check size={14} /> : s}
-            </div>
-            <span className={styles.stepLabel}>
-              {s === 1 ? 'Conta' : s === 2 ? 'Pessoal' : 'Endereço'}
-            </span>
-            {s < 3 && <div className={styles.stepLine} />}
-          </div>
-        ))}
+        <div className={`${styles.stepIndicator} ${step >= 1 ? styles.activeStep : ''}`}>
+          <div className={styles.stepCircle}>{step > 1 ? <Check size={18} /> : 1}</div>
+          <span className={styles.stepLabel}>Conta</span>
+        </div>
+        
+        <div className={`${styles.stepLine} ${step >= 2 ? styles.activeStepLine : ''}`} />
+        
+        <div className={`${styles.stepIndicator} ${step >= 2 ? styles.activeStep : ''}`}>
+          <div className={styles.stepCircle}>{step > 2 ? <Check size={18} /> : 2}</div>
+          <span className={styles.stepLabel}>Pessoal</span>
+        </div>
+        
+        <div className={`${styles.stepLine} ${step >= 3 ? styles.activeStepLine : ''}`} />
+        
+        <div className={`${styles.stepIndicator} ${step >= 3 ? styles.activeStep : ''}`}>
+          <div className={styles.stepCircle}>3</div>
+          <span className={styles.stepLabel}>Endereço</span>
+        </div>
       </div>
+
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         {step === 1 && (
