@@ -95,6 +95,7 @@ model Order {
 }
 
 enum OrderStatus {
+  PENDING_PAYMENT
   AWAITING_PURCHASE
   PURCHASED
   IN_TRANSIT_TO_WAREHOUSE

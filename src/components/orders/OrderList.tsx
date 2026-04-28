@@ -24,7 +24,8 @@ interface OrderListProps {
 }
 
 const statusMap: Record<string, { label: string, variant: 'info' | 'success' | 'warning' | 'error' | 'neutral' }> = {
-  AWAITING_PURCHASE: { label: 'Aguardando Compra', variant: 'warning' },
+  PENDING_PAYMENT: { label: 'Aguardando Pagamento', variant: 'warning' },
+  AWAITING_PURCHASE: { label: 'Aguardando Compra', variant: 'info' },
   PURCHASED: { label: 'Comprado', variant: 'info' },
   IN_TRANSIT_TO_WAREHOUSE: { label: 'Em Trânsito p/ Armazém', variant: 'info' },
   IN_WAREHOUSE: { label: 'No Armazém', variant: 'success' },
@@ -40,19 +41,24 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
 
   const { addToast } = useToast();
 
-  const handleCancelOrder = async (orderId: string) => {
-    if (!confirm('Tem certeza que deseja cancelar este pedido? O valor será reembolsado em sua carteira.')) return;
+  const handleCancelOrder = async (order: Order) => {
+    const isPaid = order.status !== 'PENDING_PAYMENT';
+    const confirmMessage = isPaid 
+      ? 'Tem certeza que deseja cancelar este pedido? O valor será reembolsado em sua carteira.'
+      : 'Tem certeza que deseja cancelar este pedido pendente?';
+
+    if (!confirm(confirmMessage)) return;
 
     setIsLoading(true);
     try {
-      await cancelOrder(orderId);
-      setOrders(orders.map(o => o.id === orderId ? { ...o, status: 'CANCELLED' } : o));
-      if (selectedOrder?.id === orderId) {
+      await cancelOrder(order.id);
+      setOrders(orders.map(o => o.id === order.id ? { ...o, status: 'CANCELLED' } : o));
+      if (selectedOrder?.id === order.id) {
         setSelectedOrder({ ...selectedOrder, status: 'CANCELLED' });
       }
       addToast({
         title: 'Pedido Cancelado',
-        message: 'O valor foi estornado para sua carteira.',
+        message: isPaid ? 'O valor foi estornado para sua carteira.' : 'O pedido pendente foi removido.',
         type: 'success',
       });
     } catch (error) {
@@ -92,6 +98,7 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
             onChange={(e) => setFilter(e.target.value)}
           >
             <option value="ALL">Todos os Pedidos</option>
+            <option value="PENDING_PAYMENT">Aguardando Pagamento</option>
             <option value="AWAITING_PURCHASE">Aguardando Compra</option>
             <option value="PURCHASED">Comprado</option>
             <option value="IN_WAREHOUSE">No Armazém</option>
@@ -163,17 +170,17 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
             </div>
 
             <div className={styles.timeline}>
-              <div className={`${styles.step} ${['AWAITING_PURCHASE', 'PURCHASED', 'IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
+              <div className={`${styles.step} ${['PENDING_PAYMENT', 'AWAITING_PURCHASE', 'PURCHASED', 'IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
                 <div className={styles.dot} />
                 <span>Solicitado</span>
+              </div>
+              <div className={`${styles.step} ${['AWAITING_PURCHASE', 'PURCHASED', 'IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
+                <div className={styles.dot} />
+                <span>Pago</span>
               </div>
               <div className={`${styles.step} ${['PURCHASED', 'IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
                 <div className={styles.dot} />
                 <span>Comprado</span>
-              </div>
-              <div className={`${styles.step} ${['IN_TRANSIT_TO_WAREHOUSE', 'IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
-                <div className={styles.dot} />
-                <span>Enviado</span>
               </div>
               <div className={`${styles.step} ${['IN_WAREHOUSE'].includes(selectedOrder.status) ? styles.completed : ''}`}>
                 <div className={styles.dot} />
@@ -212,11 +219,11 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
             )}
 
             <div className={styles.modalActions}>
-              {selectedOrder.status === 'AWAITING_PURCHASE' && (
+              {['PENDING_PAYMENT', 'AWAITING_PURCHASE'].includes(selectedOrder.status) && (
                 <Button 
                   variant="ghost" 
                   className={styles.cancelBtn}
-                  onClick={() => handleCancelOrder(selectedOrder.id)}
+                  onClick={() => handleCancelOrder(selectedOrder)}
                   loading={isLoading}
                 >
                   <XCircle size={16} /> Cancelar Pedido

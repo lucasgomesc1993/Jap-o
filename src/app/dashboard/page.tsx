@@ -1,4 +1,6 @@
-import { Card } from '@/components/ui';
+import { createClient } from '@/lib/supabase/server';
+import prisma from '@/lib/prisma/client';
+import { redirect } from 'next/navigation';
 import styles from './page.module.css';
 import { Package, Warehouse, Send, Wallet } from 'lucide-react';
 
@@ -6,12 +8,43 @@ export const metadata = {
   title: 'Dashboard | NipponBox',
 };
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect('/login');
+  }
+
+  // Buscar dados reais
+  const [activeOrdersCount, warehouseItemsCount, shipmentsCount, wallet] = await Promise.all([
+    prisma.order.count({
+      where: { 
+        userId: user.id,
+        status: { in: ['AWAITING_PURCHASE', 'PURCHASED', 'IN_TRANSIT_TO_WAREHOUSE'] }
+      }
+    }),
+    prisma.warehouseItem.count({
+      where: { 
+        userId: user.id,
+        status: 'AVAILABLE'
+      }
+    }),
+    prisma.shipment.count({
+      where: { userId: user.id }
+    }),
+    prisma.wallet.findUnique({
+      where: { userId: user.id }
+    })
+  ]);
+
+  const balance = wallet ? Number(wallet.balance) : 0;
+
   const stats = [
-    { id: '01', label: 'Pedidos Ativos', value: '0', icon: <Package size={20} strokeWidth={1.5} /> },
-    { id: '02', label: 'No Armazém', value: '0', icon: <Warehouse size={20} strokeWidth={1.5} /> },
-    { id: '03', label: 'Envios Realizados', value: '0', icon: <Send size={20} strokeWidth={1.5} /> },
-    { id: '04', label: 'Saldo em Carteira', value: 'R$ 0,00', icon: <Wallet size={20} strokeWidth={1.5} /> },
+    { id: '01', label: 'Pedidos Ativos', value: activeOrdersCount.toString(), icon: <Package size={20} strokeWidth={1.5} /> },
+    { id: '02', label: 'No Armazém', value: warehouseItemsCount.toString(), icon: <Warehouse size={20} strokeWidth={1.5} /> },
+    { id: '03', label: 'Envios Realizados', value: shipmentsCount.toString(), icon: <Send size={20} strokeWidth={1.5} /> },
+    { id: '04', label: 'Saldo em Carteira', value: `R$ ${balance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, icon: <Wallet size={20} strokeWidth={1.5} /> },
   ];
 
   return (

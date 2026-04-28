@@ -43,7 +43,7 @@ export async function createOrder(input: OrderCreateInput) {
       quantity: validated.quantity,
       variation: validated.variation,
       notes: validated.notes,
-      status: 'AWAITING_PURCHASE', // Começa aguardando compra (pós-pagamento simulado ou Pix gerado)
+      status: 'PENDING_PAYMENT', // Inicia aguardando pagamento
     },
   });
 
@@ -67,10 +67,13 @@ export async function cancelOrder(orderId: string) {
     throw new Error('Pedido não encontrado');
   }
 
-  // RN10: Apenas cancela se estiver AWAITING_PURCHASE
-  if (order.status !== 'AWAITING_PURCHASE') {
+  // RN10: Apenas cancela se estiver PENDING_PAYMENT ou AWAITING_PURCHASE
+  const cancellableStatuses = ['PENDING_PAYMENT', 'AWAITING_PURCHASE'];
+  if (!cancellableStatuses.includes(order.status)) {
     throw new Error('Este pedido não pode mais ser cancelado');
   }
+
+  const wasPaid = order.status === 'AWAITING_PURCHASE';
 
   await prisma.$transaction(async (tx) => {
     // 1. Atualizar status do pedido
@@ -79,30 +82,33 @@ export async function cancelOrder(orderId: string) {
       data: { status: 'CANCELLED' }
     });
 
-    // 2. Reembolsar na carteira
-    const wallet = await tx.wallet.findUnique({
-      where: { userId: user.id }
-    });
-
-    if (wallet) {
-      await tx.wallet.update({
-        where: { id: wallet.id },
-        data: { balance: { increment: order.totalBrl } }
+    // 2. Reembolsar na carteira apenas se foi pago
+    if (wasPaid) {
+      const wallet = await tx.wallet.findUnique({
+        where: { userId: user.id }
       });
 
-      // 3. Criar transação de estorno
-      await tx.transaction.create({
-        data: {
-          walletId: wallet.id,
-          type: 'REFUND',
-          amount: order.totalBrl,
-          description: `Estorno do pedido ${order.productName.substring(0, 30)}...`,
-          referenceId: order.id
-        }
-      });
+      if (wallet) {
+        await tx.wallet.update({
+          where: { id: wallet.id },
+          data: { balance: { increment: order.totalBrl } }
+        });
+
+        // 3. Criar transação de estorno
+        await tx.transaction.create({
+          data: {
+            walletId: wallet.id,
+            type: 'REFUND',
+            amount: order.totalBrl,
+            description: `Estorno do pedido ${order.productName.substring(0, 30)}...`,
+            referenceId: order.id
+          }
+        });
+      }
     }
   });
 
   revalidatePath('/dashboard/orders');
   revalidatePath('/dashboard/wallet');
+  revalidatePath('/dashboard');
 }
