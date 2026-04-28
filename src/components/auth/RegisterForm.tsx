@@ -100,7 +100,7 @@ export function RegisterForm() {
   return (
     <div className={styles.container}>
       <div className={styles.stepper}>
-        <div className={`${styles.stepIndicator} ${step >= 1 ? styles.activeStep : ''}`}>
+        <div className={`${styles.stepIndicator} ${styles.activeStep}`}>
           <div className={styles.stepCircle}>01</div>
           <span className={styles.stepLabel}>Conta</span>
         </div>

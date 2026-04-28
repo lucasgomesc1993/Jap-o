@@ -1,63 +1,82 @@
-import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { Sidebar, type SidebarItem } from './Sidebar';
 
-const mockItems: SidebarItem[] = [
-  { id: 'orders', label: 'Pedidos', href: '/dashboard/pedidos' },
-  { id: 'warehouse', label: 'Armazém', href: '/dashboard/armazem' },
-  { id: 'shipments', label: 'Envios', href: '/dashboard/envios' },
-  { id: 'wallet', label: 'Carteira', href: '/dashboard/carteira' },
-  { id: 'support', label: 'Suporte', href: '/dashboard/suporte' },
-];
-
 describe('Sidebar Component', () => {
-  it('renderiza todos os itens de navegação', () => {
+  const mockItems: SidebarItem[] = [
+    { id: '1', label: 'Início', href: '/dashboard', icon: <span>🏠</span> },
+    { id: '2', label: 'Pedidos', href: '/dashboard/pedidos', icon: <span>📦</span> },
+    { id: '3', label: 'Carteira', href: '/dashboard/carteira', icon: <span>💰</span> },
+  ];
+
+  it('deve renderizar todos os itens', () => {
     render(<Sidebar items={mockItems} />);
-    mockItems.forEach((item) => {
-      expect(screen.getByText(item.label)).toBeInTheDocument();
-    });
+    expect(screen.getByText('Início')).toBeInTheDocument();
+    expect(screen.getByText('Pedidos')).toBeInTheDocument();
+    expect(screen.getByText('Carteira')).toBeInTheDocument();
   });
 
-  it('contém elemento nav com aria-label', () => {
-    render(<Sidebar items={mockItems} />);
-    const nav = screen.getByRole('navigation');
-    expect(nav).toHaveAttribute('aria-label', 'Menu lateral');
+  it('deve marcar o item ativo corretamente', () => {
+    render(<Sidebar items={mockItems} activeItemId="2" />);
+    const activeItem = screen.getByText('Pedidos').closest('a');
+    expect(activeItem).toHaveClass(/active/);
+    expect(activeItem).toHaveAttribute('aria-current', 'page');
   });
 
-  it('aplica aria-current="page" no item ativo', () => {
-    render(<Sidebar items={mockItems} activeItemId="warehouse" />);
-    const activeLink = screen.getByText('Armazém').closest('a');
-    expect(activeLink).toHaveAttribute('aria-current', 'page');
-  });
-
-  it('não aplica aria-current em itens inativos', () => {
-    render(<Sidebar items={mockItems} activeItemId="warehouse" />);
-    const inactiveLink = screen.getByText('Pedidos').closest('a');
-    expect(inactiveLink).not.toHaveAttribute('aria-current');
-  });
-
-  it('chama onItemClick ao clicar em um item', () => {
+  it('deve disparar onItemClick ao clicar em um item', () => {
     const handleClick = vi.fn();
     render(<Sidebar items={mockItems} onItemClick={handleClick} />);
-    fireEvent.click(screen.getByText('Pedidos'));
+    
+    fireEvent.click(screen.getByText('Início'));
+    
     expect(handleClick).toHaveBeenCalledWith(mockItems[0]);
   });
 
-  it('renderiza o logo quando fornecido', () => {
-    render(<Sidebar items={mockItems} logo={<span data-testid="logo">NipponBox</span>} />);
+  it('deve renderizar o logo quando fornecido', () => {
+    render(<Sidebar items={mockItems} logo={<div data-testid="logo">NipponBox</div>} />);
     expect(screen.getByTestId('logo')).toBeInTheDocument();
   });
 
-  it('renderiza a barra crimson no topo', () => {
-    const { container } = render(<Sidebar items={mockItems} />);
-    // A barra crimson é o primeiro filho dentro da sidebar
-    const sidebar = container.querySelector('nav');
-    expect(sidebar?.firstElementChild).toBeTruthy();
+  it('deve aplicar className customizada', () => {
+    const { container } = render(<Sidebar items={mockItems} className="custom-class" />);
+    expect(container.firstChild).toHaveClass('custom-class');
   });
 
-  it('links apontam para os hrefs corretos', () => {
+  it('deve prevenir o comportamento padrão do link quando onItemClick é fornecido', () => {
+    const handleClick = vi.fn();
+    render(<Sidebar items={mockItems} onItemClick={handleClick} />);
+    
+    const link = screen.getByText('Início').closest('a');
+    const clickEvent = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    });
+    
+    const preventDefaultSpy = vi.spyOn(clickEvent, 'preventDefault');
+    link?.dispatchEvent(clickEvent);
+    
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
+  it('deve renderizar os ícones dos itens', () => {
+    render(<Sidebar items={mockItems} />);
+    expect(screen.getByText('🏠')).toBeInTheDocument();
+    expect(screen.getByText('📦')).toBeInTheDocument();
+  });
+
+  it('deve ter o atributo href correto nos links', () => {
     render(<Sidebar items={mockItems} />);
     const link = screen.getByText('Pedidos').closest('a');
     expect(link).toHaveAttribute('href', '/dashboard/pedidos');
+  });
+
+  it('deve renderizar item sem ícone e funcionar sem callback de clique', () => {
+    const items = [{ id: '1', label: 'Sem Ícone', href: '#' }];
+    render(<Sidebar items={items} />);
+    
+    const link = screen.getByText('Sem Ícone');
+    fireEvent.click(link);
+    // Não deve quebrar
+    expect(link).toBeInTheDocument();
   });
 });

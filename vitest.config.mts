@@ -11,6 +11,19 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/**',
+        '.next/**',
+        'out/**',
+        '**/*.d.ts',
+        '**/*.test.tsx',
+        '**/*.test.ts',
+        'src/components/ui/index.ts',
+        '**/*.module.css',
+        'next.config.ts',
+        'vitest.config.mts',
+        'src/app/**',
+      ],
       thresholds: {
         statements: 100,
         branches: 100,

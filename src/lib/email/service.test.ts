@@ -31,9 +31,23 @@ describe('Email Service', () => {
     expect(result.data).toEqual(mockData);
   });
 
-  it('deve retornar erro quando o resend falha', async () => {
+  it('deve retornar erro quando o resend retorna um erro', async () => {
     const mockError = { message: 'Erro ao enviar' };
     (resend.emails.send as any).mockResolvedValue({ data: null, error: mockError });
+
+    const result = await sendEmail({
+      to: 'teste@exemplo.com',
+      subject: 'Assunto Teste',
+      react: { type: 'div', props: { children: 'Olá' } } as any,
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error).toEqual(mockError);
+  });
+
+  it('deve retornar erro quando ocorre uma exceção inesperada', async () => {
+    const mockError = new Error('Erro de rede');
+    (resend.emails.send as any).mockRejectedValue(mockError);
 
     const result = await sendEmail({
       to: 'teste@exemplo.com',
