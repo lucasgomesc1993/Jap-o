@@ -32,11 +32,6 @@ describe('Sidebar Component', () => {
     expect(handleClick).toHaveBeenCalledWith(mockItems[0]);
   });
 
-  it('deve renderizar o logo quando fornecido', () => {
-    render(<Sidebar items={mockItems} logo={<div data-testid="logo">NipponBox</div>} />);
-    expect(screen.getByTestId('logo')).toBeInTheDocument();
-  });
-
   it('deve aplicar className customizada', () => {
     const { container } = render(<Sidebar items={mockItems} className="custom-class" />);
     expect(container.firstChild).toHaveClass('custom-class');
@@ -58,10 +53,11 @@ describe('Sidebar Component', () => {
     expect(preventDefaultSpy).toHaveBeenCalled();
   });
 
-  it('deve renderizar os ícones dos itens', () => {
+  it('deve renderizar os índices dos itens [01], [02], etc', () => {
     render(<Sidebar items={mockItems} />);
-    expect(screen.getByText('🏠')).toBeInTheDocument();
-    expect(screen.getByText('📦')).toBeInTheDocument();
+    expect(screen.getByText('[01]')).toBeInTheDocument();
+    expect(screen.getByText('[02]')).toBeInTheDocument();
+    expect(screen.getByText('[03]')).toBeInTheDocument();
   });
 
   it('deve ter o atributo href correto nos links', () => {

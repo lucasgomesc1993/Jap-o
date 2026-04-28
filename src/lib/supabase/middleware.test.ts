@@ -28,6 +28,8 @@ vi.mock('next/server', async (importOriginal) => {
 describe('Middleware', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://abc.supabase.co';
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'fake-key';
   });
 
   const createMockRequest = (path: string) => {
@@ -40,9 +42,11 @@ describe('Middleware', () => {
     });
 
     const req = createMockRequest('/dashboard');
-    const res = await updateSession(req);
+    await updateSession(req);
 
-    expect(NextResponse.redirect).toHaveBeenCalledWith(expect.stringContaining('/login'));
+    expect(NextResponse.redirect).toHaveBeenCalled();
+    const calledUrl = (NextResponse.redirect as any).mock.calls[0][0].toString();
+    expect(calledUrl).toContain('/login');
   });
 
   it('deve redirecionar para confirmar-email se email não confirmado', async () => {
@@ -52,7 +56,7 @@ describe('Middleware', () => {
           data: { 
             user: { 
               id: '123', 
-              user_metadata: { email_confirmed: false } 
+              app_metadata: { email_confirmed: false } 
             } 
           }, 
           error: null 
@@ -61,9 +65,11 @@ describe('Middleware', () => {
     });
 
     const req = createMockRequest('/dashboard');
-    const res = await updateSession(req);
+    await updateSession(req);
 
-    expect(NextResponse.redirect).toHaveBeenCalledWith(expect.stringContaining('/confirmar-email'));
+    expect(NextResponse.redirect).toHaveBeenCalled();
+    const calledUrl = (NextResponse.redirect as any).mock.calls[0][0].toString();
+    expect(calledUrl).toContain('/confirmar-email');
   });
 
   it('deve bloquear admin se usuário for customer', async () => {
@@ -73,8 +79,8 @@ describe('Middleware', () => {
           data: { 
             user: { 
               id: '123', 
-              role: 'authenticated', // auth role
-              user_metadata: { email_confirmed: true, role: 'CUSTOMER' } 
+              role: 'authenticated',
+              app_metadata: { email_confirmed: true, role: 'CUSTOMER' } 
             } 
           }, 
           error: null 
@@ -83,8 +89,10 @@ describe('Middleware', () => {
     });
 
     const req = createMockRequest('/admin');
-    const res = await updateSession(req);
+    await updateSession(req);
 
-    expect(NextResponse.redirect).toHaveBeenCalledWith(expect.stringContaining('/dashboard'));
+    expect(NextResponse.redirect).toHaveBeenCalled();
+    const calledUrl = (NextResponse.redirect as any).mock.calls[0][0].toString();
+    expect(calledUrl).toContain('/dashboard');
   });
 });

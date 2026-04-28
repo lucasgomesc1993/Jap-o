@@ -98,99 +98,99 @@
 ## TASK 3.5 — Wizard de Criação de Envio (5 Steps)
 
 ### 3.5.1 Step 1: Resumo dos Itens
-- [ ] Lista dos itens selecionados com foto, nome, peso
-- [ ] Peso total calculado (soma)
-- [ ] Dimensões estimadas (maior de cada eixo)
-- [ ] Botão voltar (volta para armazém) e próximo
+- [x] Lista dos itens selecionados com foto, nome, peso
+- [x] Peso total calculado (soma)
+- [x] Dimensões estimadas (maior de cada eixo)
+- [x] Botão voltar (volta para armazém) e próximo
 - **Testes:**
-  - [ ] Lista exibe itens corretos
-  - [ ] Peso total calcula corretamente
-  - [ ] Navegação prev/next funciona
+  - [x] Lista exibe itens corretos
+  - [x] Peso total calcula corretamente
+  - [x] Navegação prev/next funciona
 
 ### 3.5.2 Step 2: Método de Frete
-- [ ] Cards para cada método: SAL (~45d, $), EMS (~15d, $$$), DHL (~5d, $$$$), FedEx (~5d, $$$$)
-- [ ] Custo calculado por peso + tabela de preços do admin
-- [ ] Radio selection
+- [x] Cards para cada método: SAL (~45d, $), EMS (~15d, $$$), DHL (~5d, $$$$), FedEx (~5d, $$$$)
+- [x] Custo calculado por peso + tabela de preços do admin
+- [x] Radio selection
 - **Testes:**
-  - [ ] Renderiza 4 métodos com custos
-  - [ ] Cálculo de frete correto por faixa de peso
-  - [ ] Seleção única (radio)
-  - [ ] Custo atualiza baseado no peso total
+  - [x] Renderiza 4 métodos com custos
+  - [x] Cálculo de frete correto por faixa de peso
+  - [x] Seleção única (radio)
+  - [x] Custo atualiza baseado no peso total
 
 ### 3.5.3 Step 3: Seguro + Declaração Aduaneira
-- [ ] Toggle de seguro (valor = % do valor declarado)
-- [ ] Opção A: Valor real (preenchido automaticamente, soma dos valores dos itens)
-- [ ] Opção B: Valor manual — input de valor + modal de responsabilidade
-- [ ] Modal: texto configurável pelo admin + checkbox obrigatório "Li e aceito"
-- [ ] Gravar aceite: userId, IP, timestamp, versão do texto (RN04)
-- [ ] Seguro desabilitado se declaração manual (RN05)
+- [x] Toggle de seguro (valor = % do valor declarado)
+- [x] Opção A: Valor real (preenchido automaticamente, soma dos valores dos itens)
+- [x] Opção B: Valor manual — input de valor + modal de responsabilidade
+- [x] Modal: texto configurável pelo admin + checkbox obrigatório "Li e aceito"
+- [x] Gravar aceite: userId, IP, timestamp, versão do texto (RN04)
+- [x] Seguro desabilitado se declaração manual (RN05)
 - **Testes:**
-  - [ ] Valor real preenche automaticamente
-  - [ ] Valor manual habilita input
-  - [ ] Modal de responsabilidade aparece ao selecionar manual
-  - [ ] Checkbox obrigatório para prosseguir
-  - [ ] Aceite grava IP + timestamp + userId + versão
-  - [ ] Seguro toggle desabilitado quando manual selecionado
-  - [ ] Seguro calcula valor correto
+  - [x] Valor real preenche automaticamente
+  - [x] Valor manual habilita input
+  - [x] Modal de responsabilidade aparece ao selecionar manual
+  - [x] Checkbox obrigatório para prosseguir
+  - [x] Aceite grava IP + timestamp + userId + versão
+  - [x] Seguro toggle desabilitado quando manual selecionado
+  - [x] Seguro calcula valor correto
 
 ### 3.5.4 Step 4: Endereço de Entrega
-- [ ] Lista de endereços cadastrados (radio selection)
-- [ ] Opção "Adicionar novo endereço" (formulário inline com ViaCEP)
-- [ ] Endereço default pré-selecionado
+- [x] Lista de endereços cadastrados (radio selection)
+- [x] Opção "Adicionar novo endereço" (formulário inline com ViaCEP)
+- [x] Endereço default pré-selecionado
 - **Testes:**
-  - [ ] Renderiza endereços do usuário
-  - [ ] Default pré-selecionado
-  - [ ] Novo endereço salva e seleciona
-  - [ ] Validação do formulário de endereço
+  - [x] Renderiza endereços do usuário
+  - [x] Default pré-selecionado
+  - [x] Novo endereço salva e seleciona
+  - [x] Validação do formulário de endereço
 
 ### 3.5.5 Step 5: Resumo Final + Pagamento
-- [ ] Resumo: itens, método, frete, seguro, serviços extras, total
-- [ ] Pagamento: carteira ou Pix
-- [ ] Botão "Confirmar e Pagar"
+- [x] Resumo: itens, método, frete, seguro, serviços extras, total
+- [x] Pagamento: carteira ou Pix
+- [x] Botão "Confirmar e Pagar"
 - **Testes:**
-  - [ ] Resumo exibe todos os valores corretos
-  - [ ] Total = frete + seguro
-  - [ ] Pagamento via carteira debita e cria envio
-  - [ ] Pagamento via Pix gera QR Code
-  - [ ] Após pagamento, itens mudam para SELECTED_FOR_SHIPMENT
+  - [x] Resumo exibe todos os valores corretos
+  - [x] Total = frete + seguro
+  - [x] Pagamento via carteira debita e cria envio
+  - [x] Pagamento via Pix gera QR Code
+  - [x] Após pagamento, itens mudam para SELECTED_FOR_SHIPMENT
 
 ### 3.5.6 Server Action: criar envio
-- [ ] Validar todos os dados (Zod)
-- [ ] Validar saldo se pagamento via carteira
-- [ ] Criar Shipment + ShipmentItems
-- [ ] Atualizar status dos WarehouseItems
-- [ ] Debitar carteira ou gerar Pix
-- [ ] Criar transação SHIPPING_PAYMENT
+- [x] Validar todos os dados (Zod)
+- [x] Validar saldo se pagamento via carteira
+- [x] Criar Shipment + ShipmentItems
+- [x] Atualizar status dos WarehouseItems
+- [x] Debitar carteira ou gerar Pix
+- [x] Criar transação SHIPPING_PAYMENT
 - **Testes:**
-  - [ ] Envio criado com dados corretos
-  - [ ] Itens atualizados para SELECTED_FOR_SHIPMENT
-  - [ ] Carteira debitada corretamente
-  - [ ] Envio com saldo insuficiente retorna erro
-  - [ ] Item já selecionado retorna erro (concorrência)
+  - [x] Envio criado com dados corretos
+  - [x] Itens atualizados para SELECTED_FOR_SHIPMENT
+  - [x] Carteira debitada corretamente
+  - [x] Envio com saldo insuficiente retorna erro
+  - [x] Item já selecionado retorna erro (concorrência)
 
 ---
 
 ## TASK 3.6 — Tela "Meus Envios"
 
 ### 3.6.1 Lista de envios
-- [ ] Cards: método, status (badge), data, tracking code, qtd itens, valor
-- [ ] Filtro por status
+- [x] Cards: método, status (badge), data, tracking code, qtd itens, valor
+- [x] Filtro por status
 - **Testes:**
-  - [ ] Renderiza envios do usuário
-  - [ ] Badge correto por status
-  - [ ] Filtro funciona
+  - [x] Renderiza envios do usuário
+  - [x] Badge correto por status
+  - [x] Filtro funciona
 
 ### 3.6.2 Detalhes do envio
-- [ ] Timeline visual dos estados
-- [ ] Lista de itens incluídos
-- [ ] Código de rastreio (link clicável quando disponível)
-- [ ] Dados de declaração (tipo + valor)
-- [ ] Botão "Confirmar Entrega" (só no status OUT_FOR_DELIVERY)
+- [x] Timeline visual dos estados
+- [x] Lista de itens incluídos
+- [x] Código de rastreio (link clicável quando disponível)
+- [x] Dados de declaração (tipo + valor)
+- [x] Botão "Confirmar Entrega" (só no status OUT_FOR_DELIVERY)
 - **Testes:**
-  - [ ] Timeline marca status atual
-  - [ ] Rastreio exibe quando disponível
-  - [ ] Confirmar entrega muda status para DELIVERED
-  - [ ] Botão confirmar só visível no status correto
+  - [x] Timeline marca status atual
+  - [x] Rastreio exibe quando disponível
+  - [x] Confirmar entrega muda status para DELIVERED
+  - [x] Botão confirmar só visível no status correto
 
 ---
 
@@ -211,10 +211,10 @@
 
 ## Validators Zod — Sprint 3
 
-- [ ] `warehouse-item.schema.ts` — peso > 0, dimensões > 0
+- [x] `warehouse-item.schema.ts` — peso > 0, dimensões > 0
 - [x] `extra-service.schema.ts` — tipo válido, warehouseItemId
-- [ ] `shipment-create.schema.ts` — items[], method, address, declaration
-- [ ] `customs-declaration.schema.ts` — tipo, valor, aceite
-- [ ] `shipping-method.schema.ts` — SAL/EMS/DHL/FEDEX
+- [x] `shipment-create.schema.ts` — items[], method, address, declaration
+- [x] `customs-declaration.schema.ts` — tipo, valor, aceite
+- [x] `shipping-method.schema.ts` — SAL/EMS/DHL/FEDEX
 
 **Cada schema:** testes válido, inválido, mensagens pt-BR

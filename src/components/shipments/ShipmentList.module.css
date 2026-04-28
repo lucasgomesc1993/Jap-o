@@ -1,0 +1,198 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.titleGroup h1 {
+  margin-bottom: 8px;
+}
+
+.titleGroup p {
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  border: 1px solid var(--color-outline);
+  background: var(--color-surface);
+  border-radius: var(--rounded-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: all 0.2s ease;
+  color: var(--color-on-surface-variant);
+}
+
+.filterBtn:hover {
+  border-color: var(--color-on-surface);
+  color: var(--color-on-surface);
+}
+
+.filterBtnActive {
+  background: var(--color-on-background);
+  color: var(--color-surface);
+  border-color: var(--color-on-background);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.shipmentCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline-variant);
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.shipmentCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-on-background);
+}
+
+.mainInfo {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.idGroup {
+  min-width: 140px;
+}
+
+.shipmentId {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.methodGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.methodLabel {
+  font-size: 11px;
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.methodValue {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.statusGroup {
+  min-width: 150px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badgePREPARING { background: #fef3c7; color: #92400e; }
+.badgeSHIPPED { background: #dcfce7; color: #166534; }
+.badgeIN_TRANSIT { background: #dbeafe; color: #1e40af; }
+.badgeIN_BRAZIL { background: #f3e8ff; color: #6b21a8; }
+.badgeOUT_FOR_DELIVERY { background: #ffedd5; color: #9a3412; }
+.badgeDELIVERED { background: #f4f4f5; color: #18181b; border: 1px solid var(--color-outline); }
+
+.detailsGroup {
+  display: flex;
+  gap: 24px;
+}
+
+.detailItem {
+  text-align: right;
+}
+
+.detailLabel {
+  font-size: 11px;
+  color: var(--color-on-surface-variant);
+  display: block;
+}
+
+.detailValue {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 0;
+  border: 1px dashed var(--color-outline);
+  border-radius: var(--rounded);
+}
+
+.empty h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.empty p {
+  color: var(--color-on-surface-variant);
+}
+
+@media (max-width: 768px) {
+  .shipmentCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .mainInfo {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .detailsGroup {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-outline-variant);
+  }
+  
+  .detailItem {
+    text-align: left;
+  }
+}

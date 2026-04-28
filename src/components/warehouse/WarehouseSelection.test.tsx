@@ -3,6 +3,16 @@ import { WarehouseClient } from './WarehouseClient';
 import { WarehouseItemStatus } from '@prisma/client';
 import { describe, it, expect, vi } from 'vitest';
 
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    refresh: vi.fn(),
+  }),
+}));
+
+
+
 const mockItems = [
   {
     id: '1',

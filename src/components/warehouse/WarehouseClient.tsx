@@ -1,21 +1,26 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { WarehouseItem, ExtraService, Wallet } from '@prisma/client';
+import { WarehouseItem, ExtraService, Wallet, Address } from '@prisma/client';
 import { WarehouseItemList } from '@/components/warehouse/WarehouseItemList';
 import { WarehouseItemDetails } from '@/components/warehouse/WarehouseItemDetails';
+import { ShipmentWizard } from '@/components/warehouse/ShipmentWizard';
 import { Button } from '@/components/ui/Button/Button';
 import { Package, ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import styles from './WarehouseClient.module.css';
 
 interface WarehouseClientProps {
   items: (WarehouseItem & { extraServices: ExtraService[] })[];
   wallet: Wallet | null;
+  addresses: Address[];
 }
 
-export const WarehouseClient: React.FC<WarehouseClientProps> = ({ items, wallet }) => {
+export const WarehouseClient: React.FC<WarehouseClientProps> = ({ items, wallet, addresses }) => {
+  const router = useRouter();
   const [selectedItem, setSelectedItem] = useState<(WarehouseItem & { extraServices: ExtraService[] }) | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWizardOpen, setIsWizardOpen] = useState(false);
   const [selectedItemIds, setSelectedItemIds] = useState<string[]>([]);
 
   const handleViewDetails = (item: WarehouseItem) => {
@@ -41,8 +46,7 @@ export const WarehouseClient: React.FC<WarehouseClientProps> = ({ items, wallet 
   }, [selectedItems]);
 
   const handleCreateShipment = () => {
-    console.log('Criar envio com itens:', selectedItemIds);
-    // Próxima task implementará o Wizard
+    setIsWizardOpen(true);
   };
 
   return (
@@ -63,7 +67,20 @@ export const WarehouseClient: React.FC<WarehouseClientProps> = ({ items, wallet 
         />
       )}
 
-      {selectedItemIds.length > 0 && (
+      {isWizardOpen && (
+        <ShipmentWizard 
+          items={selectedItems}
+          addresses={addresses}
+          onClose={() => setIsWizardOpen(false)}
+          onSuccess={() => {
+            setIsWizardOpen(false);
+            setSelectedItemIds([]);
+            router.refresh();
+          }}
+        />
+      )}
+
+      {selectedItemIds.length > 0 && !isWizardOpen && (
         <div className={styles.summaryContainer} data-testid="shipment-summary">
           <div className={styles.summaryContent}>
             <div className={styles.summaryInfo}>
