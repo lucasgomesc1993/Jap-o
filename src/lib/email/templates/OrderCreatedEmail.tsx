@@ -12,41 +12,41 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-interface StorageFeeEmailProps {
-  userName: string;
-  itemName: string;
-  feeAmount: string;
-  daysExceeded: number;
+interface OrderCreatedEmailProps {
+  customerName: string;
+  orderId: string;
+  productName: string;
+  orderUrl: string;
 }
 
-export const StorageFeeEmail = ({
-  userName,
-  itemName,
-  feeAmount,
-  daysExceeded,
-}: StorageFeeEmailProps) => (
+export const OrderCreatedEmail = ({
+  customerName,
+  orderId,
+  productName,
+  orderUrl,
+}: OrderCreatedEmailProps) => (
   <Html>
     <Head />
-    <Preview>Cobrança de Armazenamento - NipponBox</Preview>
+    <Preview>Seu pedido #{orderId.slice(0, 8)} foi recebido!</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Konnichiwa, {userName}!</Heading>
+        <Heading style={h1}>Konnichiwa, {customerName}!</Heading>
         <Text style={text}>
-          Informamos que o item **{itemName}** excedeu o prazo de armazenamento gratuito.
+          Recebemos o seu pedido de compra para o item **{productName}**.
         </Text>
         <Section style={section}>
           <Text style={detailText}>
-            <strong>Prazo excedido em:</strong> {daysExceeded} {daysExceeded === 1 ? 'dia' : 'dias'}
+            <strong>ID do Pedido:</strong> #{orderId}
           </Text>
           <Text style={detailText}>
-            <strong>Taxa debitada:</strong> {feeAmount}
+            <strong>Produto:</strong> {productName}
           </Text>
         </Section>
         <Text style={text}>
-          Uma taxa diária continuará sendo aplicada enquanto o item permanecer no armazém. Para evitar novas cobranças, solicite o envio do seu item o quanto antes.
+          Nossa equipe irá processar a compra em breve. Você será notificado assim que o item for adquirido.
         </Text>
-        <Link href="https://nipponbox.com.br/dashboard/armazem" style={button}>
-          Ver Item no Armazém
+        <Link href={orderUrl} style={button}>
+          Ver Detalhes do Pedido
         </Link>
         <Hr style={hr} />
         <Text style={footer}>
@@ -86,7 +86,7 @@ const section = {
   padding: '24px',
   border: '1px solid #eee',
   borderRadius: '8px',
-  backgroundColor: '#fff5f5',
+  backgroundColor: '#f9f9f9',
   margin: '24px 0',
 };
 
@@ -121,4 +121,4 @@ const footer = {
   fontSize: '12px',
 };
 
-export default StorageFeeEmail;
+export default OrderCreatedEmail;

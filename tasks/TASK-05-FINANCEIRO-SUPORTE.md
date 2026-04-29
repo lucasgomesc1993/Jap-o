@@ -202,34 +202,34 @@
 ## TASK 5.8 — Email Templates Completos
 
 ### 5.8.1 Templates React Email
-- [ ] Confirmação de cadastro (welcome)
-- [ ] Pedido criado
-- [ ] Pedido comprado
-- [ ] Item chegou no armazém
-- [ ] Alerta prazo armazenamento (7 dias)
-- [ ] Prazo vencido (cobrança)
-- [ ] Envio criado e pago
-- [ ] Código de rastreio disponível
-- [ ] Resposta no chamado de suporte
+- [x] Confirmação de cadastro (welcome)
+- [x] Pedido criado
+- [x] Pedido comprado
+- [x] Item chegou no armazém
+- [x] Alerta prazo armazenamento (7 dias)
+- [x] Prazo vencido (cobrança)
+- [x] Envio criado e pago
+- [x] Código de rastreio disponível
+- [x] Resposta no chamado de suporte
 - **Testes (cada template):**
-  - [ ] Renderiza HTML válido
-  - [ ] Substitui variáveis corretamente
-  - [ ] Design segue brand NipponBox
+  - [x] Renderiza HTML válido
+  - [x] Substitui variáveis corretamente
+  - [x] Design segue brand NipponBox
 
 ### 5.8.2 Service de disparo
-- [ ] `src/lib/resend/send-notification.ts`
-- [ ] Função por gatilho: `notifyOrderCreated(order)`, `notifyItemArrived(item)`, etc.
-- [ ] Retry com backoff em caso de falha
+- [x] `src/lib/resend/send-notification.ts`
+- [x] Função por gatilho: `notifyOrderCreated(order)`, `notifyItemArrived(item)`, etc.
+- [x] Retry com backoff em caso de falha
 - **Testes:**
-  - [ ] Cada função chama Resend com template correto
-  - [ ] Retry funciona em falha (mock)
+  - [x] Cada função chama Resend com template correto
+  - [x] Retry funciona em falha (mock)
 
 ---
 
 ## Validators Zod — Sprint 5
 
-- [ ] `ticket-create.schema.ts` — type, subject, content, attachments (max 5)
-- [ ] `ticket-message.schema.ts` — content obrigatório
+- [x] `ticket-create.schema.ts` — type, subject, content, attachments (max 5)
+- [x] `ticket-message.schema.ts` — content obrigatório
 - [x] `manual-credit.schema.ts` — tipo, valor > 0, motivo obrigatório
 - [x] `admin-config.schema.ts` — taxas, prazos, preços, domínios
 - [x] `financial-filter.schema.ts` — dateFrom, dateTo

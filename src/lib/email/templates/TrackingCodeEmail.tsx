@@ -12,41 +12,38 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-interface StorageFeeEmailProps {
-  userName: string;
-  itemName: string;
-  feeAmount: string;
-  daysExceeded: number;
+interface TrackingCodeEmailProps {
+  customerName: string;
+  shipmentId: string;
+  trackingCode: string;
+  trackingUrl: string;
 }
 
-export const StorageFeeEmail = ({
-  userName,
-  itemName,
-  feeAmount,
-  daysExceeded,
-}: StorageFeeEmailProps) => (
+export const TrackingCodeEmail = ({
+  customerName,
+  shipmentId,
+  trackingCode,
+  trackingUrl,
+}: TrackingCodeEmailProps) => (
   <Html>
     <Head />
-    <Preview>Cobrança de Armazenamento - NipponBox</Preview>
+    <Preview>Seu pacote foi enviado! Código: {trackingCode}</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Konnichiwa, {userName}!</Heading>
+        <Heading style={h1}>Seu pacote está a caminho, {customerName}!</Heading>
         <Text style={text}>
-          Informamos que o item **{itemName}** excedeu o prazo de armazenamento gratuito.
+          O seu envio **#{shipmentId.slice(0, 8)}** foi postado e já está em trânsito para o Brasil.
         </Text>
         <Section style={section}>
           <Text style={detailText}>
-            <strong>Prazo excedido em:</strong> {daysExceeded} {daysExceeded === 1 ? 'dia' : 'dias'}
-          </Text>
-          <Text style={detailText}>
-            <strong>Taxa debitada:</strong> {feeAmount}
+            <strong>Código de Rastreamento:</strong> {trackingCode}
           </Text>
         </Section>
         <Text style={text}>
-          Uma taxa diária continuará sendo aplicada enquanto o item permanecer no armazém. Para evitar novas cobranças, solicite o envio do seu item o quanto antes.
+          Você pode acompanhar o status da entrega clicando no botão abaixo ou utilizando o código diretamente no site da transportadora/Correios.
         </Text>
-        <Link href="https://nipponbox.com.br/dashboard/armazem" style={button}>
-          Ver Item no Armazém
+        <Link href={trackingUrl} style={button}>
+          Rastrear Pacote
         </Link>
         <Hr style={hr} />
         <Text style={footer}>
@@ -86,14 +83,16 @@ const section = {
   padding: '24px',
   border: '1px solid #eee',
   borderRadius: '8px',
-  backgroundColor: '#fff5f5',
+  backgroundColor: '#f8fafc',
   margin: '24px 0',
 };
 
 const detailText = {
   color: '#555',
-  fontSize: '14px',
-  lineHeight: '20px',
+  fontSize: '18px',
+  fontWeight: 'bold',
+  textAlign: 'center' as const,
+  lineHeight: '24px',
   margin: '4px 0',
 };
 
@@ -121,4 +120,4 @@ const footer = {
   fontSize: '12px',
 };
 
-export default StorageFeeEmail;
+export default TrackingCodeEmail;

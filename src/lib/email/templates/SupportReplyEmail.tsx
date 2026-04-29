@@ -12,45 +12,43 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-interface StorageFeeEmailProps {
-  userName: string;
-  itemName: string;
-  feeAmount: string;
-  daysExceeded: number;
+interface SupportReplyEmailProps {
+  customerName: string;
+  ticketId: string;
+  ticketSubject: string;
+  messagePreview: string;
+  ticketUrl: string;
 }
 
-export const StorageFeeEmail = ({
-  userName,
-  itemName,
-  feeAmount,
-  daysExceeded,
-}: StorageFeeEmailProps) => (
+export const SupportReplyEmail = ({
+  customerName,
+  ticketId,
+  ticketSubject,
+  messagePreview,
+  ticketUrl,
+}: SupportReplyEmailProps) => (
   <Html>
     <Head />
-    <Preview>Cobrança de Armazenamento - NipponBox</Preview>
+    <Preview>Nova resposta no seu chamado: {ticketSubject}</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Konnichiwa, {userName}!</Heading>
+        <Heading style={h1}>Olá, {customerName}!</Heading>
         <Text style={text}>
-          Informamos que o item **{itemName}** excedeu o prazo de armazenamento gratuito.
+          Você recebeu uma nova resposta da nossa equipe de suporte no chamado **#{ticketId.slice(0, 8)} - {ticketSubject}**.
         </Text>
         <Section style={section}>
-          <Text style={detailText}>
-            <strong>Prazo excedido em:</strong> {daysExceeded} {daysExceeded === 1 ? 'dia' : 'dias'}
-          </Text>
-          <Text style={detailText}>
-            <strong>Taxa debitada:</strong> {feeAmount}
-          </Text>
+          <Text style={previewLabel}>Prévia da mensagem:</Text>
+          <Text style={previewText}>"{messagePreview}..."</Text>
         </Section>
         <Text style={text}>
-          Uma taxa diária continuará sendo aplicada enquanto o item permanecer no armazém. Para evitar novas cobranças, solicite o envio do seu item o quanto antes.
+          Para visualizar a resposta completa e continuar a conversa, acesse o painel de suporte.
         </Text>
-        <Link href="https://nipponbox.com.br/dashboard/armazem" style={button}>
-          Ver Item no Armazém
+        <Link href={ticketUrl} style={button}>
+          Ver Chamado de Suporte
         </Link>
         <Hr style={hr} />
         <Text style={footer}>
-          NipponBox — Seu link direto com o Japão.
+          NipponBox — Sempre aqui para ajudar.
         </Text>
       </Container>
     </Body>
@@ -86,15 +84,25 @@ const section = {
   padding: '24px',
   border: '1px solid #eee',
   borderRadius: '8px',
-  backgroundColor: '#fff5f5',
+  backgroundColor: '#f9fafb',
   margin: '24px 0',
 };
 
-const detailText = {
-  color: '#555',
-  fontSize: '14px',
-  lineHeight: '20px',
-  margin: '4px 0',
+const previewLabel = {
+  color: '#8898aa',
+  fontSize: '12px',
+  fontWeight: 'bold',
+  textTransform: 'uppercase' as const,
+  letterSpacing: '0.5px',
+  margin: '0 0 8px',
+};
+
+const previewText = {
+  color: '#4b5563',
+  fontSize: '15px',
+  fontStyle: 'italic',
+  lineHeight: '22px',
+  margin: '0',
 };
 
 const button = {
@@ -121,4 +129,4 @@ const footer = {
   fontSize: '12px',
 };
 
-export default StorageFeeEmail;
+export default SupportReplyEmail;

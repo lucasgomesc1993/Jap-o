@@ -12,41 +12,44 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-interface StorageFeeEmailProps {
-  userName: string;
-  itemName: string;
-  feeAmount: string;
-  daysExceeded: number;
+interface ShipmentPaidEmailProps {
+  customerName: string;
+  shipmentId: string;
+  trackingMethod: string;
+  itemsCount: number;
 }
 
-export const StorageFeeEmail = ({
-  userName,
-  itemName,
-  feeAmount,
-  daysExceeded,
-}: StorageFeeEmailProps) => (
+export const ShipmentPaidEmail = ({
+  customerName,
+  shipmentId,
+  trackingMethod,
+  itemsCount,
+}: ShipmentPaidEmailProps) => (
   <Html>
     <Head />
-    <Preview>Cobrança de Armazenamento - NipponBox</Preview>
+    <Preview>Pagamento confirmado! Seu envio #{shipmentId.slice(0, 8)} está sendo preparado.</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Konnichiwa, {userName}!</Heading>
+        <Heading style={h1}>Konnichiwa, {customerName}!</Heading>
         <Text style={text}>
-          Informamos que o item **{itemName}** excedeu o prazo de armazenamento gratuito.
+          Confirmamos o pagamento do seu envio. Nossa equipe já está preparando a embalagem para despacho.
         </Text>
         <Section style={section}>
           <Text style={detailText}>
-            <strong>Prazo excedido em:</strong> {daysExceeded} {daysExceeded === 1 ? 'dia' : 'dias'}
+            <strong>ID do Envio:</strong> #{shipmentId}
           </Text>
           <Text style={detailText}>
-            <strong>Taxa debitada:</strong> {feeAmount}
+            <strong>Método de Envio:</strong> {trackingMethod}
+          </Text>
+          <Text style={detailText}>
+            <strong>Quantidade de Itens:</strong> {itemsCount}
           </Text>
         </Section>
         <Text style={text}>
-          Uma taxa diária continuará sendo aplicada enquanto o item permanecer no armazém. Para evitar novas cobranças, solicite o envio do seu item o quanto antes.
+          Assim que o pacote for postado, você receberá um e-mail com o código de rastreamento para acompanhar a entrega até o Brasil.
         </Text>
-        <Link href="https://nipponbox.com.br/dashboard/armazem" style={button}>
-          Ver Item no Armazém
+        <Link href={`https://nipponbox.com.br/dashboard/envios/${shipmentId}`} style={button}>
+          Ver Detalhes do Envio
         </Link>
         <Hr style={hr} />
         <Text style={footer}>
@@ -86,7 +89,7 @@ const section = {
   padding: '24px',
   border: '1px solid #eee',
   borderRadius: '8px',
-  backgroundColor: '#fff5f5',
+  backgroundColor: '#f0f9ff',
   margin: '24px 0',
 };
 
@@ -121,4 +124,4 @@ const footer = {
   fontSize: '12px',
 };
 
-export default StorageFeeEmail;
+export default ShipmentPaidEmail;
