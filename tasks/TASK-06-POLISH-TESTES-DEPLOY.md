@@ -48,16 +48,16 @@
 ## TASK 6.3 — SEO
 
 ### 6.3.1 Meta tags e Open Graph
-- [ ] Title e description em cada página (via Next.js Metadata API)
-- [ ] Open Graph: image, title, description
-- [ ] `sitemap.xml` gerado automaticamente
-- [ ] `robots.txt` configurado
-- [ ] Heading hierarchy: um `h1` por página
+- [x] Title e description em cada página (via Next.js Metadata API)
+- [x] Open Graph: image, title, description
+- [x] `sitemap.xml` gerado automaticamente
+- [x] `robots.txt` configurado
+- [x] Heading hierarchy: um `h1` por página
 - **Testes:**
-  - [ ] Cada página tem title único
-  - [ ] OG tags presentes
-  - [ ] Sitemap lista todas as páginas públicas
-  - [ ] robots.txt bloqueia admin e dashboard
+  - [x] Cada página tem title único
+  - [x] OG tags presentes
+  - [x] Sitemap lista todas as páginas públicas
+  - [x] robots.txt bloqueia admin e dashboard
 
 ---
 

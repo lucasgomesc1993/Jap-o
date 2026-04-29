@@ -1,6 +1,12 @@
 import { getTickets } from '@/lib/actions/tickets';
 import { TicketList } from '@/components/tickets/TicketList';
 import styles from './page.module.css';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Suporte | NipponBox',
+  description: 'Gerencie seus chamados e tire suas dúvidas.',
+};
 
 export default async function TicketsPage() {
   const tickets = await getTickets();
