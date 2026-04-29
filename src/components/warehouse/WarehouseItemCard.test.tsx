@@ -23,6 +23,7 @@ describe('WarehouseItemCard', () => {
     arrivedAt: new Date(),
     freeStorageDeadline: null,
     status: WarehouseItemStatus.AVAILABLE,
+    lastStorageFeeAt: null,
     createdAt: new Date(),
     updatedAt: new Date(),
   };

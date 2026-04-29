@@ -28,6 +28,7 @@ describe('WarehouseItemList', () => {
         arrivedAt: new Date(),
         freeStorageDeadline: null,
         status: WarehouseItemStatus.AVAILABLE,
+        lastStorageFeeAt: null,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -44,6 +45,7 @@ describe('WarehouseItemList', () => {
         arrivedAt: new Date(),
         freeStorageDeadline: null,
         status: WarehouseItemStatus.SELECTED_FOR_SHIPMENT,
+        lastStorageFeeAt: null,
         createdAt: new Date(),
         updatedAt: new Date(),
       }

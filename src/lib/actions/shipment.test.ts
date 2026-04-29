@@ -122,7 +122,7 @@ describe('createShipment', () => {
 
     const result = await createShipment(input);
 
-    expect(result.error).toContain('Saldo insuficiente');
+    expect((result as any).error).toContain('Saldo insuficiente');
     expect(prisma.shipment.create).not.toHaveBeenCalled();
   });
 
@@ -144,6 +144,6 @@ describe('createShipment', () => {
 
     const result = await createShipment(input);
 
-    expect(result.error).toContain('não está disponível para envio');
+    expect((result as any).error).toContain('não está disponível para envio');
   });
 });

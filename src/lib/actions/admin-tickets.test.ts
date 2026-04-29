@@ -96,6 +96,7 @@ describe('Admin Tickets Actions', () => {
       await replyTicketAdmin({
         ticketId: '11111111-1111-1111-1111-111111111111',
         content: 'Admin response',
+        attachments: [],
       });
 
       expect(prisma.ticketMessage.create).toHaveBeenCalledWith(expect.objectContaining({

@@ -122,7 +122,7 @@ describe('requestExtraService', () => {
       type: ExtraServiceType.EXTRA_PHOTO,
     });
 
-    expect(result.error).toContain('já foi solicitado');
+    expect((result as any).error).toContain('já foi solicitado');
     expect(prisma.extraService.create).not.toHaveBeenCalled();
   });
 

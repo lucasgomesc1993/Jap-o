@@ -27,6 +27,7 @@ const mockItems = [
     arrivedAt: new Date().toISOString(),
     freeStorageDeadline: new Date().toISOString(),
     status: WarehouseItemStatus.AVAILABLE,
+    lastStorageFeeAt: null,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     extraServices: [],
@@ -44,6 +45,7 @@ const mockItems = [
     arrivedAt: new Date().toISOString(),
     freeStorageDeadline: new Date().toISOString(),
     status: WarehouseItemStatus.AVAILABLE,
+    lastStorageFeeAt: null,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     extraServices: [],
@@ -61,6 +63,7 @@ const mockItems = [
     arrivedAt: new Date().toISOString(),
     freeStorageDeadline: new Date().toISOString(),
     status: WarehouseItemStatus.SELECTED_FOR_SHIPMENT,
+    lastStorageFeeAt: null,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     extraServices: [],
@@ -69,7 +72,7 @@ const mockItems = [
 
 describe('Warehouse Selection (Task 3.4)', () => {
   it('should toggle item selection when clicking on the card', () => {
-    render(<WarehouseClient items={mockItems as any} wallet={null} />);
+    render(<WarehouseClient items={mockItems as any} wallet={null} addresses={[]} config={{} as any} />);
     
     const itemCard = screen.getByTestId('warehouse-item-1');
     
@@ -86,7 +89,7 @@ describe('Warehouse Selection (Task 3.4)', () => {
   });
 
   it('should toggle item selection when clicking the checkbox', () => {
-    render(<WarehouseClient items={mockItems as any} wallet={null} />);
+    render(<WarehouseClient items={mockItems as any} wallet={null} addresses={[]} config={{} as any} />);
     
     const checkbox = screen.getByTestId('item-checkbox-1');
     
@@ -100,7 +103,7 @@ describe('Warehouse Selection (Task 3.4)', () => {
   });
 
   it('should update total weight and count when selecting multiple items', () => {
-    render(<WarehouseClient items={mockItems as any} wallet={null} />);
+    render(<WarehouseClient items={mockItems as any} wallet={null} addresses={[]} config={{} as any} />);
     
     fireEvent.click(screen.getByTestId('warehouse-item-1'));
     fireEvent.click(screen.getByTestId('warehouse-item-2'));
@@ -111,7 +114,7 @@ describe('Warehouse Selection (Task 3.4)', () => {
   });
 
   it('should NOT allow selecting items with status SELECTED_FOR_SHIPMENT', () => {
-    render(<WarehouseClient items={mockItems as any} wallet={null} />);
+    render(<WarehouseClient items={mockItems as any} wallet={null} addresses={[]} config={{} as any} />);
     
     const itemCard = screen.getByTestId('warehouse-item-3');
     
@@ -125,7 +128,7 @@ describe('Warehouse Selection (Task 3.4)', () => {
   });
 
   it('should show the correct text for single vs multiple items', () => {
-    render(<WarehouseClient items={mockItems as any} wallet={null} />);
+    render(<WarehouseClient items={mockItems as any} wallet={null} addresses={[]} config={{} as any} />);
     
     fireEvent.click(screen.getByTestId('warehouse-item-1'));
     const summary1 = screen.getByTestId('shipment-summary');

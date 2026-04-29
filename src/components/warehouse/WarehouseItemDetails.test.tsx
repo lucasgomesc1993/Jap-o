@@ -29,6 +29,7 @@ describe('WarehouseItemDetails', () => {
     arrivedAt: new Date('2026-04-01T10:00:00Z'),
     freeStorageDeadline: null,
     status: WarehouseItemStatus.AVAILABLE,
+    lastStorageFeeAt: null,
     createdAt: new Date(),
     updatedAt: new Date(),
     extraServices: [

@@ -17,7 +17,7 @@ import { SupportReplyEmail } from '../email/templates/SupportReplyEmail';
 vi.mock('../email/client', () => ({
   resend: {
     emails: {
-      send: vi.fn().mockResolvedValue({ data: { id: 'test-id' }, error: null }),
+      send: vi.fn().mockResolvedValue({ data: { id: 'test-id' }, error: null, headers: null }),
     },
   },
 }));
@@ -138,7 +138,7 @@ describe('Notification Service & Email Templates', () => {
     it('should retry on failure', async () => {
       vi.mocked(resend.emails.send)
         .mockRejectedValueOnce(new Error('Resend error'))
-        .mockResolvedValueOnce({ data: { id: 'success' }, error: null });
+        .mockResolvedValueOnce({ data: { id: 'success' }, error: null, headers: null });
 
       const result = await notifications.sendWelcome('test@test.com', 'Lucas');
       

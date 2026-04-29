@@ -52,6 +52,7 @@ describe('Ticket Actions', () => {
         type: 'ITEM_ISSUE' as const,
         subject: 'Teste Assunto',
         content: 'Teste Conteúdo que deve ter pelo menos 10 caracteres',
+        attachments: [],
       };
 
       (prisma.ticket.create as any).mockResolvedValue({ id: 'ticket-1', ...input });
@@ -68,6 +69,7 @@ describe('Ticket Actions', () => {
         subject: 'Teste Assunto',
         content: 'Teste Conteúdo que deve ter pelo menos 10 caracteres',
         orderId: '550e8400-e29b-41d4-a716-446655440000',
+        attachments: [],
       };
 
       (prisma.order.findUnique as any).mockResolvedValue(null);
@@ -119,6 +121,7 @@ describe('Ticket Actions', () => {
       const result = await replyTicket({
         ticketId: validId,
         content: 'Minha resposta',
+        attachments: [],
       });
 
       expect(result.id).toBe('m1');
