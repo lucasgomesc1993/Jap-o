@@ -1,32 +1,24 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Sidebar } from '@/components/ui/Sidebar/Sidebar';
-import { usePathname, useRouter } from 'next/navigation';
-import { logoutAction } from '@/app/auth/actions';
+import { Sidebar, SidebarItem } from '@/components/ui/Sidebar/Sidebar';
+import { Menu } from 'lucide-react';
 import styles from './layout.module.css';
-import Link from 'next/link';
 
-const navItems = [
-  { id: 'dashboard', label: 'Dashboard', href: '/dashboard' },
-  { id: 'pedidos', label: 'Pedidos', href: '/dashboard/orders' },
-  { id: 'armazem', label: 'Armazém', href: '/dashboard/armazem' },
-  { id: 'envios', label: 'Envios', href: '/dashboard/envios' },
-  { id: 'carteira', label: 'Carteira', href: '/dashboard/wallet' },
-  { id: 'suporte', label: 'Suporte', href: '/dashboard/tickets' },
-];
+interface AdminLayoutClientProps {
+  children: React.ReactNode;
+  navItems: SidebarItem[];
+  userFullName: string;
+  logoutAction: (formData: FormData) => void;
+}
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayoutClient({ 
+  children, 
+  navItems, 
+  userFullName,
+  logoutAction
+}: AdminLayoutClientProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const activeId = navItems.find(item => pathname === item.href)?.id || 'dashboard';
-
-  const handleNavItemClick = (item: { href: string }) => {
-    router.push(item.href);
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <div className={styles.layout}>
@@ -34,8 +26,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className={styles.sidebarWrapper}>
         <Sidebar 
           items={navItems}
-          activeItemId={activeId}
-          onItemClick={handleNavItemClick}
+          logo={
+            <div className={styles.logo}>
+              Nippon<span>Admin</span>
+            </div>
+          }
         />
       </aside>
 
@@ -43,10 +38,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className={`${styles.mobileSidebar} ${isMobileMenuOpen ? styles.mobileSidebarOpen : ''}`}>
         <Sidebar 
           items={navItems}
-          activeItemId={activeId}
-          onItemClick={handleNavItemClick}
           onClose={() => setIsMobileMenuOpen(false)}
           showCloseButton={true}
+          onItemClick={() => setIsMobileMenuOpen(false)}
         />
       </aside>
 
@@ -64,18 +58,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <button 
               className={styles.mobileMenuBtn}
               onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Abrir menu"
             >
-              [ MENU ]
+              <Menu size={24} />
             </button>
+
+            <div className={styles.badge}>
+              <span>Modo Administrador</span>
+            </div>
             
             <div className={styles.userSection}>
               <div className={styles.userInfo}>
-                USER: <span>LUCAS GOMES</span>
+                <span className={styles.userName}>{userFullName}</span>
+                <span className={styles.userRole}>Administrador</span>
               </div>
-              
               <form action={logoutAction}>
-                <button type="submit" className={styles.logoutBtn}>
-                  [ SAIR ]
+                <button type="submit" className={styles.logoutBtn} title="Sair">
+                  SAIR
                 </button>
               </form>
             </div>

@@ -19,8 +19,8 @@ import prisma from '@/lib/prisma/client';
 import { redirect } from 'next/navigation';
 
 import { logoutAction } from '@/app/auth/actions';
-import styles from './layout.module.css';
 import { getOpenTicketsCount } from '@/lib/actions/admin-tickets';
+import AdminLayoutClient from './AdminLayoutClient';
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -52,47 +52,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   ];
 
   return (
-    <div className={styles.layout}>
-      <aside className={styles.sidebarWrapper}>
-        <Sidebar 
-          items={adminNavItems}
-          logo={
-            <div className={styles.logo}>
-              Nippon<span>Admin</span>
-            </div>
-          }
-        />
-      </aside>
-
-      <div className={styles.container}>
-        <header className={styles.topbar}>
-          <div className={styles.topbarContent}>
-            <div className={styles.badge}>
-              <ShieldCheck size={16} />
-              <span>Modo Administrador</span>
-            </div>
-            
-            <div className={styles.userSection}>
-              <div className={styles.userInfo}>
-                <span className={styles.userName}>{dbUser.fullName}</span>
-                <span className={styles.userRole}>Administrador</span>
-              </div>
-              <div className={styles.avatar}>
-                <User size={20} />
-              </div>
-              <form action={logoutAction}>
-                <button type="submit" className={styles.logoutBtn} title="Sair">
-                  <LogOut size={20} />
-                </button>
-              </form>
-            </div>
-          </div>
-        </header>
-
-        <main className={styles.content}>
-          {children}
-        </main>
-      </div>
-    </div>
+    <AdminLayoutClient 
+      navItems={adminNavItems} 
+      userFullName={dbUser?.fullName || 'Admin'}
+      logoutAction={logoutAction}
+    >
+      {children}
+    </AdminLayoutClient>
   );
 }

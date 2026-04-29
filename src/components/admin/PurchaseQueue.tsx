@@ -91,14 +91,14 @@ export function PurchaseQueue() {
             ) : (
               orders.map((order) => (
                 <tr key={order.id}>
-                  <td>{formatDate(order.createdAt)}</td>
-                  <td>
+                  <td data-label="Data">{formatDate(order.createdAt)}</td>
+                  <td data-label="Cliente">
                     <div className={styles.clientInfo}>
                       <span className={styles.clientName}>{order.user.fullName}</span>
                       <span className={styles.clientEmail}>{order.user.email}</span>
                     </div>
                   </td>
-                  <td>
+                  <td data-label="Produto">
                     <a
                       href={order.productUrl}
                       target="_blank"
@@ -108,14 +108,14 @@ export function PurchaseQueue() {
                       {order.productName}
                     </a>
                   </td>
-                  <td>
+                  <td data-label="Detalhes">
                     <div style={{ fontSize: '12px' }}>
                       {order.variation && <div><strong>Var:</strong> {order.variation}</div>}
                       {order.notes && <div><strong>Obs:</strong> {order.notes}</div>}
                     </div>
                   </td>
-                  <td>{formatCurrencyBRL(Number(order.totalBrl))}</td>
-                  <td>
+                  <td data-label="Valor">{formatCurrencyBRL(Number(order.totalBrl))}</td>
+                  <td data-label="Status">
                     <Badge variant={order.status === 'PURCHASED' ? 'success' : 'warning'}>
                       {order.status === 'PURCHASED' ? 'COMPRADO' : 'AGUARDANDO COMPRA'}
                     </Badge>

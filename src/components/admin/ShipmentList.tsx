@@ -124,21 +124,21 @@ export function ShipmentList() {
             ) : (
               shipments.map((shipment) => (
                 <tr key={shipment.id}>
-                  <td>{formatDate(shipment.createdAt)}</td>
-                  <td>
+                  <td data-label="Data">{formatDate(shipment.createdAt)}</td>
+                  <td data-label="Cliente">
                     <div className={styles.clientInfo}>
                       <span className={styles.clientName}>{shipment.user.fullName}</span>
                       <span className={styles.clientEmail}>{shipment.user.email}</span>
                     </div>
                   </td>
-                  <td>
+                  <td data-label="Itens">
                     <ul className={styles.itemList}>
                       {shipment.shipmentItems.map((item, idx) => (
                         <li key={idx}>• {item.warehouseItem.name}</li>
                       ))}
                     </ul>
                   </td>
-                  <td>
+                  <td data-label="Método / Declaração">
                     <div><strong>{shipment.shippingMethod}</strong></div>
                     <div style={{ fontSize: '11px' }}>
                       Declaração: {shipment.declaredValueType}
@@ -147,13 +147,13 @@ export function ShipmentList() {
                       )}
                     </div>
                   </td>
-                  <td>
+                  <td data-label="Endereço">
                     <div style={{ fontSize: '11px' }}>
                       {shipment.address.street}, {shipment.address.number}<br/>
                       {shipment.address.city}/{shipment.address.state}
                     </div>
                   </td>
-                  <td>
+                  <td data-label="Status">
                     <Badge variant={shipment.status === 'PREPARING' ? 'warning' : 'info'}>
                       {shipment.status}
                     </Badge>

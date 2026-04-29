@@ -10,14 +10,9 @@
   align-items: center;
 }
 
-.search {
-  width: 100%;
-  max-width: 400px;
-}
-
 .tableWrapper {
-  background: var(--surface);
-  border: 1px solid var(--outline);
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -30,35 +25,19 @@
 
 .table th {
   padding: 16px;
-  background: var(--surface-variant);
-  font-family: var(--font-jost);
-  font-weight: 600;
-  border-bottom: 1px solid var(--outline);
+  background: var(--color-surface-container);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid #000;
 }
 
 .table td {
   padding: 16px;
-  border-bottom: 1px solid var(--outline-variant);
+  border-bottom: 1px solid var(--color-outline-variant);
   font-size: 14px;
-}
-
-.table tr:last-child td {
-  border-bottom: none;
-}
-
-.clientInfo {
-  display: flex;
-  flex-direction: column;
-}
-
-.clientName {
-  font-weight: 600;
-  color: var(--on-surface);
-}
-
-.clientEmail {
-  font-size: 12px;
-  color: var(--on-surface-variant);
 }
 
 .actions {
@@ -66,36 +45,23 @@
   gap: 8px;
 }
 
-.empty {
-  text-align: center;
-  padding: 48px;
-  color: var(--on-surface-variant);
+.actions button {
+  padding: 6px 12px;
+  background: #000;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.pageInfo {
-  font-size: 14px;
-  color: var(--on-surface-variant);
+.actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
-  }
-
-  .search {
-    max-width: none;
-  }
-
   .tableWrapper {
     border: none;
     background: transparent;
@@ -112,7 +78,7 @@
 
   .table tr {
     margin-bottom: 16px;
-    background: var(--color-surface);
+    background: #fff;
     border: 1px solid var(--color-outline);
     border-radius: 8px;
     padding: 16px;
@@ -132,7 +98,6 @@
     font-weight: 700;
     text-transform: uppercase;
     font-size: 10px;
-    letter-spacing: 0.05em;
     color: var(--color-on-surface-variant);
     text-align: left;
   }
@@ -141,13 +106,10 @@
     border-bottom: none;
     padding-top: 12px;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .table td:last-child::before {
     display: none;
-  }
-
-  .clientInfo {
-    text-align: right;
   }
 }

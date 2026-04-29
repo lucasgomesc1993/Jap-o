@@ -87,16 +87,16 @@ export function CustomerList() {
             ) : (
               customers.map((customer) => (
                 <tr key={customer.id}>
-                  <td>
+                  <td data-label="Cliente">
                     <div className={styles.clientInfo}>
                       <span className={styles.clientName}>{customer.fullName}</span>
                       <span className={styles.clientEmail}>{customer.email}</span>
                     </div>
                   </td>
-                  <td>{formatCurrencyBRL(Number(customer.wallet?.balance || 0))}</td>
-                  <td>{customer._count.orders}</td>
-                  <td>{customer._count.tickets}</td>
-                  <td>
+                  <td data-label="Saldo">{formatCurrencyBRL(Number(customer.wallet?.balance || 0))}</td>
+                  <td data-label="Pedidos">{customer._count.orders}</td>
+                  <td data-label="Chamados">{customer._count.tickets}</td>
+                  <td data-label="Status">
                     <Badge variant={customer.blocked ? 'error' : 'success'}>
                       {customer.blocked ? 'BLOQUEADO' : 'ATIVO'}
                     </Badge>

@@ -61,6 +61,10 @@
   --rounded-xl: 16px;
   --rounded-full: 9999px;
 
+  /* === Breakpoints === */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+
   /* === Sombras - Stark & Crisp === */
   --shadow-warm: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
   --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);

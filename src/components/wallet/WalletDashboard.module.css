@@ -300,35 +300,53 @@
   border: 1px solid var(--color-outline);
 }
 
-.pixCode {
-  flex: 1;
-  padding: 8px;
-  font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: monospace;
-  background: var(--color-surface-dim);
-  border: 1px solid var(--color-outline-variant);
-}
+@media (max-width: 768px) {
+  .container {
+    gap: 60px;
+    padding: 24px 0;
+  }
 
-.copyBtn {
-  border-radius: 0 !important;
-  font-family: var(--font-body) !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.15em !important;
-}
+  .title {
+    font-size: 2.5rem;
+  }
 
-.pixFooter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  font-size: 12px;
-  color: var(--color-on-surface-variant);
-  border-top: 1px solid var(--color-outline-variant);
-  padding-top: 24px;
-  width: 100%;
+  .balanceCard {
+    padding: 24px;
+    min-height: auto;
+    gap: 32px;
+  }
+
+  .amount {
+    font-size: 2.5rem;
+    margin: 16px 0 24px 0;
+  }
+
+  .transactionsCard {
+    padding: 20px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 24px;
+  }
+
+  .transactionItem {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .txIcon {
+    display: none;
+  }
+
+  .txAmount {
+    font-size: 1.2rem;
+  }
+
+  .qrCodeContainer img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
 }

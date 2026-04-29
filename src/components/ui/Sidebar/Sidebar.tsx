@@ -17,6 +17,8 @@ interface SidebarProps {
   onItemClick?: (item: SidebarItem) => void;
   logo?: React.ReactNode;
   className?: string;
+  onClose?: () => void;
+  showCloseButton?: boolean;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -24,10 +26,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
   activeItemId,
   onItemClick,
   className = '',
+  onClose,
+  showCloseButton = false,
 }) => {
   return (
     <nav className={`${styles.sidebar} ${className}`} aria-label="NipponBox Terminal">
       <div className={styles.logoSection}>
+        {showCloseButton && (
+          <button className={styles.closeButton} onClick={onClose} aria-label="Fechar menu">
+            ✕
+          </button>
+        )}
         <div className={styles.brand}>
           <span className={styles.brandMain}>NIPPON</span>
           <span className={styles.brandSub}>BOX</span>

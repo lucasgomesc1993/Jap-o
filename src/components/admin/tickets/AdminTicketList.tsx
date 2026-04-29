@@ -123,27 +123,27 @@ export function AdminTicketList({ initialTickets, initialTotal, initialPages }: 
             ) : (
               tickets.map((ticket) => (
                 <tr key={ticket.id}>
-                  <td>
+                  <td data-label="Cliente">
                     <div className={styles.customerInfo}>
                       <span className={styles.customerName}>{ticket.user.fullName}</span>
                       <span className={styles.customerEmail}>{ticket.user.email}</span>
                     </div>
                   </td>
-                  <td style={{ fontWeight: 600 }}>{ticket.subject}</td>
-                  <td>
+                  <td data-label="Assunto" style={{ fontWeight: 600 }}>{ticket.subject}</td>
+                  <td data-label="Tipo">
                     <span className={styles.typeBadge}>
                       {TICKET_TYPES[ticket.type as keyof typeof TICKET_TYPES]}
                     </span>
                   </td>
-                  <td>
+                  <td data-label="Status">
                     <span className={`${styles.statusBadge} ${styles[`status${ticket.status}`]}`}>
                       {TICKET_STATUS[ticket.status as keyof typeof TICKET_STATUS]}
                     </span>
                   </td>
-                  <td>
+                  <td data-label="Data">
                     {format(new Date(ticket.createdAt), "dd/MM/yy 'às' HH:mm", { locale: ptBR })}
                   </td>
-                  <td>
+                  <td data-label="Vínculo">
                     {ticket.orderId && <div style={{ fontSize: '0.7rem' }}>Pedido: {ticket.orderId.slice(0, 8)}</div>}
                     {ticket.shipmentId && <div style={{ fontSize: '0.7rem' }}>Envio: {ticket.shipmentId.slice(0, 8)}</div>}
                     {!ticket.orderId && !ticket.shipmentId && '-'}

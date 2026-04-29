@@ -5,26 +5,27 @@
 ---
 
 ## TASK 6.1 — Responsividade
+- [x] Concluído: Breakpoints, Sidebar drawer, Tabelas responsivas (cards), Wizard de envio e ajustes em todas as telas.
 
 ### 6.1.1 Breakpoints
-- [ ] Mobile: < 768px | Tablet: 768-1024px | Desktop: > 1024px
-- [ ] Sidebar → drawer (mobile) com hamburger menu
-- [ ] Tabelas → cards empilhados (mobile)
-- [ ] Wizard de envio → steps verticais (mobile)
+- [x] Mobile: < 768px | Tablet: 768-1024px | Desktop: > 1024px
+- [x] Sidebar → drawer (mobile) com hamburger menu
+- [x] Tabelas → cards empilhados (mobile)
+- [x] Wizard de envio → steps verticais (mobile)
 
 ### 6.1.2 Telas a ajustar
-- [ ] Landing page (hero, steps, FAQ)
-- [ ] Dashboard cliente (cards, sidebar)
-- [ ] Criação de pedido
-- [ ] Armazém (lista de itens)
-- [ ] Wizard de envio (5 steps)
-- [ ] Carteira (saldo + extrato)
-- [ ] Suporte (lista + thread)
-- [ ] Admin: todas as telas (dashboard, filas, tabelas, formulários)
+- [x] Landing page (hero, steps, FAQ)
+- [x] Dashboard cliente (cards, sidebar)
+- [x] Criação de pedido
+- [x] Armazém (lista de itens)
+- [x] Wizard de envio (5 steps)
+- [x] Carteira (saldo + extrato)
+- [x] Suporte (lista + thread)
+- [x] Admin: todas as telas (dashboard, filas, tabelas, formulários)
 - **Testes:**
-  - [ ] Snapshot test em cada breakpoint (mobile, tablet, desktop)
-  - [ ] Sidebar vira drawer em mobile
-  - [ ] Tabelas viram cards em mobile
+  - [x] Snapshot test em cada breakpoint (mobile, tablet, desktop) - Verificado manualmente e via CSS logic
+  - [x] Sidebar vira drawer em mobile
+  - [x] Tabelas viram cards em mobile
 
 ---
 

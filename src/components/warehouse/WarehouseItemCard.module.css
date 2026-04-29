@@ -162,10 +162,20 @@
   background: var(--primary);
 }
 
-.footer {
-  margin-top: 24px;
-}
+@media (max-width: 480px) {
+  .card {
+    padding: 16px;
+  }
 
-.actionButton {
-  width: 100%;
+  .imageContainer {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .specValue {
+    font-size: 12px;
+  }
 }

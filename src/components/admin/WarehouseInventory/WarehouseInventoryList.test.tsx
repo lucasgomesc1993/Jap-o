@@ -22,12 +22,12 @@ describe('WarehouseInventoryList', () => {
 
   it('filtros funcionam corretamente', () => {
     render(<WarehouseInventoryList items={mockItems} total={2} pages={1} />);
-    expect(screen.getByTestId('filtros')).toBeInTheDocument();
+    expect(screen.getByTestId('filtros')).toHaveTextContent('Estoque: 2 itens');
   });
 
   it('paginação funciona', () => {
     render(<WarehouseInventoryList items={mockItems} total={2} pages={1} />);
-    expect(screen.getByTestId('paginacao')).toHaveTextContent('Total: 2 - Páginas: 1');
+    expect(screen.getByTestId('paginacao')).toHaveTextContent('Página 1 de 1');
   });
 
   it('acoes manuais disparam handlers', () => {

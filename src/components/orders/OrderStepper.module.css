@@ -283,3 +283,34 @@
 .chevron {
   color: var(--outline);
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 24px 16px;
+  }
+
+  .header {
+    margin-bottom: 40px;
+  }
+
+  .progressContainer {
+    margin-bottom: 40px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .totalValue {
+    font-size: 2rem;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}
