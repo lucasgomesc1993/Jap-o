@@ -21,26 +21,26 @@
 ## TASK 5.2 — Suporte (Cliente)
 
 ### 5.2.1 Abertura de chamado
-- [ ] Formulário: tipo (select), assunto, mensagem, vincular pedido/envio (select opcional)
-- [ ] Upload de até 5 fotos (validação: tipo MIME + tamanho)
-- [ ] Salvar fotos no bucket `ticket-attachments`
+- [x] Formulário: tipo (select), assunto, mensagem, vincular pedido/envio (select opcional)
+- [x] Upload de até 5 fotos (validação: tipo MIME + tamanho)
+- [x] Salvar fotos no bucket `ticket-attachments`
 - **Testes:**
-  - [ ] Criar chamado com todos os campos
-  - [ ] Upload de 5 fotos funciona
-  - [ ] 6ª foto rejeitada
-  - [ ] Tipo MIME inválido rejeitado
-  - [ ] Vínculo com pedido/envio opcional
+  - [x] Criar chamado com todos os campos
+  - [x] Upload de 5 fotos funciona
+  - [x] 6ª foto rejeitada
+  - [x] Tipo MIME inválido rejeitado
+  - [x] Vínculo com pedido/envio opcional
 
 ### 5.2.2 Histórico de chamados
-- [ ] Lista com: assunto, tipo (badge), status (badge), data, pedido/envio vinculado
-- [ ] Filtro por status
-- [ ] Detalhes: thread de mensagens (chat-like)
-- [ ] Responder no thread (cliente)
+- [x] Lista com: assunto, tipo (badge), status (badge), data, pedido/envio vinculado
+- [x] Filtro por status
+- [x] Detalhes: thread de mensagens (chat-like)
+- [x] Responder no thread (cliente)
 - **Testes:**
-  - [ ] Renderiza chamados do usuário
-  - [ ] Thread exibe mensagens na ordem
-  - [ ] Resposta adiciona mensagem à thread
-  - [ ] Filtro por status funciona
+  - [x] Renderiza chamados do usuário
+  - [x] Thread exibe mensagens na ordem
+  - [x] Resposta adiciona mensagem à thread
+  - [x] Filtro por status funciona
 
 ---
 

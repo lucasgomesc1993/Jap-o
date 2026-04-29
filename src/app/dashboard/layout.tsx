@@ -13,7 +13,7 @@ const navItems = [
   { id: 'armazem', label: 'Armazém', href: '/dashboard/armazem' },
   { id: 'envios', label: 'Envios', href: '/dashboard/envios' },
   { id: 'carteira', label: 'Carteira', href: '/dashboard/wallet' },
-  { id: 'suporte', label: 'Suporte', href: '/dashboard/suporte' },
+  { id: 'suporte', label: 'Suporte', href: '/dashboard/tickets' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

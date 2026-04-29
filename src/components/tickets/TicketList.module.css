@@ -1,0 +1,140 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.filterBtn {
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filterBtn:hover {
+  border-color: var(--foreground);
+}
+
+.filterBtn.active {
+  background: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
+}
+
+.newBtn {
+  padding: 0.75rem 1.5rem;
+  background: var(--foreground);
+  color: var(--background);
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: opacity 0.2s;
+}
+
+.newBtn:hover {
+  opacity: 0.9;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ticketLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.ticketCard {
+  transition: transform 0.2s, border-color 0.2s;
+  padding: 1.25rem !important;
+}
+
+.ticketCard:hover {
+  transform: translateX(4px);
+  border-color: var(--foreground);
+}
+
+.ticketInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ticketMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ticketType {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  letter-spacing: 0.05em;
+}
+
+.ticketSubject {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ticketMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ticketDate {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--muted-foreground);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+}
+
+@media (max-width: 640px) {
+  .ticketInfo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .ticketMeta {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+}
