@@ -7,7 +7,7 @@ import { Decimal } from '@prisma/client/runtime/library';
 // Mock next/image
 vi.mock('next/image', () => ({
   // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-  default: (props: any) => <img {...props} alt={props.alt || ''} />
+  default: ({ fill, priority, ...props }: any) => <img {...props} alt={props.alt || ''} />
 }));
 
 // Mock server actions
