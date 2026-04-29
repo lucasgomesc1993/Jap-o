@@ -1,0 +1,126 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  border: 2px solid #000;
+  box-shadow: 8px 8px 0 #000;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.table th {
+  text-align: left;
+  padding: 1rem;
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.875rem;
+}
+
+.table tr:hover td {
+  background: #fdfdfd;
+}
+
+.customerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.customerName {
+  font-weight: 700;
+}
+
+.customerEmail {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.typeBadge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid #000;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid #000;
+}
+
+.statusOPEN { background: #ffefef; color: #d00; border-color: #d00; }
+.statusIN_REVIEW { background: #fffbeb; color: #b45309; border-color: #b45309; }
+.statusRESOLVED { background: #f0fdf4; color: #15803d; border-color: #15803d; }
+
+.link {
+  color: #000;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.link:hover {
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.pageBtn {
+  padding: 0.5rem 1rem;
+  border: 2px solid #000;
+  background: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pageBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageBtnActive {
+  background: #000;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}

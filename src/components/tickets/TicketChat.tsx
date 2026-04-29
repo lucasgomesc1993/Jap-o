@@ -13,9 +13,11 @@ import styles from './TicketChat.module.css';
 
 interface TicketChatProps {
   ticket: Ticket & { messages: TicketMessage[] };
+  isAdmin?: boolean;
+  onReply?: (data: TicketMessageInput) => Promise<any>;
 }
 
-export function TicketChat({ ticket }: TicketChatProps) {
+export function TicketChat({ ticket, isAdmin = false, onReply }: TicketChatProps) {
   const [loading, setLoading] = useState(false);
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm<TicketMessageInput>({
@@ -30,7 +32,11 @@ export function TicketChat({ ticket }: TicketChatProps) {
   const onSubmit = async (data: TicketMessageInput) => {
     setLoading(true);
     try {
-      await replyTicket(data);
+      if (onReply) {
+        await onReply(data);
+      } else {
+        await replyTicket(data);
+      }
       reset();
       toast.success('Mensagem enviada!');
     } catch (error: any) {
@@ -52,7 +58,7 @@ export function TicketChat({ ticket }: TicketChatProps) {
           >
             <div className={styles.messageHeader}>
               <span className={styles.author}>
-                {msg.authorRole === 'ADMIN' ? 'NipponBox Suporte' : 'Você'}
+                {msg.authorRole === 'ADMIN' ? 'NipponBox Suporte' : isAdmin ? 'Cliente' : 'Você'}
               </span>
               <span className={styles.date}>
                 {new Date(msg.createdAt).toLocaleString('pt-BR')}

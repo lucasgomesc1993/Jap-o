@@ -47,25 +47,25 @@
 ## TASK 5.3 — Suporte (Admin)
 
 ### 5.3.1 Lista de chamados
-- [ ] Tabela: cliente, assunto, tipo, status, data, pedido/envio
-- [ ] Filtro por status + tipo + cliente
-- [ ] Badge com count de chamados OPEN (sidebar)
+- [x] Tabela: cliente, assunto, tipo, status, data, pedido/envio
+- [x] Filtro por status + tipo + cliente
+- [x] Badge com count de chamados OPEN (sidebar)
 - **Testes:**
-  - [ ] Renderiza todos os chamados
-  - [ ] Filtros funcionam
-  - [ ] Count no sidebar atualiza
+  - [x] Renderiza todos os chamados
+  - [x] Filtros funcionam
+  - [x] Count no sidebar atualiza
 
 ### 5.3.2 Detalhes + Resposta
-- [ ] Thread completa de mensagens
-- [ ] Formulário de resposta (texto + fotos)
-- [ ] Botões: "Marcar em Análise", "Marcar Resolvido"
-- [ ] Cada ação dispara notificação ao cliente
-- [ ] Log de auditoria
+- [x] Thread completa de mensagens
+- [x] Formulário de resposta (texto + fotos)
+- [x] Botões: "Marcar em Análise", "Marcar Resolvido"
+- [x] Cada ação dispara notificação ao cliente
+- [x] Log de auditoria
 - **Testes:**
-  - [ ] Resposta cria mensagem com authorRole ADMIN
-  - [ ] Mudança de status notifica cliente
-  - [ ] Log de auditoria criado
-  - [ ] Email disparado (mock)
+  - [x] Resposta cria mensagem com authorRole ADMIN
+  - [x] Mudança de status notifica cliente
+  - [x] Log de auditoria criado
+  - [x] Email disparado (mock)
 
 ---
 

@@ -126,6 +126,17 @@
   background-color: var(--color-primary);
 }
 
+.badge {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 0;
+  margin-left: auto;
+  border: 1px solid white;
+}
+
 .footer {
   padding: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);

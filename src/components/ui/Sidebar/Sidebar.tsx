@@ -8,6 +8,7 @@ export interface SidebarItem {
   label: string;
   href: string;
   icon?: React.ReactNode;
+  badge?: number;
 }
 
 interface SidebarProps {
@@ -59,6 +60,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 >
                   <span className={styles.itemIndex}>[{itemNumber}]</span>
                   <span className={styles.label}>{item.label}</span>
+                  {item.badge !== undefined && item.badge > 0 && (
+                    <span className={styles.badge}>{item.badge}</span>
+                  )}
                   {isActive && <div className={styles.activeIndicator} />}
                 </a>
               </li>
