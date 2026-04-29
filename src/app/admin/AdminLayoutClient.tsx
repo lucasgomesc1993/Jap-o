@@ -23,9 +23,10 @@ export default function AdminLayoutClient({
   return (
     <div className={styles.layout}>
       {/* Desktop Sidebar */}
-      <aside className={styles.sidebarWrapper}>
+      <aside className={styles.sidebarWrapper} aria-label="Menu Admin Desktop">
         <Sidebar 
           items={navItems}
+          ariaLabel="Navegação Admin (Desktop)"
           logo={
             <div className={styles.logo}>
               Nippon<span>Admin</span>
@@ -35,12 +36,16 @@ export default function AdminLayoutClient({
       </aside>
 
       {/* Mobile Sidebar (Drawer) */}
-      <aside className={`${styles.mobileSidebar} ${isMobileMenuOpen ? styles.mobileSidebarOpen : ''}`}>
+      <aside 
+        className={`${styles.mobileSidebar} ${isMobileMenuOpen ? styles.mobileSidebarOpen : ''}`}
+        aria-label="Menu Admin Mobile"
+      >
         <Sidebar 
           items={navItems}
           onClose={() => setIsMobileMenuOpen(false)}
           showCloseButton={true}
           onItemClick={() => setIsMobileMenuOpen(false)}
+          ariaLabel="Navegação Admin (Mobile)"
         />
       </aside>
 
@@ -81,7 +86,7 @@ export default function AdminLayoutClient({
           </div>
         </header>
 
-        <main className={styles.content}>
+        <main id="main-content" className={styles.content}>
           {children}
         </main>
       </div>

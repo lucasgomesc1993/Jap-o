@@ -15,7 +15,7 @@
   
   --color-on-background: #09090b; /* Zinc 950 - Texto super escuro */
   --color-on-surface: #09090b;
-  --color-on-surface-variant: #71717a; /* Zinc 500 - Texto secundário */
+  --color-on-surface-variant: #52525b; /* Zinc 600 - Melhorado para contraste WCAG AA */
   
   --color-inverse-surface: #18181b; /* Zinc 900 */
   --color-inverse-on-surface: #fafafa;
@@ -121,6 +121,42 @@ ul, ol {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* === Acessibilidade === */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: white;
+  padding: 12px 24px;
+  z-index: 9999;
+  transition: top 0.2s ease;
+  font-weight: 600;
+  border-radius: 0 0 var(--rounded) var(--rounded);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* === Utilitários === */

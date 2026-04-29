@@ -19,16 +19,45 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   size = 'md',
 }) => {
+  const modalRef = React.useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+          }
+        }
+      }
     };
+
     if (isOpen) {
-      window.addEventListener('keydown', handleEsc);
+      window.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
+      // Pequeno delay para garantir que o modal está montado antes de focar
+      setTimeout(() => {
+        const firstFocusable = modalRef.current?.querySelector('button, input, [tabindex]:not([tabindex="-1"])') as HTMLElement;
+        firstFocusable?.focus();
+      }, 50);
     }
+
     return () => {
-      window.removeEventListener('keydown', handleEsc);
+      window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
@@ -38,6 +67,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div 
+        ref={modalRef}
         className={`${styles.modal} ${styles[size]}`} 
         onClick={(e) => e.stopPropagation()}
         role="dialog"

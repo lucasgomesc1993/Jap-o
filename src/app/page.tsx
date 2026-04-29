@@ -31,7 +31,7 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <main>
+      <main id="main-content">
         <HeroSection />
         <Platforms />
         <Philosophy />

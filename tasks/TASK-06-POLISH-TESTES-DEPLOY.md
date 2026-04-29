@@ -32,16 +32,16 @@
 ## TASK 6.2 — Acessibilidade
 
 ### 6.2.1 ARIA e semântica
-- [ ] ARIA labels em todos os elementos interativos
-- [ ] Navegação por teclado (Tab, Enter, ESC)
-- [ ] Skip links para conteúdo principal
-- [ ] Focus visible em todos os elementos focáveis
-- [ ] Contraste mínimo WCAG AA (4.5:1 para texto)
-- [ ] `alt` text em todas as imagens
+- [x] ARIA labels em todos os elementos interativos
+- [x] Navegação por teclado (Tab, Enter, ESC)
+- [x] Skip links para conteúdo principal
+- [x] Focus visible em todos os elementos focáveis
+- [x] Contraste mínimo WCAG AA (4.5:1 para texto)
+- [x] `alt` text em todas as imagens
 - **Testes:**
-  - [ ] axe-core audit em cada página (0 violations)
-  - [ ] Navegação por teclado funciona em todos os formulários
-  - [ ] Skip link funciona
+  - [x] axe-core audit em cada página (0 violations)
+  - [x] Navegação por teclado funciona em todos os formulários
+  - [x] Skip link funciona
 
 ---
 

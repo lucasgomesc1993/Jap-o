@@ -19,6 +19,7 @@ interface SidebarProps {
   className?: string;
   onClose?: () => void;
   showCloseButton?: boolean;
+  ariaLabel?: string;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -28,9 +29,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   className = '',
   onClose,
   showCloseButton = false,
+  ariaLabel = 'NipponBox Terminal',
 }) => {
   return (
-    <nav className={`${styles.sidebar} ${className}`} aria-label="NipponBox Terminal">
+    <nav className={`${styles.sidebar} ${className}`} aria-label={ariaLabel}>
       <div className={styles.logoSection}>
         {showCloseButton && (
           <button className={styles.closeButton} onClick={onClose} aria-label="Fechar menu">

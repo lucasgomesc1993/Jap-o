@@ -37,7 +37,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${cormorant.variable} ${jost.variable}`}>
-      <body>{children}</body>
+      <body>
+        <a href="#main-content" className="skip-link">
+          Pular para o conteúdo principal
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

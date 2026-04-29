@@ -31,22 +31,27 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className={styles.layout}>
       {/* Desktop Sidebar */}
-      <aside className={styles.sidebarWrapper}>
+      <aside className={styles.sidebarWrapper} aria-label="Menu Lateral Desktop">
         <Sidebar 
           items={navItems}
           activeItemId={activeId}
           onItemClick={handleNavItemClick}
+          ariaLabel="Navegação Principal (Desktop)"
         />
       </aside>
 
       {/* Mobile Sidebar (Drawer) */}
-      <aside className={`${styles.mobileSidebar} ${isMobileMenuOpen ? styles.mobileSidebarOpen : ''}`}>
+      <aside 
+        className={`${styles.mobileSidebar} ${isMobileMenuOpen ? styles.mobileSidebarOpen : ''}`}
+        aria-label="Menu Lateral Mobile"
+      >
         <Sidebar 
           items={navItems}
           activeItemId={activeId}
           onItemClick={handleNavItemClick}
           onClose={() => setIsMobileMenuOpen(false)}
           showCloseButton={true}
+          ariaLabel="Navegação Principal (Mobile)"
         />
       </aside>
 
@@ -82,7 +87,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
         </header>
 
-        <main className={styles.content}>
+        <main id="main-content" className={styles.content}>
           {children}
         </main>
       </div>
