@@ -183,6 +183,7 @@ model Shipment {
   addressId             String
   trackingCode          String?
   status                ShipmentStatus     @default(PREPARING)
+  realShippingCostBrl   Decimal?           @db.Decimal(10, 2)
   createdAt             DateTime           @default(now())
   updatedAt             DateTime           @updatedAt
 
@@ -191,6 +192,30 @@ model Shipment {
   shipmentItems ShipmentItem[]
 
   @@map("shipments")
+}
+
+model OperationalCost {
+  id          String   @id @default(uuid())
+  description String
+  amount      Decimal  @db.Decimal(10, 2)
+  date        DateTime @db.Date
+  category    String   @default("OTHER") // Ex: ALUGUEL, MARKETING, SOFTWARES
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("operational_costs")
+}
+
+model SystemConfig {
+  id            String   @id @default("CURRENT")
+  serviceFeePercent Decimal @db.Decimal(5, 2) @default(10.00)
+  fixedFeeBrl       Decimal @db.Decimal(10, 2) @default(30.00)
+  freeStorageDays   Int     @default(60)
+  storageFeePerDay  Decimal @db.Decimal(10, 2) @default(5.00)
+  jpyExchangeRate   Decimal @db.Decimal(10, 4) @default(0.0350)
+  updatedAt         DateTime @updatedAt
+
+  @@map("system_configs")
 }
 
 enum ShippingMethod {

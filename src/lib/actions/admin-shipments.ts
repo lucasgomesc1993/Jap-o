@@ -74,6 +74,7 @@ export async function markAsShipped(shipmentId: string, data: MarkShippedInput) 
         status: ShipmentStatus.SHIPPED,
         trackingCode: validated.trackingCode,
         totalWeightGrams: validated.finalWeightGrams,
+        realShippingCostBrl: validated.realShippingCostBrl,
       },
     });
 

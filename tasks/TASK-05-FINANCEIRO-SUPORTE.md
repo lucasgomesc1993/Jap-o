@@ -117,40 +117,39 @@
 ## TASK 5.5 — Admin: Financeiro
 
 ### 5.5.1 Receita por período
-- [ ] Filtro de data (início/fim)
-- [ ] Cards: taxas de serviço, margem de frete, serviços extras, armazenamento
-- [ ] Gráfico de barras (Recharts) — receita por categoria
-- [ ] Gráfico de linha — receita ao longo do tempo
-- **Testes:**
-  - [ ] Cálculos corretos por categoria
-  - [ ] Filtro de data funciona
-  - [ ] Gráficos renderizam com dados
+- [x] Filtro de data (início/fim)
+- [x] Cards: taxas de serviço, margem de frete, serviços extras, armazenamento
+- [x] Gráfico de barras (Recharts) — receita por categoria
+- [x] Gráfico de linha — receita ao longo do tempo
+- [x] Cálculos corretos por categoria
+- [x] Filtro de data funciona
+- [x] Gráficos renderizam com dados
 
 ### 5.5.2 Custos
-- [ ] Compras reais em ¥ (convertido R$)
-- [ ] Fretes reais pagos
-- [ ] Outros custos operacionais (input manual)
-- [ ] Lucro = Receita - Custos
+- [x] Compras reais em ¥ (convertido R$)
+- [x] Fretes reais pagos
+- [x] Outros custos operacionais (input manual)
+- [x] Lucro = Receita - Custos
 - **Testes:**
-  - [ ] Conversão ¥ → R$ usa cotação correta
-  - [ ] Somatórios corretos
-  - [ ] Lucro calcula corretamente
+  - [x] Conversão ¥ → R$ usa cotação correta
+  - [x] Somatórios corretos
+  - [x] Lucro calcula corretamente
 
 ### 5.5.3 Saldos em carteira (passivo)
-- [ ] Total de saldo de todos os clientes
-- [ ] Lista top 10 clientes por saldo
+- [x] Total de saldo de todos os clientes
+- [x] Lista top 10 clientes por saldo
 - **Testes:**
-  - [ ] Soma total correta
-  - [ ] Ordenação top 10
+  - [x] Soma total correta
+  - [x] Ordenação top 10
 
 ### 5.5.4 Exportar relatórios
-- [ ] CSV: dados tabulares (receita, custos, transações)
-- [ ] PDF: relatório formatado (usando jsPDF ou react-pdf)
-- [ ] Filtrado pelo mesmo período selecionado
+- [x] CSV: dados tabulares (receita, custos, transações)
+- [x] PDF: relatório formatado (usando jsPDF ou react-pdf)
+- [x] Filtrado pelo mesmo período selecionado
 - **Testes:**
-  - [ ] CSV gerado com dados corretos
-  - [ ] PDF gerado sem erros
-  - [ ] Filtro de período aplicado
+  - [x] CSV gerado com dados corretos
+  - [x] PDF gerado sem erros
+  - [x] Filtro de período aplicado
 
 ---
 
@@ -233,6 +232,6 @@
 - [ ] `ticket-message.schema.ts` — content obrigatório
 - [x] `manual-credit.schema.ts` — tipo, valor > 0, motivo obrigatório
 - [ ] `admin-config.schema.ts` — taxas, prazos, preços, domínios
-- [ ] `financial-filter.schema.ts` — dateFrom, dateTo
+- [x] `financial-filter.schema.ts` — dateFrom, dateTo
 
 **Cada schema:** testes válido, inválido, mensagens pt-BR

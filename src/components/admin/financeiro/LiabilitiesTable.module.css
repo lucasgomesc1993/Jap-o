@@ -1,0 +1,70 @@
+.container {
+  margin-top: 2rem;
+  background: var(--color-background);
+  border: 2px solid var(--color-foreground);
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--color-foreground);
+  padding-bottom: 1.5rem;
+}
+
+.header h3 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.totalBox {
+  text-align: right;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  margin-bottom: 0.25rem;
+}
+
+.totalValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  background: #f5f5f5;
+  border: 1px solid var(--color-foreground);
+}
+
+.table td {
+  padding: 1rem;
+  border: 1px solid var(--color-foreground);
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.table tr:hover {
+  background: #fafafa;
+}

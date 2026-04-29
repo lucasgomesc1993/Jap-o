@@ -1,0 +1,57 @@
+.container {
+  margin-top: 2rem;
+  background: var(--color-background);
+  border: 2px solid var(--color-foreground);
+  padding: 2rem;
+}
+
+.container h3 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.input {
+  padding: 0.75rem;
+  border: 2px solid var(--color-foreground);
+  font-family: inherit;
+}
+
+.button {
+  padding: 0.75rem;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
