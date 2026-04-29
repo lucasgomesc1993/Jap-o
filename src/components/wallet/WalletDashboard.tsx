@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Card, Button, Input, Badge, Modal, useToast } from '@/components/ui';
 import { Wallet as WalletIcon, Plus, ArrowUpRight, ArrowDownLeft, Copy, Check, Clock } from 'lucide-react';
 import styles from './WalletDashboard.module.css';
@@ -218,8 +219,13 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
         ) : (
           <div className={styles.pixContent}>
             <div className={styles.qrCodeContainer}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`data:image/png;base64,${pixData.qrCodeBase64}`} alt="QR Code Pix" />
+              <Image 
+                src={`data:image/png;base64,${pixData.qrCodeBase64}`} 
+                alt="QR Code Pix" 
+                width={200}
+                height={200}
+                unoptimized
+              />
             </div>
             <p className={styles.pixLabel}>Escaneie o QR Code ou copie a chave Pix Copia e Cola:</p>
             <div className={styles.copyGroup}>

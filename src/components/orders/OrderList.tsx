@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Card, Badge, Button, Modal, useToast } from '@/components/ui';
 import { ShoppingBag, Calendar, ExternalLink, XCircle, ArrowRight, Package } from 'lucide-react';
 import { cancelOrder } from '@/lib/actions/orders';
@@ -120,8 +121,13 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
               <div className={styles.cardMain}>
                 <div className={styles.imageBox}>
                   {order.productImage ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img src={order.productImage} alt={order.productName} />
+                    <Image 
+                      src={order.productImage} 
+                      alt={order.productName} 
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ objectFit: 'cover' }}
+                    />
                   ) : (
                     <Package size={32} strokeWidth={1} />
                   )}
@@ -191,8 +197,15 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
 
             <div className={styles.productDetails}>
               {selectedOrder.productImage && (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={selectedOrder.productImage} alt={selectedOrder.productName} className={styles.modalImg} />
+                <div className={styles.modalImgContainer}>
+                  <Image 
+                    src={selectedOrder.productImage} 
+                    alt={selectedOrder.productName} 
+                    width={200}
+                    height={200}
+                    className={styles.modalImg} 
+                  />
+                </div>
               )}
               <div className={styles.modalInfo}>
                 <h4>{selectedOrder.productName}</h4>

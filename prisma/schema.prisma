@@ -51,6 +51,7 @@ model Address {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   shipments Shipment[]
 
+  @@index([userId])
   @@map("addresses")
 }
 
@@ -96,6 +97,8 @@ model Order {
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   warehouseItem WarehouseItem?
 
+  @@index([userId])
+  @@index([status])
   @@map("orders")
 }
 
@@ -130,6 +133,9 @@ model WarehouseItem {
   extraServices ExtraService[]
   shipmentItems ShipmentItem[]
 
+  @@index([userId])
+  @@index([status])
+  @@index([freeStorageDeadline])
   @@map("warehouse_items")
 }
 
@@ -192,6 +198,8 @@ model Shipment {
   address       Address        @relation(fields: [addressId], references: [id])
   shipmentItems ShipmentItem[]
 
+  @@index([userId])
+  @@index([status])
   @@map("shipments")
 }
 
@@ -280,6 +288,7 @@ model Transaction {
 
   wallet Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
 
+  @@index([walletId])
   @@map("transactions")
 }
 
@@ -317,6 +326,8 @@ model Ticket {
   user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   messages    TicketMessage[]
 
+  @@index([userId])
+  @@index([status])
   @@map("tickets")
 }
 
@@ -331,6 +342,7 @@ model TicketMessage {
 
   ticket     Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
 
+  @@index([ticketId])
   @@map("ticket_messages")
 }
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Ticket, TicketMessage } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -71,7 +72,14 @@ export function TicketChat({ ticket, isAdmin = false, onReply }: TicketChatProps
                 <div className={styles.attachments}>
                   {msg.attachments.map((url: any, idx: number) => (
                     <a key={idx} href={url} target="_blank" rel="noopener noreferrer" className={styles.attachmentLink}>
-                      <img src={url} alt="Anexo" className={styles.attachmentImg} />
+                      <Image 
+                        src={url} 
+                        alt="Anexo" 
+                        width={100}
+                        height={100}
+                        className={styles.attachmentImg} 
+                        style={{ objectFit: 'cover' }}
+                      />
                     </a>
                   ))}
                 </div>

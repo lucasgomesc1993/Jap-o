@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { WarehouseItem, Address, ShippingMethod, DeclaredValueType } from '@prisma/client';
@@ -114,12 +115,15 @@ export const ShipmentWizard: React.FC<ShipmentWizardProps> = ({
             <h3 className={styles.stepTitle}>Itens Selecionados</h3>
             {items.map(item => (
               <div key={item.id} className={styles.itemRow}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={(item.photos as string[])[0] || '/placeholder-package.png'} 
-                  alt={item.name} 
-                  className={styles.itemThumb} 
-                />
+                <div className={styles.itemThumbContainer}>
+                  <Image 
+                    src={(item.photos as string[])[0] || '/placeholder-package.png'} 
+                    alt={item.name} 
+                    width={50}
+                    height={50}
+                    className={styles.itemThumb} 
+                  />
+                </div>
                 <div className={styles.itemName}>{item.name}</div>
                 <div className={styles.itemWeight}>{item.weightGrams}g</div>
               </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import styles from './Sidebar.module.css';
 
 export interface SidebarItem {
@@ -58,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             
             return (
               <li key={item.id} role="listitem">
-                <a
+                <Link
                   href={item.href}
                   className={`${styles.navItem} ${isActive ? styles.active : ''}`}
                   aria-current={isActive ? 'page' : undefined}
@@ -75,7 +76,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     <span className={styles.badge}>{item.badge}</span>
                   )}
                   {isActive && <div className={styles.activeIndicator} />}
-                </a>
+                </Link>
               </li>
             );
           })}

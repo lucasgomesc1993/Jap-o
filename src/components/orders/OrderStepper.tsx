@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Search, Loader2, ArrowRight, ArrowLeft, Check, JapaneseYen, ShoppingBag, CreditCard, Wallet as WalletIcon } from 'lucide-react';
 import { Button, Input, Card, Badge, useToast } from '@/components/ui';
@@ -170,8 +171,15 @@ export function OrderStepper({ initialExchangeRate }: OrderStepperProps) {
             <Card className={styles.previewCard}>
               <div className={styles.previewLayout}>
                 {formData.productImage ? (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={formData.productImage} alt={formData.productName} className={styles.productImage} />
+                  <div className={styles.productImageContainer}>
+                    <Image 
+                      src={formData.productImage} 
+                      alt={formData.productName} 
+                      width={120}
+                      height={120}
+                      className={styles.productImage} 
+                    />
+                  </div>
                 ) : (
                   <div className={styles.imagePlaceholder}>
                     <ShoppingBag size={48} strokeWidth={1} />
