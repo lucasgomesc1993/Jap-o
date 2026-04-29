@@ -121,6 +121,7 @@ model WarehouseItem {
   arrivedAt            DateTime            @default(now())
   freeStorageDeadline  DateTime?
   status               WarehouseItemStatus @default(AVAILABLE)
+  lastStorageFeeAt     DateTime?
   createdAt            DateTime            @default(now())
   updatedAt            DateTime            @updatedAt
 

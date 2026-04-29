@@ -181,21 +181,21 @@
 ## TASK 5.7 — Cobrança Automática de Armazenamento
 
 ### 5.7.1 Edge Function / Cron Job
-- [ ] Executar diariamente
-- [ ] Buscar itens com prazo vencido e status AVAILABLE
-- [ ] Calcular dias após vencimento × valor diário (config)
-- [ ] Debitar carteira do cliente (se saldo disponível)
-- [ ] Criar transação STORAGE_FEE
-- [ ] Se saldo insuficiente: registrar débito pendente
-- [ ] Enviar notificação ao cliente (primeira cobrança + recorrente semanal)
+- [x] Executar diariamente
+- [x] Buscar itens com prazo vencido e status AVAILABLE
+- [x] Calcular dias após vencimento × valor diário (config)
+- [x] Debitar carteira do cliente (se saldo disponível)
+- [x] Criar transação STORAGE_FEE
+- [x] Se saldo insuficiente: registrar débito pendente
+- [x] Enviar notificação ao cliente (primeira cobrança + recorrente semanal)
 - **Testes:**
-  - [ ] Cobrança calculada corretamente
-  - [ ] Debita carteira
-  - [ ] Não cobra itens dentro do prazo
-  - [ ] Não cobra itens já enviados
-  - [ ] Saldo insuficiente registra pendência
-  - [ ] Email de cobrança disparado
-  - [ ] Idempotente (não cobra duas vezes no mesmo dia)
+  - [x] Cobrança calculada corretamente
+  - [x] Debita carteira
+  - [x] Não cobra itens dentro do prazo
+  - [x] Não cobra itens já enviados
+  - [x] Saldo insuficiente registra pendência
+  - [x] Email de cobrança disparado
+  - [x] Idempotente (não cobra duas vezes no mesmo dia)
 
 ---
 
