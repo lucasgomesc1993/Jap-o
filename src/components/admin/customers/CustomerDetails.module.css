@@ -1,0 +1,126 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+}
+
+.userInfo h1 {
+  margin: 0 0 8px 0;
+  font-family: var(--font-cormorant);
+  font-size: 32px;
+}
+
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--on-surface-variant);
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 32px;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--outline-variant);
+  padding-bottom: 8px;
+}
+
+.tabButton {
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  transition: all 0.2s;
+}
+
+.tabButton.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-family: var(--font-jost);
+}
+
+.balance {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.historyItem {
+  padding: 12px;
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.historyItem:last-child {
+  border-bottom: none;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.itemDate {
+  font-size: 12px;
+  color: var(--on-surface-variant);
+}
+
+.itemTitle {
+  font-weight: 600;
+  font-size: 14px;
+}

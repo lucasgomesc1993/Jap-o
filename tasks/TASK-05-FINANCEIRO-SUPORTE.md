@@ -72,45 +72,45 @@
 ## TASK 5.4 — Admin: Gestão de Clientes
 
 ### 5.4.1 Lista de clientes
-- [ ] Tabela: nome, email, saldo carteira, qtd pedidos, qtd chamados, status (ativo/bloqueado)
-- [ ] Busca por nome ou email
-- [ ] Paginação server-side
+- [x] Tabela: nome, email, saldo carteira, qtd pedidos, qtd chamados, status (ativo/bloqueado)
+- [x] Busca por nome ou email
+- [x] Paginação server-side
 - **Testes:**
-  - [ ] Renderiza todos os clientes
-  - [ ] Busca funciona
-  - [ ] Paginação funciona
+  - [x] Renderiza todos os clientes
+  - [x] Busca funciona
+  - [x] Paginação funciona
 
 ### 5.4.2 Perfil do cliente
-- [ ] Dados cadastrais (nome, email, CPF mascarado, telefone)
-- [ ] Saldo da carteira
-- [ ] Histórico: pedidos, envios, chamados (tabs)
-- [ ] Aceites de declaração registrados
+- [x] Dados cadastrais (nome, email, CPF mascarado, telefone)
+- [x] Saldo da carteira
+- [x] Histórico: pedidos, envios, chamados (tabs)
+- [x] Aceites de declaração registrados
 - **Testes:**
-  - [ ] Exibe dados corretos
-  - [ ] CPF mascarado (###.***.**#-##)
-  - [ ] Tabs navegam corretamente
-  - [ ] Aceites listados com IP/data
+  - [x] Exibe dados corretos
+  - [x] CPF mascarado (###.***.**#-##)
+  - [x] Tabs navegam corretamente
+  - [x] Aceites listados com IP/data
 
 ### 5.4.3 Crédito/Débito manual (RN07)
-- [ ] Formulário: tipo (crédito/débito), valor, motivo (obrigatório)
-- [ ] Atualiza saldo + cria transação MANUAL_CREDIT/MANUAL_DEBIT
-- [ ] Log de auditoria com motivo
+- [x] Formulário: tipo (crédito/débito), valor, motivo (obrigatório)
+- [x] Atualiza saldo + cria transação MANUAL_CREDIT/MANUAL_DEBIT
+- [x] Log de auditoria com motivo
 - **Testes:**
-  - [ ] Crédito aumenta saldo
-  - [ ] Débito diminui saldo
-  - [ ] Débito não pode negativar (RN03)
-  - [ ] Motivo obrigatório (validação)
-  - [ ] Transação criada com tipo correto
-  - [ ] Log de auditoria inclui motivo
+  - [x] Crédito aumenta saldo
+  - [x] Débito diminui saldo
+  - [x] Débito não pode negativar (RN03)
+  - [x] Motivo obrigatório (validação)
+  - [x] Transação criada com tipo correto
+  - [x] Log de auditoria inclui motivo
 
 ### 5.4.4 Bloquear conta
-- [ ] Toggle bloquear/desbloquear
-- [ ] Usuário bloqueado não consegue fazer login
-- [ ] Log de auditoria
+- [x] Toggle bloquear/desbloquear
+- [x] Usuário bloqueado não consegue fazer login
+- [x] Log de auditoria
 - **Testes:**
-  - [ ] Flag `blocked` atualizada
-  - [ ] Middleware impede login de bloqueado
-  - [ ] Log criado
+  - [x] Flag `blocked` atualizada
+  - [x] Middleware impede login de bloqueado
+  - [x] Log criado
 
 ---
 
@@ -231,7 +231,7 @@
 
 - [ ] `ticket-create.schema.ts` — type, subject, content, attachments (max 5)
 - [ ] `ticket-message.schema.ts` — content obrigatório
-- [ ] `manual-credit.schema.ts` — tipo, valor > 0, motivo obrigatório
+- [x] `manual-credit.schema.ts` — tipo, valor > 0, motivo obrigatório
 - [ ] `admin-config.schema.ts` — taxas, prazos, preços, domínios
 - [ ] `financial-filter.schema.ts` — dateFrom, dateTo
 

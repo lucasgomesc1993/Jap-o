@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  width: 100%;
+  max-width: 400px;
+}
+
+.tableWrapper {
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 16px;
+  background: var(--surface-variant);
+  font-family: var(--font-jost);
+  font-weight: 600;
+  border-bottom: 1px solid var(--outline);
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--outline-variant);
+  font-size: 14px;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.clientInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.clientName {
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.clientEmail {
+  font-size: 12px;
+  color: var(--on-surface-variant);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.empty {
+  text-align: center;
+  padding: 48px;
+  color: var(--on-surface-variant);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.pageInfo {
+  font-size: 14px;
+  color: var(--on-surface-variant);
+}
