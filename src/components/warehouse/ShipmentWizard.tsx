@@ -112,6 +112,7 @@ export const ShipmentWizard: React.FC<ShipmentWizardProps> = ({
             <h3 className={styles.stepTitle}>Itens Selecionados</h3>
             {items.map(item => (
               <div key={item.id} className={styles.itemRow}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src={(item.photos as string[])[0] || '/placeholder-package.png'} 
                   alt={item.name} 

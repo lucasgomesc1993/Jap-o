@@ -115,7 +115,7 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
           <div className={styles.balanceInfo}>
             <span className={styles.label}>
               <span className={styles.labelIndex}>01</span>
-              <span>// Saldo Disponível</span>
+              <span>{` // Saldo Disponível`}</span>
             </span>
             <div className={styles.amount}>{formatCurrency(balance)}</div>
           </div>
@@ -218,6 +218,7 @@ export function WalletDashboard({ balance, transactions, userId }: WalletDashboa
         ) : (
           <div className={styles.pixContent}>
             <div className={styles.qrCodeContainer}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`data:image/png;base64,${pixData.qrCodeBase64}`} alt="QR Code Pix" />
             </div>
             <p className={styles.pixLabel}>Escaneie o QR Code ou copie a chave Pix Copia e Cola:</p>

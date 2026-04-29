@@ -43,6 +43,7 @@ export function PurchaseQueue() {
 
   useEffect(() => {
     fetchOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const handleMarkAsInTransit = async (orderId: string) => {

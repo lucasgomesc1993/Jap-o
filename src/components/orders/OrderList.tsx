@@ -120,6 +120,7 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
               <div className={styles.cardMain}>
                 <div className={styles.imageBox}>
                   {order.productImage ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
                     <img src={order.productImage} alt={order.productName} />
                   ) : (
                     <Package size={32} strokeWidth={1} />
@@ -190,6 +191,7 @@ export function OrderList({ orders: initialOrders }: OrderListProps) {
 
             <div className={styles.productDetails}>
               {selectedOrder.productImage && (
+                /* eslint-disable-next-line @next/next/no-img-element */
                 <img src={selectedOrder.productImage} alt={selectedOrder.productName} className={styles.modalImg} />
               )}
               <div className={styles.modalInfo}>

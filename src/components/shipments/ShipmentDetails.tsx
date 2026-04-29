@@ -90,6 +90,7 @@ export default function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
                 <div key={item.id} className={styles.item}>
                   <div className={styles.itemImage}>
                     {item.warehouseItem.photos[0] ? (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img 
                         src={item.warehouseItem.photos[0]} 
                         alt={item.warehouseItem.name} 

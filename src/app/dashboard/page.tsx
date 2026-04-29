@@ -60,7 +60,7 @@ export default async function DashboardPage() {
             <div className={styles.statHeader}>
               <span className={styles.statLabel}>
                 <span className={styles.statIndex}>{stat.id}</span>
-                <span>// {stat.label}</span>
+                <span>{` // ${stat.label}`}</span>
               </span>
               <div className={styles.statIcon}>
                 {stat.icon}

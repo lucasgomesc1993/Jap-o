@@ -117,6 +117,7 @@ export function ReceiveModal({ order, isOpen, onClose }: ReceiveModalProps) {
             <div className={styles.photoGrid}>
               {photos.map((photo, i) => (
                 <div key={i} className={styles.photoThumb}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={photo} alt={`Produto ${i + 1}`} />
                 </div>
               ))}
@@ -214,6 +215,7 @@ export function ReceiveModal({ order, isOpen, onClose }: ReceiveModalProps) {
                     <p className={styles.label}>Foto do Problema (Obrigatória)</p>
                     {qcPhoto ? (
                       <div className={styles.photoThumb}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={qcPhoto} alt="Problema" />
                       </div>
                     ) : (

@@ -62,6 +62,7 @@ export function ShipmentList() {
 
   useEffect(() => {
     fetchShipments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, statusFilter]);
 
   const handleNextStatus = async (shipmentId: string, currentStatus: ShipmentStatus) => {

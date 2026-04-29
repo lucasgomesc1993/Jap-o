@@ -5,7 +5,8 @@ import { WarehouseItemStatus } from '@prisma/client';
 
 // Mock next/image
 vi.mock('next/image', () => ({
-  default: (props: any) => <img {...props} />
+  // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+  default: (props: any) => <img {...props} alt={props.alt || ''} />
 }));
 
 describe('WarehouseItemCard', () => {

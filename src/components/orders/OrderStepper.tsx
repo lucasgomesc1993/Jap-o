@@ -170,6 +170,7 @@ export function OrderStepper({ initialExchangeRate }: OrderStepperProps) {
             <Card className={styles.previewCard}>
               <div className={styles.previewLayout}>
                 {formData.productImage ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
                   <img src={formData.productImage} alt={formData.productName} className={styles.productImage} />
                 ) : (
                   <div className={styles.imagePlaceholder}>
