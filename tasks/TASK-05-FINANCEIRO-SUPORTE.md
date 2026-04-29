@@ -156,25 +156,25 @@
 ## TASK 5.6 — Admin: Configurações
 
 ### 5.6.1 Taxas e preços
-- [ ] Taxa de serviço (%) + taxa fixa (R$)
-- [ ] Tabela de frete: método × faixa de peso → preço
-- [ ] Prazo de armazenamento gratuito (dias)
-- [ ] Valor cobrança por dia após prazo (R$)
-- [ ] Preços dos serviços extras (por tipo)
-- [ ] Salvar com validação
+- [x] Taxa de serviço (%) + taxa fixa (R$)
+- [x] Tabela de frete: método × faixa de peso → preço
+- [x] Prazo de armazenamento gratuito (dias)
+- [x] Valor cobrança por dia após prazo (R$)
+- [x] Preços dos serviços extras (por tipo)
+- [x] Salvar com validação
 - **Testes:**
-  - [ ] Valores salvos corretamente
-  - [ ] Validação: % entre 0-100, valores >= 0
-  - [ ] Alteração reflete imediatamente nos cálculos
+  - [x] Valores salvos corretamente
+  - [x] Validação: % entre 0-100, valores >= 0
+  - [x] Alteração reflete imediatamente nos cálculos
 
 ### 5.6.2 Conteúdo configurável
-- [ ] Plataformas aceitas (lista de domínios, add/remove)
-- [ ] Produtos proibidos (lista de texto, visível ao cliente na landing)
-- [ ] Texto dos termos de responsabilidade (declaração manual) — versionado
+- [x] Plataformas aceitas (lista de domínios, add/remove)
+- [x] Produtos proibidos (lista de texto, visível ao cliente na landing)
+- [x] Texto dos termos de responsabilidade (declaração manual) — versionado
 - **Testes:**
-  - [ ] Adicionar/remover plataforma
-  - [ ] Texto de termos gera nova versão ao salvar
-  - [ ] Lista de proibidos renderiza na landing
+  - [x] Adicionar/remover plataforma
+  - [x] Texto de termos gera nova versão ao salvar
+  - [x] Lista de proibidos renderiza na landing
 
 ---
 
@@ -231,7 +231,7 @@
 - [ ] `ticket-create.schema.ts` — type, subject, content, attachments (max 5)
 - [ ] `ticket-message.schema.ts` — content obrigatório
 - [x] `manual-credit.schema.ts` — tipo, valor > 0, motivo obrigatório
-- [ ] `admin-config.schema.ts` — taxas, prazos, preços, domínios
+- [x] `admin-config.schema.ts` — taxas, prazos, preços, domínios
 - [x] `financial-filter.schema.ts` — dateFrom, dateTo
 
 **Cada schema:** testes válido, inválido, mensagens pt-BR

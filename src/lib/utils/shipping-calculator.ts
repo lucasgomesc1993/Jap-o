@@ -52,11 +52,20 @@ const RANGES: Record<ShippingMethod, RateRange[]> = {
  * Calcula o custo de frete baseado no método e peso (gramas)
  * Fórmula: basePrice + (weight * pricePerGram) por faixa
  */
-export function calculateShippingCost(method: ShippingMethod, weightGrams: number): number {
+export function calculateShippingCost(
+  method: ShippingMethod, 
+  weightGrams: number,
+  customRates?: Record<ShippingMethod, RateRange[]>
+): number {
   if (weightGrams <= 0) throw new Error('Peso deve ser maior que zero');
   if (weightGrams > 30000) throw new Error('Peso máximo permitido é 30kg');
 
-  const methodRanges = RANGES[method];
+  const methodRanges = customRates ? customRates[method] : RANGES[method];
+  
+  if (!methodRanges || methodRanges.length === 0) {
+    throw new Error(`Nenhuma configuração de frete encontrada para o método ${method}`);
+  }
+
   // Encontra a faixa adequada. Se o peso for exatamente o limite máximo da faixa, ele entra nela.
   const range = methodRanges.find(r => weightGrams > r.min && weightGrams <= r.max);
 

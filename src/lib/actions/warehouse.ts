@@ -38,7 +38,9 @@ export async function requestExtraService(formData: { warehouseItemId: string; t
   }
 
   const { warehouseItemId, type } = validated.data;
-  const price = SERVICE_PRICES[type];
+  const config = await prisma.systemConfig.findUnique({ where: { id: 'CURRENT' } });
+  const extraPrices = config?.extraServicePrices as Record<ExtraServiceType, number> || SERVICE_PRICES;
+  const price = extraPrices[type] || SERVICE_PRICES[type];
 
   try {
     return await prisma.$transaction(async (tx) => {
@@ -168,7 +170,10 @@ export async function createShipment(input: ShipmentCreateInput) {
 
       // 3. Calcular peso total e valores
       const totalWeightGrams = items.reduce((acc, item) => acc + item.weightGrams, 0);
-      const shippingCostBrl = calculateShippingCost(shippingMethod as ShippingMethod, totalWeightGrams);
+      
+      const config = await tx.systemConfig.findUnique({ where: { id: 'CURRENT' } });
+      const customRates = config?.shippingRates as any;
+      const shippingCostBrl = calculateShippingCost(shippingMethod as ShippingMethod, totalWeightGrams, customRates);
 
       let declaredValueBrl = 0;
       if (declaredValueType === 'REAL') {

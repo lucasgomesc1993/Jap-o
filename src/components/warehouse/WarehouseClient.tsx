@@ -14,9 +14,10 @@ interface WarehouseClientProps {
   items: (WarehouseItem & { extraServices: ExtraService[] })[];
   wallet: Wallet | null;
   addresses: Address[];
+  config: any;
 }
 
-export const WarehouseClient: React.FC<WarehouseClientProps> = ({ items, wallet, addresses }) => {
+export const WarehouseClient: React.FC<WarehouseClientProps> = ({ items, wallet, addresses, config }) => {
   const router = useRouter();
   const [selectedItem, setSelectedItem] = useState<(WarehouseItem & { extraServices: ExtraService[] }) | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,6 +72,7 @@ export const WarehouseClient: React.FC<WarehouseClientProps> = ({ items, wallet,
         <ShipmentWizard 
           items={selectedItems}
           addresses={addresses}
+          config={config}
           onClose={() => setIsWizardOpen(false)}
           onSuccess={() => {
             setIsWizardOpen(false);

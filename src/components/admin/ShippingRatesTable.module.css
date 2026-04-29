@@ -1,0 +1,138 @@
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.methodBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #fff;
+  border: 2px solid #000;
+  font-family: var(--font-mono, monospace);
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.methodBtn.active {
+  background: #000;
+  color: #fff;
+  transform: translateX(10px);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header h3 {
+  margin: 0 0 0.5rem 0;
+  font-family: var(--font-mono, monospace);
+  text-transform: uppercase;
+}
+
+.header p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.rangesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #666;
+  border-bottom: 2px solid #000;
+}
+
+.table td {
+  padding: 0.5rem;
+}
+
+.table input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+}
+
+.table input:focus {
+  border-color: #000;
+  outline: none;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
+  border: 1px dashed #000;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.addBtn:hover {
+  background: #e0e0e0;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-family: var(--font-mono, monospace);
+  font-weight: 800;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+}

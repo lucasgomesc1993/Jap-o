@@ -14,6 +14,7 @@ import styles from './ShipmentWizard.module.css';
 interface ShipmentWizardProps {
   items: WarehouseItem[];
   addresses: Address[];
+  config: any;
   onClose: () => void;
   onSuccess: () => void;
 }
@@ -29,6 +30,7 @@ const STEPS = [
 export const ShipmentWizard: React.FC<ShipmentWizardProps> = ({ 
   items, 
   addresses, 
+  config,
   onClose, 
   onSuccess 
 }) => {
@@ -60,11 +62,11 @@ export const ShipmentWizard: React.FC<ShipmentWizardProps> = ({
 
   const shippingCost = useMemo(() => {
     try {
-      return calculateShippingCost(selectedMethod as ShippingMethod, totalWeight);
+      return calculateShippingCost(selectedMethod as ShippingMethod, totalWeight, config?.shippingRates);
     } catch {
       return 0;
     }
-  }, [selectedMethod, totalWeight]);
+  }, [selectedMethod, totalWeight, config]);
 
   const declaredValue = useMemo(() => {
     if (declaredValueType === 'REAL') {
@@ -133,7 +135,7 @@ export const ShipmentWizard: React.FC<ShipmentWizardProps> = ({
         return (
           <div className={styles.methodsGrid}>
             {(['SAL', 'EMS', 'DHL', 'FEDEX'] as const).map(method => {
-              const cost = calculateShippingCost(method, totalWeight);
+              const cost = calculateShippingCost(method, totalWeight, config?.shippingRates);
               const isSelected = selectedMethod === method;
               return (
                 <div 

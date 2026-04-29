@@ -207,15 +207,32 @@ model OperationalCost {
 }
 
 model SystemConfig {
-  id            String   @id @default("CURRENT")
-  serviceFeePercent Decimal @db.Decimal(5, 2) @default(10.00)
-  fixedFeeBrl       Decimal @db.Decimal(10, 2) @default(30.00)
-  freeStorageDays   Int     @default(60)
-  storageFeePerDay  Decimal @db.Decimal(10, 2) @default(5.00)
-  jpyExchangeRate   Decimal @db.Decimal(10, 4) @default(0.0350)
+  id                String   @id @default("CURRENT")
+  serviceFeePercent Decimal  @db.Decimal(5, 2) @default(10.00)
+  fixedFeeBrl       Decimal  @db.Decimal(10, 2) @default(30.00)
+  freeStorageDays   Int      @default(60)
+  storageFeePerDay  Decimal  @db.Decimal(10, 2) @default(5.00)
+  jpyExchangeRate   Decimal  @db.Decimal(10, 4) @default(0.0350)
+  
+  // Novos campos para Task 5.6
+  shippingRates      Json     @default("{}") // Estrutura da Task 3.7
+  extraServicePrices Json     @default("{}") // { EXTRA_PHOTO: 10, ... }
+  allowedPlatforms   Json     @default("[]") // ["amazon.co.jp", ...]
+  prohibitedProducts Json     @default("[]") // ["Baterias", "Líquidos", ...]
+  
   updatedAt         DateTime @updatedAt
 
   @@map("system_configs")
+}
+
+model LegalDocument {
+  id        String   @id @default(uuid())
+  type      String   @default("TERMS_OF_RESPONSIBILITY")
+  content   String   @db.Text
+  version   Int      @default(1)
+  createdAt DateTime @default(now())
+
+  @@map("legal_documents")
 }
 
 enum ShippingMethod {

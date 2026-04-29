@@ -25,6 +25,9 @@ vi.mock('@/lib/prisma/client', () => ({
       findUnique: vi.fn(),
       update: vi.fn(),
     },
+    systemConfig: {
+      findUnique: vi.fn(),
+    },
     transaction: {
       create: vi.fn(),
     },

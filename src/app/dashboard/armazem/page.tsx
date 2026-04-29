@@ -20,7 +20,7 @@ export default async function WarehousePage() {
     redirect('/login');
   }
 
-  const [items, wallet, addresses] = await Promise.all([
+  const [items, wallet, addresses, config] = await Promise.all([
     prisma.warehouseItem.findMany({
       where: { userId: user.id },
       include: {
@@ -34,6 +34,9 @@ export default async function WarehousePage() {
     prisma.address.findMany({
       where: { userId: user.id },
       orderBy: { isDefault: 'desc' }
+    }),
+    prisma.systemConfig.findUnique({
+      where: { id: 'CURRENT' }
     })
   ]);
 
@@ -46,7 +49,7 @@ export default async function WarehousePage() {
         </p>
       </header>
 
-      <WarehouseClient items={items} wallet={wallet} addresses={addresses} />
+      <WarehouseClient items={items} wallet={wallet} addresses={addresses} config={config} />
     </main>
   );
 }
